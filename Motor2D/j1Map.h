@@ -147,7 +147,7 @@ private:
 	// TODO 3: Create a method that loads a single laye
 	bool LoadLayer(pugi::xml_node& node, MapLayer* layer);
 	bool LoadImageLayer(pugi::xml_node& node, ImageLayer* layer);
-	//bool LoadObjectLayer(pugi::xml_node& node, ObjectLayer* layer);
+	bool LoadObjectLayer(pugi::xml_node& node, ObjectLayer* layer);
 	//bool LoadEnemyLayer(pugi::xml_node& node, EnemyLayer* layer);
 
 public:

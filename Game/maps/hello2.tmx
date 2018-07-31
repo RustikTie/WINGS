@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="15" tilewidth="32" tileheight="32" nextobjectid="1">
- <tileset firstgid="1" name="Desert" tilewidth="32" tileheight="32" spacing="1" margin="1">
+<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="50" height="15" tilewidth="32" tileheight="32" infinite="0" nextobjectid="3">
+ <tileset firstgid="1" name="Desert" tilewidth="32" tileheight="32" spacing="1" margin="1" tilecount="48" columns="8">
   <image source="tmw_desert_spacing.png" width="265" height="199"/>
   <terraintypes>
    <terrain name="Bricks" tile="9"/>
@@ -100,8 +99,8 @@
    <tile gid="30"/>
    <tile gid="30"/>
    <tile gid="30"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile/>
+   <tile/>
    <tile gid="30"/>
    <tile gid="1"/>
    <tile gid="2"/>
@@ -150,8 +149,8 @@
    <tile gid="30"/>
    <tile gid="30"/>
    <tile gid="30"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile/>
+   <tile/>
    <tile gid="30"/>
    <tile gid="9"/>
    <tile gid="10"/>
@@ -200,8 +199,8 @@
    <tile gid="39"/>
    <tile gid="30"/>
    <tile gid="30"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile/>
+   <tile/>
    <tile gid="30"/>
    <tile gid="9"/>
    <tile gid="10"/>
@@ -250,8 +249,8 @@
    <tile gid="39"/>
    <tile gid="30"/>
    <tile gid="30"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile/>
+   <tile/>
    <tile gid="30"/>
    <tile gid="9"/>
    <tile gid="10"/>
@@ -300,8 +299,8 @@
    <tile gid="39"/>
    <tile gid="30"/>
    <tile gid="30"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile/>
+   <tile/>
    <tile gid="30"/>
    <tile gid="9"/>
    <tile gid="10"/>
@@ -350,8 +349,8 @@
    <tile gid="39"/>
    <tile gid="30"/>
    <tile gid="30"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile/>
+   <tile/>
    <tile gid="30"/>
    <tile gid="9"/>
    <tile gid="10"/>
@@ -400,8 +399,8 @@
    <tile gid="39"/>
    <tile gid="30"/>
    <tile gid="30"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile/>
+   <tile/>
    <tile gid="30"/>
    <tile gid="9"/>
    <tile gid="10"/>
@@ -450,8 +449,8 @@
    <tile gid="39"/>
    <tile gid="30"/>
    <tile gid="30"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile/>
+   <tile/>
    <tile gid="30"/>
    <tile gid="9"/>
    <tile gid="10"/>
@@ -500,8 +499,8 @@
    <tile gid="39"/>
    <tile gid="30"/>
    <tile gid="30"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile/>
+   <tile/>
    <tile gid="30"/>
    <tile gid="9"/>
    <tile gid="10"/>
@@ -550,8 +549,8 @@
    <tile gid="39"/>
    <tile gid="30"/>
    <tile gid="30"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile/>
+   <tile/>
    <tile gid="30"/>
    <tile gid="9"/>
    <tile gid="10"/>
@@ -600,8 +599,8 @@
    <tile gid="39"/>
    <tile gid="30"/>
    <tile gid="30"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile/>
+   <tile/>
    <tile gid="30"/>
    <tile gid="9"/>
    <tile gid="10"/>
@@ -650,8 +649,8 @@
    <tile gid="39"/>
    <tile gid="30"/>
    <tile gid="30"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile/>
+   <tile/>
    <tile gid="30"/>
    <tile gid="9"/>
    <tile gid="10"/>
@@ -700,8 +699,8 @@
    <tile gid="39"/>
    <tile gid="30"/>
    <tile gid="30"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile/>
+   <tile/>
    <tile gid="30"/>
    <tile gid="17"/>
    <tile gid="18"/>
@@ -750,8 +749,8 @@
    <tile gid="30"/>
    <tile gid="30"/>
    <tile gid="30"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile/>
+   <tile/>
    <tile gid="30"/>
    <tile gid="30"/>
    <tile gid="30"/>
@@ -800,8 +799,11 @@
    <tile gid="30"/>
    <tile gid="30"/>
    <tile gid="30"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile/>
+   <tile/>
   </data>
  </layer>
+ <objectgroup name="Capa de Objetos 1">
+  <object id="2" x="717" y="101" width="87" height="74"/>
+ </objectgroup>
 </map>

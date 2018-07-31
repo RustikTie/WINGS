@@ -250,7 +250,7 @@ bool j1Map::Load(const char* file_name)
 
 		if (ret == true)
 		{
-			//ret = LoadObjectLayer(objects, setObject);
+			ret = LoadObjectLayer(objects, setObject);
 		}
 
 		data.objectlayers.add(setObject);
@@ -516,7 +516,7 @@ bool j1Map::LoadImageLayer(pugi::xml_node& node, ImageLayer* layer)
 	return ret;
 }
 
-/*bool j1Map::LoadObjectLayer(pugi::xml_node& node, ObjectLayer* layer)
+bool j1Map::LoadObjectLayer(pugi::xml_node& node, ObjectLayer* layer)
 {
 	pugi::xml_node aux;
 	aux = node.child("object");
@@ -559,7 +559,7 @@ bool j1Map::LoadImageLayer(pugi::xml_node& node, ImageLayer* layer)
 		layer->rect[i].x = layer->x[i];
 		layer->rect[i].y = layer->y[i];
 
-		p2SString type(aux.child("properties").child("property").attribute("value").as_string());
+		/*p2SString type(aux.child("properties").child("property").attribute("value").as_string());
 		if (type == "WHITE WOLF")
 		{
 			layer->entity_type[i] = WOLF;
@@ -575,7 +575,7 @@ bool j1Map::LoadImageLayer(pugi::xml_node& node, ImageLayer* layer)
 		if (type == NULL)
 		{
 			layer->entity_type[i] = NO_TYPE;
-		}
+		}*/
 		aux = aux.next_sibling("object");
 		++i;
 	}
@@ -585,7 +585,7 @@ bool j1Map::LoadImageLayer(pugi::xml_node& node, ImageLayer* layer)
 
 	return true;
 }
-*/
+
 
 /*bool j1Map::LoadEnemyLayer(pugi::xml_node& node, EnemyLayer* layer)
 {
