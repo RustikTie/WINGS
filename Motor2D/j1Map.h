@@ -4,34 +4,73 @@
 #include "PugiXml/src/pugixml.hpp"
 #include "p2List.h"
 #include "p2Point.h"
+//#include "p2PQueue.h"
+//#include "p2Queue.h"
+#include "p2SString.h"
+#include "p2DynArray.h"
 #include "j1Module.h"
+#include "j1Textures.h"
+#include "j1Render.h"
+//#include "j1EntityManager.h"
 
+#define COST_MAP 100
+
+enum ENTITY_TYPES;
+// TODO 1: Create a struct for the map layer
 // ----------------------------------------------------
 struct MapLayer
 {
-	p2SString	name;
-	int			width;
-	int			height;
-	uint*		data;
+	inline uint Get(int x, int y) const;
+	inline uint PathLimit(int x, int y) const;
+	p2SString			name;
+	uint				width;
+	uint				height;
+	uint*				data = nullptr;
+	uint				size = 0;
 
-	MapLayer() : data(NULL)
-	{}
 
-	~MapLayer()
-	{
-		RELEASE(data);
-	}
-
-	// TODO 6 (old): Short function to get the value of x,y
-	inline uint Get(int x, int y) const
-	{
-		return 0;
-	}
+	~MapLayer() { delete[] data; }
 };
+
+// TODO 6: Short function to get the value of x,y
+struct ImageLayer
+{
+	p2SString			name;
+	uint				width;
+	uint				height;
+	float				speed;
+	int					offset_x;
+	int					offset_y;
+	SDL_Texture* texture;
+};
+
+/*inline uint Get(int x, int y) const;*/
+
+struct ObjectLayer
+{
+	p2SString			name;
+	uint*				width = nullptr;
+	uint*				height = nullptr;
+	float*				x = nullptr;
+	float*				y = nullptr;
+	uint*				id = nullptr;
+	SDL_Rect*			rect = nullptr;
+	float*				acceleration_x = nullptr;
+	float*				acceleration_y = nullptr;
+	float*				velocity_x = nullptr;
+	float*				velocity_y = nullptr;
+	float*				jump_height = nullptr;
+	float*				double_jump_height = nullptr;
+	float*				gravity = nullptr;
+	ENTITY_TYPES*		entity_type = nullptr;
+
+};
+
 
 // ----------------------------------------------------
 struct TileSet
 {
+	// TODO 7: Create a method that receives a tile id and returns it's Rectfind the Rect associated with a specific tile id
 	SDL_Rect GetTileRect(int id) const;
 
 	p2SString			name;
@@ -40,7 +79,7 @@ struct TileSet
 	int					spacing;
 	int					tile_width;
 	int					tile_height;
-	SDL_Texture*		texture;
+	SDL_Texture*		texture = nullptr;
 	int					tex_width;
 	int					tex_height;
 	int					num_tiles_width;
@@ -66,7 +105,10 @@ struct MapData
 	SDL_Color			background_color;
 	MapTypes			type;
 	p2List<TileSet*>	tilesets;
-	p2List<MapLayer*>	layers;
+	// TODO 2: Add a list/array of layers to the map!
+	p2List<MapLayer*>	maplayers;
+	p2List<ImageLayer*>	imagelayers;
+	p2List<ObjectLayer*> objectlayers;
 };
 
 // ----------------------------------------------------
@@ -91,26 +133,41 @@ public:
 	// Load new map
 	bool Load(const char* path);
 
-	// Coordinate translation methods
+	// TODO 8: Create a method that translates x,y coordinates from map positions to world positions
 	iPoint MapToWorld(int x, int y) const;
 	iPoint WorldToMap(int x, int y) const;
+
+	int MovementCost(int x, int y) const;
 
 private:
 
 	bool LoadMap();
 	bool LoadTilesetDetails(pugi::xml_node& tileset_node, TileSet* set);
 	bool LoadTilesetImage(pugi::xml_node& tileset_node, TileSet* set);
+	// TODO 3: Create a method that loads a single laye
 	bool LoadLayer(pugi::xml_node& node, MapLayer* layer);
+	bool LoadImageLayer(pugi::xml_node& node, ImageLayer* layer);
+	//bool LoadObjectLayer(pugi::xml_node& node, ObjectLayer* layer);
+	//bool LoadEnemyLayer(pugi::xml_node& node, EnemyLayer* layer);
 
 public:
 
-	MapData data;
+	MapData				data;
+	SDL_Rect			collider;
+	uint				cost_so_far[COST_MAP][COST_MAP];
 
 private:
 
 	pugi::xml_document	map_file;
 	p2SString			folder;
-	bool				map_loaded;
+	bool				map_loaded = false;
+
+	/// BFS
+//	p2PQueue<iPoint>	frontier;
+	p2List<iPoint>		visited;
+	p2List<iPoint>		breadcrumbs;
+	p2DynArray<iPoint>	path;
+	SDL_Texture*		tile_x = nullptr;
 };
 
 #endif // __j1MAP_H__
