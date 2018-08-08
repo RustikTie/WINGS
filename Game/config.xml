@@ -1,7 +1,7 @@
 <!-- Config file for the game -->
 
 <config>
-  <app>
+  <app framerate_cap = "30">
     <title>Game Development Testbed</title>
     <organization>UPC</organization>
   </app>
@@ -22,8 +22,35 @@
     <path>data.zip</path>
   </file_system>
 
+  <gui>
+    <atlas file="gui/gui.png"/>
+  </gui>
+
   <map>
     <folder>maps/</folder>
+		<map name = "level1_v4.png"/>		
   </map>
+  
+  <player_data>
+	<velocity value = "200"/>
+	<acceleration x = "200" y ="200" />
+	<position x = "100" y = "200"/>
+	<gravity value = "250"/>
+	<jump velocity_y = "300" velocity_x = "160" height = "300"/>
+  	<scale x="3" y="3"/>
+  </player_data>
+
+  <entities>
+    <player>
+	    <speed value = "500"/>
+	    <acceleration valeu = "200" />
+	    <deceleration value = "20" />	
+	    <position x = "100" y = "200"/>
+	    <gravity value = "250"/>
+	    <jump_height value = "300" />
+            <jump_speed value = "600" />
+      <scale x="3" y="3"/>
+    </player>
+  </entities>
 
 </config>

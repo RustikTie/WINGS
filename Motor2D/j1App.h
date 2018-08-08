@@ -14,6 +14,7 @@ class j1Collisions;
 class j1Audio;
 class j1Scene;
 class j1Map;
+class j1EntityManager;
 
 class j1App
 {
@@ -50,10 +51,10 @@ public:
 	void SaveGame(const char* file) const;
 	void GetSaveGames(p2List<p2SString>& list_to_fill) const;
 
-private:
-
 	// Load config file
 	pugi::xml_node LoadConfig(pugi::xml_document&) const;
+
+private:
 
 	// Call modules before each loop iteration
 	void PrepareUpdate();
@@ -85,6 +86,7 @@ public:
 	j1Scene*			scene;
 	j1Map*				map;
 	j1Collisions*		collisions;
+	j1EntityManager*	entitymanager;
 
 private:
 
