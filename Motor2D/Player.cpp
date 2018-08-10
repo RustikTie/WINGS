@@ -28,6 +28,12 @@ bool Player::Awake(pugi::xml_node& config)
 
 	original_pos.x = player.child("position").attribute("x").as_float();
 	original_pos.y = player.child("position").attribute("y").as_float();
+	speed = player.child("speed").attribute("value").as_float();
+	gravity = player.child("gravity").attribute("value").as_float();
+	acceleration = player.child("acceleration").attribute("value").as_float();
+	deceleration = player.child("deceleration").attribute("value").as_float();
+	jump_height = player.child("jump_height").attribute("value").as_float();
+	jump_speed = player.child("jump_speed").attribute("value").as_float();
 
 	return true;
 }

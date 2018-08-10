@@ -48,7 +48,7 @@
 	    <position x = "100" y = "200"/>
 	    <gravity value = "250"/>
 	    <jump_height value = "300" />
-            <jump_speed value = "600" />
+      <jump_speed value = "600" />
       <scale x="3" y="3"/>
     </player>
   </entities>
