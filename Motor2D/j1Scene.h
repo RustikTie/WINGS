@@ -32,7 +32,7 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
-	bool start =		true;
+	bool			start =	true;
 
 private:
 };

@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "j1Render.h"
 #include "j1Scene.h"
+#include "j1Input.h"
 
 Player::Player(int x, int y) : Entity(x, y)
 {
@@ -36,4 +37,20 @@ bool Player::Awake(pugi::xml_node& config)
 	jump_speed = player.child("jump_speed").attribute("value").as_float();
 
 	return true;
+}
+
+void Player::MoveEntity(float dt)
+{
+	//FORWARD
+	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_DOWN)
+	{
+		original_pos.x = +speed;
+		//LOG("pos = %f", original_pos.x);
+	}
+
+	//BACKWARD
+	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_DOWN)
+	{
+		original_pos.x = -speed;
+	}
 }

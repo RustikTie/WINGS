@@ -17,6 +17,8 @@ public:
 
 	bool Awake(pugi::xml_node&);
 
+	void MoveEntity(float dt);
+
 	float			speed;
 	float			acceleration;
 	float			deceleration;
