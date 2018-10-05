@@ -28,7 +28,7 @@
 
   <map>
     <folder>maps/</folder>
-		<map name = "level1_v4.png"/>		
+		<map name = "map_test.png"/>		
   </map>
   
   <player_data>
