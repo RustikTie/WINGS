@@ -19,6 +19,8 @@ public:
 
 	void MoveEntity(float dt);
 
+	void Jump(float dt);
+
 	float			speed;
 	float			acceleration;
 	float			deceleration;

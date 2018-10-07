@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "j1Textures.h"
 #include "j1Render.h"
 #include "j1Scene.h"
 #include "j1Input.h"
@@ -10,7 +11,7 @@ Player::Player(int x, int y) : Entity(x, y)
 
 Player::~Player()
 {
-	
+	//App->tex->UnLoad();
 }
 
 bool Player::Start()
@@ -53,4 +54,9 @@ void Player::MoveEntity(float dt)
 	{
 		original_pos.x = -speed;
 	}
+}
+
+void Player::Jump(float dt)
+{
+
 }
