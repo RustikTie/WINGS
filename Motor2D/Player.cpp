@@ -40,6 +40,8 @@ bool Player::Awake(pugi::xml_node& config)
 	deceleration = player.child("deceleration").attribute("value").as_float();
 	jump_height = player.child("jump_height").attribute("value").as_float();
 	jump_speed = player.child("jump_speed").attribute("value").as_float();
+	x_scale = player.child("scale").attribute("x").as_float();
+	y_scale = player.child("scale").attribute("y").as_float();
 
 	return true;
 }
@@ -97,6 +99,11 @@ void Player::Jump_Glide(float dt)
 	{
 		jumping = false;
 	}
+}
+
+void Player::Draw(float dt)
+{
+	App->render->Blit(graphics, pos.x, pos.y, x_scale, y_scale, flip, &(current_anim->GetCurrentFrame()));
 }
 
 bool Player::Load(pugi::xml_node&)

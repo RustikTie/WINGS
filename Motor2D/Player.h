@@ -21,6 +21,8 @@ public:
 
 	void Jump_Glide(float dt);
 
+	void Draw(float dt);
+
 	bool Load(pugi::xml_node&);
 	bool Save(pugi::xml_node&) const;
 
