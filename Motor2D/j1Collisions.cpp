@@ -2,11 +2,10 @@
 #include "j1Input.h"
 #include "j1Render.h"
 #include "j1Collisions.h"
-//#include "j1EntityManager.h"
-//#include "Entity.h"
-//#include "Player.h"
+#include "j1EntityManager.h"
+#include "Entity.h"
+#include "Player.h"
 #include "j1Scene.h"
-//#include "Candy.h"
 #include "Brofiler\Brofiler.h"
 
 j1Collisions::j1Collisions() : j1Module()
@@ -21,42 +20,42 @@ j1Collisions::j1Collisions() : j1Module()
 	matrix[COLLIDER_GROUND][COLLIDER_ENEMY] = true;
 	matrix[COLLIDER_GROUND][COLLIDER_BLOCKER] = false;
 	matrix[COLLIDER_GROUND][COLLIDER_GOD] = false;
-	matrix[COLLIDER_GROUND][COLLIDER_CANDY] = false;
+	matrix[COLLIDER_GROUND][COLLIDER_PICK_UP] = false;
 
 	matrix[COLLIDER_PLAYER][COLLIDER_GROUND] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_PLAYER] = false;
 	matrix[COLLIDER_PLAYER][COLLIDER_ENEMY] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_BLOCKER] = false;
 	matrix[COLLIDER_PLAYER][COLLIDER_GOD] = false;
-	matrix[COLLIDER_PLAYER][COLLIDER_CANDY] = true;
+	matrix[COLLIDER_PLAYER][COLLIDER_PICK_UP] = true;
 
 	matrix[COLLIDER_ENEMY][COLLIDER_GROUND] = true;
 	matrix[COLLIDER_ENEMY][COLLIDER_PLAYER] = true;
 	matrix[COLLIDER_ENEMY][COLLIDER_ENEMY] = false;
 	matrix[COLLIDER_ENEMY][COLLIDER_BLOCKER] = true;
 	matrix[COLLIDER_ENEMY][COLLIDER_GOD] = false;
-	matrix[COLLIDER_ENEMY][COLLIDER_CANDY] = false;
+	matrix[COLLIDER_ENEMY][COLLIDER_PICK_UP] = false;
 
 	matrix[COLLIDER_BLOCKER][COLLIDER_GROUND] = false;
 	matrix[COLLIDER_BLOCKER][COLLIDER_PLAYER] = false;
 	matrix[COLLIDER_BLOCKER][COLLIDER_ENEMY] = true;
 	matrix[COLLIDER_BLOCKER][COLLIDER_BLOCKER] = false;
 	matrix[COLLIDER_BLOCKER][COLLIDER_GOD] = false;
-	matrix[COLLIDER_BLOCKER][COLLIDER_CANDY] = false;
+	matrix[COLLIDER_BLOCKER][COLLIDER_PICK_UP] = false;
 
 	matrix[COLLIDER_GOD][COLLIDER_GROUND] = false;
 	matrix[COLLIDER_GOD][COLLIDER_PLAYER] = false;
 	matrix[COLLIDER_GOD][COLLIDER_ENEMY] = false;
 	matrix[COLLIDER_GOD][COLLIDER_BLOCKER] = false;
 	matrix[COLLIDER_GOD][COLLIDER_GOD] = false;
-	matrix[COLLIDER_GOD][COLLIDER_CANDY] = false;
+	matrix[COLLIDER_GOD][COLLIDER_PICK_UP] = false;
 
-	matrix[COLLIDER_CANDY][COLLIDER_GROUND] = false;
-	matrix[COLLIDER_CANDY][COLLIDER_PLAYER] = true;
-	matrix[COLLIDER_CANDY][COLLIDER_ENEMY] = false;
-	matrix[COLLIDER_CANDY][COLLIDER_BLOCKER] = false;
-	matrix[COLLIDER_CANDY][COLLIDER_GOD] = false;
-	matrix[COLLIDER_CANDY][COLLIDER_CANDY] = false;
+	matrix[COLLIDER_PICK_UP][COLLIDER_GROUND] = false;
+	matrix[COLLIDER_PICK_UP][COLLIDER_PLAYER] = true;
+	matrix[COLLIDER_PICK_UP][COLLIDER_ENEMY] = false;
+	matrix[COLLIDER_PICK_UP][COLLIDER_BLOCKER] = false;
+	matrix[COLLIDER_PICK_UP][COLLIDER_GOD] = false;
+	matrix[COLLIDER_PICK_UP][COLLIDER_PICK_UP] = false;
 }
 
 // Destructor
@@ -119,18 +118,18 @@ bool j1Collisions::Update(float dt)
 			c2 = colliders[k];
 
 			//GRAVITY PLAYER
-			//if (c1->type == COLLIDER_GROUND && c2->type == COLLIDER_PLAYER && c1->CheckCollision(c2->rect) == true && !App->entity_manager->player_entity->godmode)
-			//{
-			//	App->entity_manager->player_entity->pos.y -= (App->entity_manager->player_entity->gravity)*dt;
-			//	App->entity_manager->player_entity->falling = false;
-			//	App->entity_manager->player_entity->contact = false;
-			//	//App->entity_manager->OnCollision(c2, c1, enemygravity);
-			//}
-			//FOWARD and BACKWARD COLLISION PLAYER w/ WALL
-			/*if (c1->type == COLLIDER_WALL && c2->type == COLLIDER_PLAYER && c1->CheckCollision(c2->rect) && !App->entity_manager->player_entity->godmode)
+			if (c1->type == COLLIDER_GROUND && c2->type == COLLIDER_PLAYER && c1->CheckCollision(c2->rect) == true && !App->entitymanager->player_entity->godmode)
 			{
-				App->entity_manager->player_entity->pos.x -= (App->entity_manager->player_entity->speed)*dt;
-			}*/
+				App->entitymanager->player_entity->pos.y -= (App->entitymanager->player_entity->gravity)*dt;
+				App->entitymanager->player_entity->falling = false;
+				//App->entitymanager->player_entity->contact = false;
+				//App->entity_manager->OnCollision(c2, c1, enemygravity);
+			}
+			//FOWARD and BACKWARD COLLISION PLAYER w/ WALL
+			if (c1->type == COLLIDER_WALL && c2->type == COLLIDER_PLAYER && c1->CheckCollision(c2->rect) && !App->entitymanager->player_entity->godmode)
+			{
+				App->entitymanager->player_entity->pos.x -= (App->entitymanager->player_entity->speed)*dt;
+			}
 			//PLAYER ENEMY COLLISION
 			/*if (c2->type == COLLIDER_ENEMY && c1->type == COLLIDER_PLAYER && c1->CheckCollision(c2->rect) && !App->entity_manager->player_entity->godmode)
 			{
@@ -168,13 +167,13 @@ bool j1Collisions::Update(float dt)
 				}
 
 			}
-			if (c1->type == COLLIDER_CANDY && c2->type == COLLIDER_PLAYER && c1->CheckCollision(c2->rect) == true)
+			if (c1->type == COLLIDER_PICK_UP && c2->type == COLLIDER_PLAYER && c1->CheckCollision(c2->rect) == true)
 			{
 				c1->to_delete = true;
 				App->entity_manager->player_entity->score += 1;
 
 			}
-			if (c2->type == COLLIDER_CANDY && c1->type == COLLIDER_PLAYER && c2->CheckCollision(c1->rect) == true)
+			if (c2->type == COLLIDER_PICK_UP && c1->type == COLLIDER_PLAYER && c2->CheckCollision(c1->rect) == true)
 			{
 				p2List_item<Entity*>* item;
 				item = App->entity_manager->candies.start;
@@ -236,7 +235,7 @@ void j1Collisions::DebugDraw()
 			case COLLIDER_BLOCKER: // orange
 				App->render->DrawQuad(colliders[i]->rect, 229, 83, 0, alpha, false);
 				break;
-			case COLLIDER_CANDY: // red
+			case COLLIDER_PICK_UP: // red
 				App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha, false);
 				break;
 			}
@@ -337,48 +336,3 @@ bool Collider::CheckCollision(const SDL_Rect& r) const
 		return false;
 	}
 }
-
-//Collisions between entitities
-
-//bool Collider::CheckCollisionDownwards(const SDL_Rect& r, float& gravity, float dt)
-//{
-//	if (r.y + r.h > rect.y - 2 && r.y < rect.y + rect.h && r.x + r.w >= rect.x  && r.x <= rect.x + rect.w)
-//	{
-//		gravity = App->entity_manager->player_entity->gravity*dt;
-//		return true;
-//	}
-//
-//	else
-//	{
-//		return false;
-//	}
-//}
-//
-//bool Collider::CheckCollisionForward(const SDL_Rect& r, float& force, float dt)
-//{
-//	if (r.y + r.h  > rect.y && r.y + r.h < rect.y + rect.h && r.x + r.w >= rect.x && r.x + r.w < rect.x + rect.w)
-//	{
-//		force = App->entity_manager->player_entity->speed*dt;
-//		return true;
-//
-//	}
-//
-//	else
-//	{
-//		return false;
-//	}
-//}
-//
-//bool Collider::CheckCollisionBackward(const SDL_Rect& r, float& force, float dt)
-//{
-//	if (r.y + r.h < rect.y + rect.h && r.y + r.h > rect.y && r.x >= rect.x + rect.w && r.x > rect.x)
-//	{
-//		force = App->entity->speed.x*dt;
-//		return true;
-//	}
-//
-//	else
-//	{
-//		return false;
-//	}
-//}

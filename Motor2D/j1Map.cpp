@@ -4,6 +4,7 @@
 #include "j1Render.h"
 #include "j1Textures.h"
 #include "j1Map.h"
+#include "j1Collisions.h"
 //#include "j1EntityManager.h"
 #include <math.h>
 
@@ -527,15 +528,15 @@ bool j1Map::LoadObjectLayer(pugi::xml_node& node, ObjectLayer* layer)
 	layer->y = new float[200];
 	layer->id = new uint[200];
 	layer->rect = new SDL_Rect[200];
-	layer->entity_type = new ENTITY_TYPES[200];
+	layer->type = new OBJECT_TYPE[200];
 
 	layer->name = node.attribute("name").as_string();
 
 	while (aux != NULL)
 	{
-		if (aux.attribute("id").as_uint() != NULL)
+		if (aux.attribute("id").as_int() != NULL)
 		{
-			layer->id[i] = aux.attribute("id").as_uint();
+			layer->id[i] = aux.attribute("id").as_int();
 		}
 		if (aux.attribute("x").as_int() != NULL)
 		{
@@ -545,13 +546,13 @@ bool j1Map::LoadObjectLayer(pugi::xml_node& node, ObjectLayer* layer)
 		{
 			layer->y[i] = aux.attribute("y").as_int();
 		}
-		if (aux.attribute("width").as_uint() != NULL)
+		if (aux.attribute("width").as_int() != NULL)
 		{
-			layer->width[i] = aux.attribute("width").as_uint();
+			layer->width[i] = aux.attribute("width").as_int();
 		}
-		if (aux.attribute("height").as_uint() != NULL)
+		if (aux.attribute("height").as_int() != NULL)
 		{
-			layer->height[i] = aux.attribute("height").as_uint();
+			layer->height[i] = aux.attribute("height").as_int();
 		}
 
 		layer->rect[i].h = layer->height[i];
@@ -559,6 +560,21 @@ bool j1Map::LoadObjectLayer(pugi::xml_node& node, ObjectLayer* layer)
 		layer->rect[i].x = layer->x[i];
 		layer->rect[i].y = layer->y[i];
 
+		p2SString object_type(aux.child("properties").child("property").attribute("value").as_string());
+
+		if (object_type == "WALL")
+		{
+			App->collisions->AddCollider(collider, COLLIDER_WALL);
+			collider = { (int)layer->x[i], (int)layer->y[i], (int)layer->width[i], (int)layer->height[i] };
+			layer->type[i] = WALL;
+						
+		}
+		if (object_type == "GROUND")
+		{
+			App->collisions->AddCollider(collider, COLLIDER_GROUND);
+			collider = { (int)layer->x[i], (int)layer->y[i], (int)layer->width[i], (int)layer->height[i] };
+			layer->type[i] = GROUND;
+		}
 		/*p2SString type(aux.child("properties").child("property").attribute("value").as_string());
 		if (type == "WHITE WOLF")
 		{
