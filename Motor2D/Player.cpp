@@ -6,20 +6,24 @@
 
 Player::Player(int x, int y) : Entity(x, y)
 {
+	//IDLE
+	idle.PushBack({ 67, 196, 66, 92 });
+	idle.loop = false;
+	idle.speed = 10.f;
 
+	current_anim = &idle;
 }
 
 Player::~Player()
 {
-	//App->tex->UnLoad();
+	App->tex->UnLoad(graphics);
 }
 
 bool Player::Start()
 {
 	LOG("Loading Player");
 
-	//collider = App->collisions->AddCollider({ (int)pos.x, (int)pos.y, 18 * 3, 27 * 3 }, COLLIDER_PLAYER, (j1Module*)App->entity_manager);
-	//sprites = App->tex->Load("assets/Pumpkin sprites.png");
+	graphics = App->tex->Load("textures/p1_spritesheet.png");
 
 	return true;
 }
@@ -42,6 +46,7 @@ bool Player::Awake(pugi::xml_node& config)
 
 void Player::MoveEntity(float dt)
 {
+	current_anim = &idle;
 	//FORWARD
 	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_DOWN)
 	{

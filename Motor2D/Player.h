@@ -24,6 +24,8 @@ public:
 	bool Load(pugi::xml_node&);
 	bool Save(pugi::xml_node&) const;
 
+public:
+
 	float			speed;
 	float			acceleration;
 	float			deceleration;
@@ -36,7 +38,11 @@ public:
 	bool			godmode = false;
 	bool			falling = false;
 
+	SDL_Texture*	graphics = nullptr;
 
+	Animation*		current_anim = nullptr;
+	Animation		idle;
+	Animation		walk;
 private:
 	
 	
