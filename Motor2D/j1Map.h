@@ -15,7 +15,12 @@
 
 #define COST_MAP 100
 
-enum ENTITY_TYPES;
+enum OBJECT_TYPE
+{
+	WALL,
+	GROUND,
+	
+};
 // TODO 1: Create a struct for the map layer
 // ----------------------------------------------------
 struct MapLayer
@@ -62,7 +67,8 @@ struct ObjectLayer
 	float*				jump_height = nullptr;
 	float*				double_jump_height = nullptr;
 	float*				gravity = nullptr;
-	ENTITY_TYPES*		entity_type = nullptr;
+	OBJECT_TYPE*		type = nullptr;
+	
 
 };
 
