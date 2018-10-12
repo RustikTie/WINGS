@@ -19,7 +19,10 @@ public:
 
 	void MoveEntity(float dt);
 
-	void Jump(float dt);
+	void Jump_Glide(float dt);
+
+	bool Load(pugi::xml_node&);
+	bool Save(pugi::xml_node&) const;
 
 	float			speed;
 	float			acceleration;
@@ -27,6 +30,11 @@ public:
 	float			gravity;
 	float			jump_height;
 	float			jump_speed;
+
+	bool			jumping = false;
+	bool			gliding = false;
+	bool			godmode = false;
+	bool			falling = false;
 
 
 private:

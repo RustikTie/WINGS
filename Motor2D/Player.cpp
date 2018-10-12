@@ -54,9 +54,52 @@ void Player::MoveEntity(float dt)
 	{
 		original_pos.x = -speed;
 	}
+
+	//JUMP & GLIDE
+	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN && !falling)
+	{
+		jumping = true;
+		jump_height = (pos.y - jump_height);
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
+	{
+		gliding = true;
+		jumping = false;
+	}
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_UP)
+	{
+		gliding = false;
+	}
 }
 
-void Player::Jump(float dt)
+void Player::Jump_Glide(float dt)
 {
+	if (!jumping && !godmode && !gliding)
+	{
+		pos.y += gravity * dt;
+	}
+	if (gliding)
+	{
+		pos.y += gravity * dt / 5;
+	}
+	if (jumping && pos.y > jump_height)
+	{
+		//animation = &jump;
+		pos.y -= jump_speed*gravity * dt;
+	}
+	else if (pos.y <= jump_height)
+	{
+		jumping = false;
+	}
+}
 
+bool Player::Load(pugi::xml_node&)
+{
+	return true;
+}
+
+bool Player::Save(pugi::xml_node&) const
+{
+	return true;
 }
