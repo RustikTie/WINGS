@@ -39,6 +39,7 @@ bool Player::Start()
 	LOG("Loading Player");
 
 	graphics = App->tex->Load("textures/p1_spritesheet.png");
+	collider = App->collisions->AddCollider({ (int)pos.x, (int)pos.y, 72, 97 }, COLLIDER_PLAYER, (j1Module*)App->entitymanager);
 
 	return true;
 }
@@ -57,7 +58,6 @@ bool Player::Awake(pugi::xml_node& config)
 	jump_speed = player.child("jump_speed").attribute("value").as_float();
 	x_scale = player.child("scale").attribute("x").as_float();
 	y_scale = player.child("scale").attribute("y").as_float();
-
 	return true;
 }
 
@@ -101,7 +101,8 @@ void Player::MoveEntity(float dt)
 	{
 		gliding = false;
 	}
-
+	
+	
 	//JUMP & GLIDE SIDEWAYS
 	//Jump_Glide(dt); //uncommit once colliders are implemented
 
@@ -132,6 +133,8 @@ void Player::Jump_Glide(float dt)
 void Player::Draw(float dt)
 {
 	App->render->Blit(graphics, pos.x, pos.y, x_scale, y_scale, flip, &(current_anim->GetCurrentFrame()));
+	collider->SetPos(pos.x + 10, pos.y + 50);
+
 }
 
 bool Player::Load(pugi::xml_node&)

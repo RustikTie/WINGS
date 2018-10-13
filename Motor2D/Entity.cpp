@@ -38,7 +38,7 @@ void Entity::Draw(float dt)
 	App->render->Blit(sprite, pos.x, pos.y, x_scale, y_scale, flip, &(animation->GetCurrentFrame()));
 
 	}*/
-	/*
+	
 	if (collider != nullptr)
 	{
 	collider->SetPos(pos.x, pos.y);
@@ -49,7 +49,7 @@ void Entity::Draw(float dt)
 	collider->SetPos(pos.x + 10, pos.y + 50);
 
 	}
-	*/
+	
 	/*for (int i = 0; App->entity_manager->entities[i]; ++i)
 	{
 	App->entity_manager->entities[i]->collider->SetPos(App->entity_manager->entities[i]->pos.x, App->entity_manager->entities[i]->pos.y);
