@@ -8,8 +8,23 @@ Player::Player(int x, int y) : Entity(x, y)
 {
 	//IDLE
 	idle.PushBack({ 67, 196, 66, 92 });
-	idle.loop = false;
-	idle.speed = 10.f;
+	idle.PushBack({ 0, 196, 66, 92 });
+	idle.loop = true;
+	idle.speed = 1.f;
+
+	walk.PushBack({ 0, 0, 72, 97 });
+	walk.PushBack({ 73, 0, 72, 97 });
+	walk.PushBack({ 146 , 0, 72, 97 });
+	walk.PushBack({ 0, 98 , 72, 97 });
+	walk.PushBack({ 73 , 98 , 72, 97 });
+	walk.PushBack({ 146, 98 , 72, 97 });
+	walk.PushBack({ 219, 0, 72, 97 });
+	walk.PushBack({ 292, 0, 72, 97 });
+	walk.PushBack({ 219, 98, 72, 97 });
+	walk.PushBack({ 365, 0, 72, 97 });
+	walk.PushBack({ 292, 98, 72, 97 });
+	walk.loop = true;
+	walk.speed = 1.0f;
 
 	current_anim = &idle;
 }
@@ -48,20 +63,23 @@ bool Player::Awake(pugi::xml_node& config)
 
 void Player::MoveEntity(float dt)
 {
-	current_anim = &idle;
 	//FORWARD
-	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_DOWN)
+	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 	{
-		original_pos.x = +speed;
-		//LOG("pos = %f", original_pos.x);
+		pos.x += speed*0.00016f;
+		current_anim = &walk;
+		flip = false;
 	}
 
 	//BACKWARD
-	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_DOWN)
+	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
 	{
-		original_pos.x = -speed;
+		pos.x -= speed * 0.00016f;
+		current_anim = &walk;
+		flip = true;
 	}
 
+	
 	//JUMP & GLIDE
 	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN && !falling)
 	{

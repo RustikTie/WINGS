@@ -33,7 +33,7 @@ bool j1EntityManager::Start()
 	{
 		if (player_entity == nullptr)
 		{
-			player_entity = new Player(0, 0);
+			player_entity = new Player(100, 200);
 			player_entity->Awake(entity_config);
 			player_entity->Start();
 		}
