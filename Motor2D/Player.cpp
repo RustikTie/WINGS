@@ -48,8 +48,8 @@ bool Player::Awake(pugi::xml_node& config)
 {
 	pugi::xml_node player = config.child("player");
 
-	original_pos.x = player.child("position").attribute("x").as_float();
-	original_pos.y = player.child("position").attribute("y").as_float();
+	/*pos.x = player.child("position").attribute("x").as_float();
+	pos.y = player.child("position").attribute("y").as_float();*/
 	speed = player.child("speed").attribute("value").as_float();
 	gravity = player.child("gravity").attribute("value").as_float();
 	acceleration = player.child("acceleration").attribute("value").as_float();
@@ -106,6 +106,21 @@ void Player::MoveEntity(float dt)
 	//JUMP & GLIDE SIDEWAYS
 	//Jump_Glide(dt); //uncommit once colliders are implemented
 
+	if (App->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
+	{
+		if (!godmode)
+		{
+			godmode = true;
+		}
+		else
+		{
+			godmode = false;
+		}
+	}
+
+	//CAMERA
+	App->render->camera.x = (-pos.x + 400);
+	App->render->camera.y = (-pos.y + 400);
 }
 
 void Player::Jump_Glide(float dt)
@@ -137,8 +152,11 @@ void Player::Draw(float dt)
 
 }
 
-bool Player::Load(pugi::xml_node&)
+bool Player::Load(pugi::xml_node& data)
 {
+	pos.x = data.child("player").attribute("x").as_float();
+	pos.y = data.child("player").attribute("y").as_float();
+
 	return true;
 }
 

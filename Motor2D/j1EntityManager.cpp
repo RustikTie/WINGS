@@ -182,6 +182,26 @@ void j1EntityManager::SpawnEntity(const EntityInfo& info)
 	}
 }
 
+bool j1EntityManager::Load(pugi::xml_node& data)
+{
+	if (player_entity != nullptr)
+	{
+		player_entity->Load(data);
+	}
+
+	return true;
+}
+
+bool j1EntityManager::Save(pugi::xml_node& data) const
+{
+	if (player_entity != nullptr)
+	{
+		player_entity->Save(data);
+	}
+
+	return true;
+}
+
 //void j1EntityManager::OnCollision(Collider* c1, Collider* c2, float counterforce)
 //{
 //
