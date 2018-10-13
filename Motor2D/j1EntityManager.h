@@ -61,7 +61,7 @@ public:
 	Player*				player_entity =	nullptr;
 
 private:
-	SDL_Texture*		entityAtlas = nullptr;
+	SDL_Texture*		player_sprite = nullptr;
 };
 
 #endif

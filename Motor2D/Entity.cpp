@@ -34,12 +34,11 @@ void Entity::Draw(float dt)
 
 	/*if (animation != nullptr)
 	{
-	sprite = sprites;
 
 	App->render->Blit(sprite, pos.x, pos.y, x_scale, y_scale, flip, &(animation->GetCurrentFrame()));
 
-	}
-
+	}*/
+	/*
 	if (collider != nullptr)
 	{
 	collider->SetPos(pos.x, pos.y);

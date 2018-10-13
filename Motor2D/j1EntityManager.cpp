@@ -29,6 +29,8 @@ bool j1EntityManager::Start()
 {
 	LOG("loading entities");
 
+	player_sprite = App->tex->Load("textures/p1_spritesheet.png");
+
 	if (App->scene->start == true)
 	{
 		if (player_entity == nullptr)

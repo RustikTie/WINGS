@@ -10,7 +10,7 @@ Player::Player(int x, int y) : Entity(x, y)
 	idle.PushBack({ 67, 196, 66, 92 });
 	idle.PushBack({ 0, 196, 66, 92 });
 	idle.loop = true;
-	idle.speed = 1.f;
+	idle.speed = 0.00003f;
 
 	walk.PushBack({ 0, 0, 72, 97 });
 	walk.PushBack({ 73, 0, 72, 97 });
@@ -24,7 +24,7 @@ Player::Player(int x, int y) : Entity(x, y)
 	walk.PushBack({ 365, 0, 72, 97 });
 	walk.PushBack({ 292, 98, 72, 97 });
 	walk.loop = true;
-	walk.speed = 1.0f;
+	walk.speed = 0.00015f;
 
 	current_anim = &idle;
 }
@@ -66,20 +66,25 @@ void Player::MoveEntity(float dt)
 	//FORWARD
 	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 	{
-		pos.x += speed*0.00016f;
+		pos.x += speed * 0.00016f;
 		current_anim = &walk;
 		flip = false;
 	}
 
 	//BACKWARD
-	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+	else if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
 	{
 		pos.x -= speed * 0.00016f;
 		current_anim = &walk;
 		flip = true;
 	}
 
-	
+	//IDLE
+	else
+	{
+		current_anim = &idle;
+	}
+
 	//JUMP & GLIDE
 	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN && !falling)
 	{
@@ -96,6 +101,9 @@ void Player::MoveEntity(float dt)
 	{
 		gliding = false;
 	}
+
+	//JUMP & GLIDE SIDEWAYS
+
 }
 
 void Player::Jump_Glide(float dt)
@@ -129,7 +137,11 @@ bool Player::Load(pugi::xml_node&)
 	return true;
 }
 
-bool Player::Save(pugi::xml_node&) const
+bool Player::Save(pugi::xml_node& data) const
 {
+	pugi::xml_node playernode = data.append_child("player");
+	playernode.append_attribute("x") = pos.x;
+	playernode.append_attribute("y") = pos.y;
+
 	return true;
 }
