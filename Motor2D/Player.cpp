@@ -103,11 +103,13 @@ void Player::MoveEntity(float dt)
 	}
 
 	//JUMP & GLIDE SIDEWAYS
+	//Jump_Glide(dt); //uncommit once colliders are implemented
 
 }
 
 void Player::Jump_Glide(float dt)
 {
+	dt = 0.00016f;
 	if (!jumping && !godmode && !gliding)
 	{
 		pos.y += gravity * dt;

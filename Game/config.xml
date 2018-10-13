@@ -46,7 +46,7 @@
 	    <acceleration valeu = "200" />
 	    <deceleration value = "20" />	
 	    <position x = "100" y = "200"/>
-	    <gravity value = "250"/>
+	    <gravity value = "30"/>
 	    <jump_height value = "300" />
       <jump_speed value = "600" />
       <scale x="1" y="1"/>
