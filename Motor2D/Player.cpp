@@ -66,7 +66,7 @@ void Player::MoveEntity(float dt)
 	//FORWARD
 	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 	{
-		pos.x += speed * 0.00016f;
+		pos.x += speed * dt;
 		current_anim = &walk;
 		flip = false;
 	}
@@ -74,7 +74,7 @@ void Player::MoveEntity(float dt)
 	//BACKWARD
 	else if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
 	{
-		pos.x -= speed * 0.00016f;
+		pos.x -= speed * dt;
 		current_anim = &walk;
 		flip = true;
 	}
@@ -89,7 +89,7 @@ void Player::MoveEntity(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN && !falling)
 	{
 		jumping = true;
-		jump_height = (pos.y - jump_height);
+		max_height = (pos.y - jump_height);
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
@@ -104,8 +104,10 @@ void Player::MoveEntity(float dt)
 	
 	
 	//JUMP & GLIDE SIDEWAYS
-	//Jump_Glide(dt); //uncommit once colliders are implemented
+	
 
+
+	//GODMODE
 	if (App->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN)
 	{
 		if (!godmode)
@@ -116,6 +118,11 @@ void Player::MoveEntity(float dt)
 		{
 			godmode = false;
 		}
+	}
+
+	if (!godmode)
+	{
+		Jump_Glide(dt); 
 	}
 
 	//CAMERA
@@ -134,13 +141,14 @@ void Player::Jump_Glide(float dt)
 	{
 		pos.y += gravity * dt / 5;
 	}
-	if (jumping && pos.y > jump_height)
+	if (jumping && pos.y > max_height)
 	{
 		//animation = &jump;
-		pos.y -= jump_speed*gravity * dt;
+		pos.y -= jump_speed * dt;
 	}
-	else if (pos.y <= jump_height)
+	else if (pos.y <= max_height)
 	{
+		falling = true;
 		jumping = false;
 	}
 }

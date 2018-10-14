@@ -92,13 +92,13 @@ bool j1Scene::Update(float dt)
 
 		else
 		{
-			App->entitymanager->player_entity->SetPos(100, 1000);
+			App->entitymanager->player_entity->SetPos(500, 1000);
 		}
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
 	{
-		App->entitymanager->player_entity->SetPos(100, 1000);
+		App->entitymanager->player_entity->SetPos(500, 1000);
 	}
 
 	App->map->Draw();
@@ -122,7 +122,7 @@ bool j1Scene::Update(float dt)
 		App->entitymanager->CleanUp();
 		App->collisions->Erase_Non_Player_Colliders();
 		App->map->Load("Map_2.tmx");
-		App->entitymanager->player_entity->SetPos(100, 1000);
+		App->entitymanager->player_entity->SetPos(500, 1000);
 		level1 = false;
 	}
 
