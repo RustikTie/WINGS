@@ -32,8 +32,8 @@
   </map>
   
   <player_data>
-	<velocity value = "200"/>
-	<acceleration x = "200" y ="200" />
+	<velocity value = "1"/>
+	<acceleration x = "10" y ="10" />
 	<position x = "100" y = "200"/>
 	<gravity value = "250"/>
 	<jump velocity_y = "300" velocity_x = "160" height = "300"/>

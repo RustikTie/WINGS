@@ -66,7 +66,7 @@ void Player::MoveEntity(float dt)
 	//FORWARD
 	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 	{
-		pos.x += speed * 0.00016f;
+		pos.x += speed * dt;
 		current_anim = &walk;
 		flip = false;
 	}
@@ -74,7 +74,7 @@ void Player::MoveEntity(float dt)
 	//BACKWARD
 	else if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
 	{
-		pos.x -= speed * 0.00016f;
+		pos.x -= speed * dt;
 		current_anim = &walk;
 		flip = true;
 	}
@@ -125,7 +125,6 @@ void Player::MoveEntity(float dt)
 
 void Player::Jump_Glide(float dt)
 {
-	dt = 0.00016f;
 	if (!jumping && !godmode && !gliding)
 	{
 		pos.y += gravity * dt;
