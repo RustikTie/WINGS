@@ -124,8 +124,10 @@ bool j1Collisions::Update(float dt)
 			{
 				if (App->entitymanager->player_entity->collider->rect.y + App->entitymanager->player_entity->collider->rect.h >= colliders[i]->rect.y)
 				{
+
 					App->entitymanager->player_entity->falling = false;
 					App->entitymanager->player_entity->pos.y -= App->entitymanager->player_entity->gravity*0.00016;
+
 
 				}
 			}
