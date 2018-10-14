@@ -33,6 +33,8 @@ public:
 	bool CleanUp();
 
 	bool			start =	true;
+	bool			level1 = true;
+	bool			level2 = false;
 
 private:
 };

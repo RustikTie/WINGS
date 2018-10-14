@@ -13,6 +13,11 @@ public:
 	Player(int x, int y);
 	~Player();
 
+	void SetPos(float x, float y) {
+		pos.x = x;
+		pos.y = y;
+	}
+
 	bool Start();
 
 	bool Awake(pugi::xml_node&);

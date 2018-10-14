@@ -8,6 +8,7 @@
 #include "j1Window.h"
 #include "j1Map.h"
 #include "j1Scene.h"
+#include "j1EntityManager.h"
 
 j1Scene::j1Scene() : j1Module()
 {
@@ -30,8 +31,19 @@ bool j1Scene::Awake()
 // Called before the first frame
 bool j1Scene::Start()
 {
-	App->map->Load("map_test.tmx");
+	
 	//App->map->Load("iso.tmx");
+	if (level1)
+	{
+		App->map->Load("map_test.tmx");
+		App->entitymanager->Start();
+	}
+	if (level2)
+	{
+		App->map->CleanUp();
+		App->entitymanager->CleanUp();
+		App->map->Load("level2_v2.tmx");
+	}
 	
 	return true;
 }
@@ -45,10 +57,10 @@ bool j1Scene::PreUpdate()
 // Called each loop iteration
 bool j1Scene::Update(float dt)
 {
-	if(App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
+	if(App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
 		App->LoadGame();
 
-	if(App->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN)
+	if(App->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
 		App->SaveGame();
 
 	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
@@ -63,6 +75,26 @@ bool j1Scene::Update(float dt)
 	if(App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
 		App->render->camera.x -= 1;
 
+	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
+	{
+		if (level1 == false)
+		{
+
+			start = false;
+			App->map->CleanUp();
+			App->entitymanager->CleanUp();
+			App->collisions->Erase_Non_Player_Colliders();
+			level2 = false;
+			level1 = true;
+			Start();
+		}
+
+		else
+		{
+			App->entitymanager->player_entity->SetPos(100, 1000);
+		}
+	}
+
 	App->map->Draw();
 
 	int x, y;
@@ -75,6 +107,18 @@ bool j1Scene::Update(float dt)
 					map_coordinates.x, map_coordinates.y);
 
 	App->win->SetTitle(title.GetString());
+
+	if (App->entitymanager->player_entity->pos.x >= 13300.f)
+
+	{
+		level2 = true;
+		App->map->CleanUp();
+		App->entitymanager->CleanUp();
+		App->collisions->Erase_Non_Player_Colliders();
+		App->map->Load("Map_2.tmx");
+		App->entitymanager->player_entity->SetPos(100, 1000);
+		level1 = false;
+	}
 	return true;
 }
 
