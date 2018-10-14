@@ -117,7 +117,7 @@ void Player::MoveEntity(float dt)
 		}
 	}
 
-	if (godmode)
+	if (!godmode)
 	{
 		Jump_Glide(dt);
 	}
@@ -132,7 +132,7 @@ void Player::Jump_Glide(float dt)
 
 	if (!jumping && !godmode && !gliding)
 	{
-		pos.y += gravity * dt;
+		pos.y += gravity*0.00016;
 	}
 	if (gliding)
 	{

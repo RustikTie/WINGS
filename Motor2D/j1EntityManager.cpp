@@ -17,6 +17,9 @@ bool j1EntityManager::Awake(pugi::xml_node& config)
 {
 	config_file.load_file("config.xml");
 	entity_config = config_file.child("config").child("entities");
+	initial_pos.x = entity_config.child("player").child("position").attribute("x").as_float();
+	initial_pos.y = entity_config.child("player").child("position").attribute("y").as_float();
+
 	return true;
 }
 
@@ -35,7 +38,7 @@ bool j1EntityManager::Start()
 	{
 		if (player_entity == nullptr)
 		{
-			player_entity = new Player(500, 1000);
+			player_entity = new Player(initial_pos.x, initial_pos.y);
 			player_entity->Awake(entity_config);
 			player_entity->Start();
 		}

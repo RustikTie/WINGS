@@ -51,6 +51,8 @@ public:
 	bool Load(pugi::xml_node&);
 	bool Save(pugi::xml_node&) const;
 
+	fPoint			initial_pos = { 0.0f,0.0f };
+
 	//void EraseEnemies();
 
 	void SpawnEntity(const EntityInfo& info);
