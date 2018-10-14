@@ -95,6 +95,7 @@ bool j1Collisions::Update(float dt)
 	BROFILER_CATEGORY("Update Collisions", Profiler::Color::Green)
 
 	Collider* c;
+	App->entitymanager->player_entity->falling = true;
 
 	for (uint i = 0; i < MAX_COLLIDERS; ++i)
 	{
@@ -102,29 +103,33 @@ bool j1Collisions::Update(float dt)
 		if (colliders[i] == nullptr || colliders[i]->type == COLLIDER_NONE || colliders[i]->type == COLLIDER_PLAYER)
 			continue;
 
-		if (colliders[i]->type == COLLIDER_WALL)
+		if (colliders[i]->type == COLLIDER_GROUND )
 		{
 			if (colliders[i]->CheckCollision(App->entitymanager->player_entity->collider->rect) == true)
 			{
-				if (colliders[i]->rect.x + colliders[i]->rect.w <= App->entitymanager->player_entity->collider->rect.x)
+				if (App->entitymanager->player_entity->collider->rect.x + App->entitymanager->player_entity->collider->rect.w >= colliders[i]->rect.x)
 				{
-					App->entitymanager->player_entity->pos.x += App->entitymanager->player_entity->speed;
+					App->entitymanager->player_entity->pos.x -= App->entitymanager->player_entity->speed*0.00016;
 				}
-				else if (colliders[i]->rect.x >= App->entitymanager->player_entity->collider->rect.x + App->entitymanager->player_entity->collider->rect.w)
+				else if (App->entitymanager->player_entity->collider->rect.x <= colliders[i]->rect.x + colliders[i]->rect.w )
 				{
-					App->entitymanager->player_entity->pos.x -= App->entitymanager->player_entity->speed;
+					App->entitymanager->player_entity->pos.x -= App->entitymanager->player_entity->speed*0.00016;
 				}				
+				
 			}
 		}
-		else if (colliders[i]->type == COLLIDER_GROUND)
+		else if (colliders[i]->type == COLLIDER_WALL)
 		{
 			if (colliders[i]->CheckCollision(App->entitymanager->player_entity->collider->rect) == true)
 			{
-				if (colliders[i]->rect.y >= App->entitymanager->player_entity->collider->rect.y + App->entitymanager->player_entity->collider->rect.h)
+				if (App->entitymanager->player_entity->collider->rect.y + App->entitymanager->player_entity->collider->rect.h >= colliders[i]->rect.y)
 				{
-					App->entitymanager->player_entity->falling == false; 
+					App->entitymanager->player_entity->falling = false;
+					App->entitymanager->player_entity->pos.y -= App->entitymanager->player_entity->gravity*0.00016;
+
 				}
 			}
+			
 		}
 
 	}
@@ -263,12 +268,13 @@ void j1Collisions::Erase_Non_Player_Colliders()
 
 bool Collider::CheckCollision(const SDL_Rect& r)const
 {
-	if ((rect.x < r.x + r.w && rect.x + rect.w > r.x) || (rect.x < r.x + r.w  && rect.x + rect.w > r.x))
+	if (r.y + r.h > rect.y - 2 && r.y < rect.y + rect.h && r.x + r.w >= rect.x  && r.x <= rect.x + rect.w)
 	{
-		if (rect.y < r.y + r.h && rect.y + rect.h > r.y)
-		{
-			return true;
-		}
+		return true;
 	}
-	return false;
+
+	else
+	{
+		return false;
+	}
 }

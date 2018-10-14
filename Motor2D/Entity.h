@@ -27,7 +27,7 @@ public:
 
 	virtual void Draw(float dt);
 
-	virtual void OnCollision();
+	virtual void OnCollision(Collider* c);
 	//bool LoadEnemyLayer(pugi::xml_node& node, EnemyLayer* layer);
 	virtual void MoveEntity(float dt) {};
 

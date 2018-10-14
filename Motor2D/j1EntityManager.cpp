@@ -80,6 +80,7 @@ bool j1EntityManager::Update(float dt)
 {
 	BROFILER_CATEGORY("PreUpdate EntityManager", Profiler::Color::Green)
 
+
 		if (dt < 1)
 		{
 			for (uint i = 0; i < MAX_ENEMIES; ++i)
