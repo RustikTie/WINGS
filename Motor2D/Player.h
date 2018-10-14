@@ -47,7 +47,7 @@ public:
 	bool			jumping = false;
 	bool			gliding = false;
 	bool			godmode = false;
-	bool			falling = true;
+	bool			falling = false;
 	bool			contact = false;
 
 	SDL_Texture*	graphics = nullptr;

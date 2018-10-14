@@ -24,7 +24,7 @@ Player::Player(int x, int y) : Entity(x, y)
 	walk.PushBack({ 365, 0, 72, 97 });
 	walk.PushBack({ 292, 98, 72, 97 });
 	walk.loop = true;
-	walk.speed = 0.00015f;
+	walk.speed = 0.00030f;
 
 	current_anim = &idle;
 }
@@ -66,7 +66,7 @@ void Player::MoveEntity(float dt)
 	//FORWARD
 	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 	{
-		pos.x += speed * dt;
+		pos.x += speed * 0.00016;
 		current_anim = &walk;
 		flip = false;
 	}
@@ -74,7 +74,7 @@ void Player::MoveEntity(float dt)
 	//BACKWARD
 	else if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
 	{
-		pos.x -= speed * dt;
+		pos.x -= speed * 0.00016;
 		current_anim = &walk;
 		flip = true;
 	}
@@ -130,18 +130,18 @@ void Player::MoveEntity(float dt)
 void Player::Jump_Glide(float dt)
 {
 
-	if (!jumping && !godmode && !gliding && falling)
+	if (!jumping && !godmode && !gliding)
 	{
 		pos.y += gravity*0.00016;
 	}
 	if (gliding)
 	{
-		pos.y += gravity * dt / 5;
+		pos.y += gravity * 0.00016 / 2;
 	}
 	if (jumping && pos.y > max_height)
 	{
 		//animation = &jump;
-		pos.y -= jump_speed * dt;
+		pos.y -= jump_speed * 0.00016;
 	}
 	else if (pos.y <= max_height)
 	{
