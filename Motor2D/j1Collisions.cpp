@@ -120,6 +120,7 @@ bool j1Collisions::Update(float dt)
 			//GRAVITY PLAYER
 			if (c1->type == COLLIDER_GROUND && c2->type == COLLIDER_PLAYER && c1->CheckCollision(c2->rect) == true && !App->entitymanager->player_entity->godmode)
 			{
+				
 				App->entitymanager->player_entity->pos.y -= (App->entitymanager->player_entity->gravity)*dt;
 				App->entitymanager->player_entity->falling = false;
 				//App->entitymanager->player_entity->contact = false;
