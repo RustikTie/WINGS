@@ -261,15 +261,14 @@ void j1Collisions::Erase_Non_Player_Colliders()
 }
 // -----------------------------------------------------
 
-bool Collider::CheckCollision(const SDL_Rect& r) const
+bool Collider::CheckCollision(const SDL_Rect& r)const
 {
-	if (r.y + r.h > rect.y - 2 && r.y < rect.y + rect.h && r.x + r.w >= rect.x  && r.x <= rect.x + rect.w)
+	if ((rect.x < r.x + r.w && rect.x + rect.w > r.x) || (rect.x < r.x + r.w  && rect.x + rect.w > r.x))
 	{
-		return true;
+		if (rect.y < r.y + r.h && rect.y + rect.h > r.y)
+		{
+			return true;
+		}
 	}
-
-	else
-	{
-		return false;
-	}
+	return false;
 }

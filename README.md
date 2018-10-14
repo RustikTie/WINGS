@@ -29,7 +29,9 @@ The game is capped at 30FPS by default, you can edit the frame cap by accessing 
 - Submit a pull request :D
 
 ## Credits
- 
+
+### Background: https://www.gameart2d.com/free-platformer-game-tileset.html
+
 ### Developed by :
 Ivan Drofiak: https://github.com/FurryGhoul
 Clara Ratera: https://github.com/RustikTie
