@@ -66,7 +66,7 @@ void Player::MoveEntity(float dt)
 	//FORWARD
 	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 	{
-		pos.x += speed * dt;
+		pos.x += speed * 0.00016f;
 		current_anim = &walk;
 		flip = false;
 	}
@@ -74,7 +74,7 @@ void Player::MoveEntity(float dt)
 	//BACKWARD
 	else if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
 	{
-		pos.x -= speed * dt;
+		pos.x -= speed * 0.00016f;
 		current_anim = &walk;
 		flip = true;
 	}
