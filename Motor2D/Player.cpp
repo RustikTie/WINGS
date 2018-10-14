@@ -154,14 +154,12 @@ void Player::Draw(float dt)
 
 bool Player::Load(pugi::xml_node& data)
 {
-	float x = data.child("player").attribute("x").as_float();
-	float y = data.child("player").attribute("y").as_float();
 	pos.x = data.child("player").attribute("x").as_float();
 	pos.y = data.child("player").attribute("y").as_float();
 	App->scene->level1 = data.child("player").attribute("map1").as_bool();
 	App->scene->level2 = data.child("player").attribute("map2").as_bool();
 
-	App->scene->ChangeMap(x, y);
+	App->scene->ChangeMap(pos.x, pos.y);
 
 	return true;
 }
