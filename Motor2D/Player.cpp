@@ -48,8 +48,8 @@ bool Player::Awake(pugi::xml_node& config)
 {
 	pugi::xml_node player = config.child("player");
 
-	/*pos.x = player.child("position").attribute("x").as_float();
-	pos.y = player.child("position").attribute("y").as_float();*/
+	pos.x = player.child("position").attribute("x").as_float();
+	pos.y = player.child("position").attribute("y").as_float();
 	speed = player.child("speed").attribute("value").as_float();
 	gravity = player.child("gravity").attribute("value").as_float();
 	acceleration = player.child("acceleration").attribute("value").as_float();
