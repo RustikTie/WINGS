@@ -94,101 +94,37 @@ bool j1Collisions::Update(float dt)
 {
 	BROFILER_CATEGORY("Update Collisions", Profiler::Color::Green)
 
-		Collider* c1;
-	Collider* c2;
-
-	float enemygravity;
-	float force;
+	Collider* c;
 
 	for (uint i = 0; i < MAX_COLLIDERS; ++i)
 	{
-		// skip empty colliders
-		if (colliders[i] == nullptr || colliders[i]->type == COLLIDER_NONE)
+		// skip empty and player colliders
+		if (colliders[i] == nullptr || colliders[i]->type == COLLIDER_NONE || colliders[i]->type == COLLIDER_PLAYER)
 			continue;
 
-		c1 = colliders[i];
-
-		// avoid checking collisions already checked
-		for (uint k = i + 1; k < MAX_COLLIDERS; ++k)
+		if (colliders[i]->type == COLLIDER_WALL)
 		{
-			// skip empty colliders
-			if (colliders[k] == nullptr)
-				continue;
-
-			c2 = colliders[k];
-
-			//GRAVITY PLAYER
-			if (c1->type == COLLIDER_GROUND && c2->type == COLLIDER_PLAYER && c1->CheckCollision(c2->rect) == true && !App->entitymanager->player_entity->godmode)
+			if (colliders[i]->CheckCollision(App->entitymanager->player_entity->collider->rect) == true)
 			{
-				
-				App->entitymanager->player_entity->pos.y -= (App->entitymanager->player_entity->gravity)*dt;
-				App->entitymanager->player_entity->falling = false;
-				//App->entitymanager->player_entity->contact = false;
-				//App->entity_manager->OnCollision(c2, c1, enemygravity);
-			}
-			//FOWARD and BACKWARD COLLISION PLAYER w/ WALL
-			if (c1->type == COLLIDER_WALL && c2->type == COLLIDER_PLAYER && c1->CheckCollision(c2->rect) && !App->entitymanager->player_entity->godmode)
-			{
-				App->entitymanager->player_entity->pos.x -= (App->entitymanager->player_entity->speed)*dt;
-			}
-			//PLAYER ENEMY COLLISION
-			/*if (c2->type == COLLIDER_ENEMY && c1->type == COLLIDER_PLAYER && c1->CheckCollision(c2->rect) && !App->entity_manager->player_entity->godmode)
-			{
-
-				if (App->entity_manager->player_entity->lives >= 0)
+				if (colliders[i]->rect.x + colliders[i]->rect.w <= App->entitymanager->player_entity->collider->rect.x)
 				{
-					App->entity_manager->player_entity->lives -= 1;
-					App->entity_manager->player_entity->SetPos(100, 200);
+					App->entitymanager->player_entity->pos.x += App->entitymanager->player_entity->speed;
 				}
-			}*/
-			//GRAVITY ENEMY
-			/*if (c1->type == COLLIDER_GROUND && c2->type == COLLIDER_ENEMY && c1->CheckCollisionDownwards(c2->rect, enemygravity, dt) == true)
-			{
-				if (App->entity_manager->wolf)
+				else if (colliders[i]->rect.x >= App->entitymanager->player_entity->collider->rect.x + App->entitymanager->player_entity->collider->rect.w)
 				{
-					App->entity_manager->OnCollision(c2, c1, enemygravity);
-				}
-
-			}*/
-
-			//ENEMY BLOCKERS
-			/*if (c1->type == COLLIDER_BLOCKER && c2->type == COLLIDER_ENEMY && c1->CheckCollisionDownwards(c2->rect, force, dt) == true)
-			{
-				if (App->entity_manager->wolf)
-				{
-					App->entity_manager->OnCollision(c2, c1, force);
-				}
-
+					App->entitymanager->player_entity->pos.x -= App->entitymanager->player_entity->speed;
+				}				
 			}
-			if (c1->type == COLLIDER_WALL && c2->type == COLLIDER_ENEMY && c1->CheckCollisionDownwards(c2->rect, force, dt) == true)
+		}
+		else if (colliders[i]->type == COLLIDER_GROUND)
+		{
+			if (colliders[i]->CheckCollision(App->entitymanager->player_entity->collider->rect) == true)
 			{
-				if (App->entity_manager->wolf)
+				if (colliders[i]->rect.y >= App->entitymanager->player_entity->collider->rect.y + App->entitymanager->player_entity->collider->rect.h)
 				{
-					App->entity_manager->OnCollision(c2, c1, force);
+					App->entitymanager->player_entity->falling == false; 
 				}
-
 			}
-			if (c1->type == COLLIDER_PICK_UP && c2->type == COLLIDER_PLAYER && c1->CheckCollision(c2->rect) == true)
-			{
-				c1->to_delete = true;
-				App->entity_manager->player_entity->score += 1;
-
-			}
-			if (c2->type == COLLIDER_PICK_UP && c1->type == COLLIDER_PLAYER && c2->CheckCollision(c1->rect) == true)
-			{
-				p2List_item<Entity*>* item;
-				item = App->entity_manager->candies.start;
-				while (item != NULL)
-				{
-					if (c2 == item->data->collider)
-					{
-						item->data->OnCollision();
-						c2->to_delete = true;
-					}
-					item = item->next;
-				}
-
-			}*/
 		}
 
 	}

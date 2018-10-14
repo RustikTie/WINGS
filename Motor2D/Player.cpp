@@ -130,7 +130,7 @@ void Player::MoveEntity(float dt)
 void Player::Jump_Glide(float dt)
 {
 
-	if (!jumping && !godmode && !gliding)
+	if (!jumping && !godmode && !gliding && falling)
 	{
 		pos.y += gravity*0.00016;
 	}
