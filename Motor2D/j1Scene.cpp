@@ -37,6 +37,7 @@ bool j1Scene::Start()
 	{
 		App->map->Load("map_test.tmx");
 		App->entitymanager->Start();
+		
 	}
 	if (level2)
 	{
@@ -95,6 +96,11 @@ bool j1Scene::Update(float dt)
 		}
 	}
 
+	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
+	{
+		App->entitymanager->player_entity->SetPos(100, 1000);
+	}
+
 	App->map->Draw();
 
 	int x, y;
@@ -119,6 +125,8 @@ bool j1Scene::Update(float dt)
 		App->entitymanager->player_entity->SetPos(100, 1000);
 		level1 = false;
 	}
+
+	
 	return true;
 }
 
@@ -139,4 +147,25 @@ bool j1Scene::CleanUp()
 	LOG("Freeing scene");
 
 	return true;
+}
+
+void j1Scene::ChangeMap(float x, float y)
+{
+	if (level2)
+	{
+		App->map->CleanUp();
+		App->entitymanager->CleanUp();
+		App->map->Load("Map_2.tmx");
+		App->entitymanager->player_entity->SetPos(x, y);
+		level1 = false;
+	}
+
+	else
+	{
+		App->map->CleanUp();
+		App->entitymanager->player_entity->SetPos(x, y);
+		App->entitymanager->CleanUp();
+		App->map->Load("map_test.tmx");
+		App->entitymanager->Start();
+	}
 }

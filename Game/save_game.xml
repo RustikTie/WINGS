@@ -7,10 +7,10 @@
 	<map />
 	<colliders />
 	<entities>
-		<player x="493.453491" y="100" />
+		<player x="1331.45862" y="1000" map1="false" map2="true" />
 	</entities>
 	<scene />
 	<renderer>
-		<camera x="237" y="52" />
+		<camera x="-931" y="-600" />
 	</renderer>
 </game_state>

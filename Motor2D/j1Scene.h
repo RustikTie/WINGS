@@ -32,9 +32,13 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
+	void ChangeMap(float x, float y);
+
 	bool			start =	true;
 	bool			level1 = true;
 	bool			level2 = false;
+
+	int				map = 0;
 
 private:
 };

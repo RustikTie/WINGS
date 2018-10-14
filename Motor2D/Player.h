@@ -33,6 +33,9 @@ public:
 
 public:
 
+	bool				map1 = true;
+	bool				map2 = false;
+
 	float			speed;
 	float			acceleration;
 	float			deceleration;
