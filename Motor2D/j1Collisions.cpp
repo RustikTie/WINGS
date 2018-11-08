@@ -16,13 +16,23 @@ j1Collisions::j1Collisions() : j1Module()
 		colliders[i] = nullptr;
 
 	matrix[COLLIDER_GROUND][COLLIDER_GROUND] = false;
+	matrix[COLLIDER_GROUND][COLLIDER_WALL] = false;
 	matrix[COLLIDER_GROUND][COLLIDER_PLAYER] = true;
 	matrix[COLLIDER_GROUND][COLLIDER_ENEMY] = true;
 	matrix[COLLIDER_GROUND][COLLIDER_BLOCKER] = false;
 	matrix[COLLIDER_GROUND][COLLIDER_GOD] = false;
 	matrix[COLLIDER_GROUND][COLLIDER_PICK_UP] = false;
 
+	matrix[COLLIDER_WALL][COLLIDER_GROUND] = false;
+	matrix[COLLIDER_WALL][COLLIDER_WALL] = false;
+	matrix[COLLIDER_WALL][COLLIDER_PLAYER] = true;
+	matrix[COLLIDER_WALL][COLLIDER_ENEMY] = true;
+	matrix[COLLIDER_WALL][COLLIDER_BLOCKER] = false;
+	matrix[COLLIDER_WALL][COLLIDER_GOD] = false;
+	matrix[COLLIDER_WALL][COLLIDER_PICK_UP] = false;
+
 	matrix[COLLIDER_PLAYER][COLLIDER_GROUND] = true;
+	matrix[COLLIDER_PLAYER][COLLIDER_WALL] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_PLAYER] = false;
 	matrix[COLLIDER_PLAYER][COLLIDER_ENEMY] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_BLOCKER] = false;
@@ -107,27 +117,26 @@ bool j1Collisions::Update(float dt)
 		{
 			if (colliders[i]->CheckCollision(App->entitymanager->player_entity->collider->rect) == true)
 			{
-				if (App->entitymanager->player_entity->collider->rect.x + App->entitymanager->player_entity->collider->rect.w >= colliders[i]->rect.x)
+				if (App->entitymanager->player_entity->collider->rect.x + App->entitymanager->player_entity->collider->rect.w >= colliders[i]->rect.x + colliders[i]->rect.w)
 				{
-					App->entitymanager->player_entity->pos.x -= App->entitymanager->player_entity->speed*0.00016;
+					App->entitymanager->player_entity->pos.x += App->entitymanager->player_entity->speed*dt;
 				}
 				else if (App->entitymanager->player_entity->collider->rect.x <= colliders[i]->rect.x + colliders[i]->rect.w )
 				{
-					App->entitymanager->player_entity->pos.x -= App->entitymanager->player_entity->speed*0.00016;
+					App->entitymanager->player_entity->pos.x -= App->entitymanager->player_entity->speed*dt;
 				}				
 				
 			}
 		}
-		else if (colliders[i]->type == COLLIDER_WALL)
+
+		if (colliders[i]->type == COLLIDER_WALL)
 		{
 			if (colliders[i]->CheckCollision(App->entitymanager->player_entity->collider->rect) == true)
 			{
 				if (App->entitymanager->player_entity->collider->rect.y + App->entitymanager->player_entity->collider->rect.h >= colliders[i]->rect.y)
 				{
-
 					App->entitymanager->player_entity->falling = false;
 					App->entitymanager->player_entity->pos.y -= App->entitymanager->player_entity->gravity*0.00016;
-
 
 				}
 			}
