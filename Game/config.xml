@@ -42,13 +42,13 @@
 
   <entities>
     <player>
-	    <speed value = "800"/>
+	    <speed value = "500"/>
 	    <acceleration value = "200" />
 	    <deceleration value = "20" />	
-	    <position x = "500" y = "1000"/>
-	    <gravity value = "100"/>
-	    <jump_height value = "30" />
-      <jump_speed value = "15" />
+	    <position x = "500" y = "500"/>
+	    <gravity value = "400"/>
+	    <jump_height value = "300" />
+      <jump_speed value = "1000" />
 
       <scale x="1" y="1"/>
     </player>

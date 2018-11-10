@@ -95,6 +95,7 @@ bool j1EntityManager::Update(float dt)
 	{
 		player_entity->MoveEntity(dt);
 		player_entity->Draw(dt);
+		player_entity->Jump_Glide(dt);
 	}
 		
 

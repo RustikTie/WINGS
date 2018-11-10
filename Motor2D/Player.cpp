@@ -92,7 +92,7 @@ void Player::MoveEntity(float dt)
 		max_height = (pos.y - jump_height);
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT && falling)
 	{
 		gliding = true;
 		jumping = false;
@@ -117,22 +117,24 @@ void Player::MoveEntity(float dt)
 		}
 	}
 
-	if (!godmode)
+	
+	//DEATH
+	if (pos.y > 2000)
 	{
-		Jump_Glide(dt);
+		pos.x = 500;
+		pos.y = 500;
 	}
+	
 
 	//CAMERA
 	App->render->camera.x = (-pos.x + 400);
 	App->render->camera.y = (-pos.y + 400);
 
-	/*LOG("POSITION: %f", pos.x);*/
 }
 
 void Player::Jump_Glide(float dt)
 {
-
-	if (!jumping && !godmode && !gliding && falling)
+	if (!jumping && !gliding)
 	{
 		pos.y += gravity*dt;
 	}
@@ -145,10 +147,9 @@ void Player::Jump_Glide(float dt)
 		//animation = &jump;
 		pos.y -= jump_speed * dt;
 	}
-	else if (pos.y <= max_height)
+	if (pos.y <= max_height)
 	{
 		jumping = false;
-		falling = true;
 	}
 }
 
