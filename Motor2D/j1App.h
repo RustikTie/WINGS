@@ -18,6 +18,7 @@ class j1Map;
 class j1Collisions;
 class j1Pathfinding;
 class j1EntityManager;
+class j1Pathfinding;
 class j1Gui;
 class j1Fonts;
 class j1FadeToBlack;
@@ -88,7 +89,7 @@ private:
 public:
 
 	// Modules
-	j1Window * win = NULL;
+	j1Window*			win = NULL;
 	j1Input*			input = NULL;
 	j1Render*			render = NULL;
 	j1Textures*			tex = NULL;

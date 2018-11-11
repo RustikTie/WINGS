@@ -14,6 +14,7 @@
 #include "j1App.h"
 #include "j1Collisions.h"
 #include "j1EntityManager.h"
+#include "j1Pathfinding.h"
 //#include "j1Gui.h"
 //#include "j1Fonts.h"
 //#include "j1FadeToBlack.h"
@@ -38,7 +39,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	scene = new j1Scene();
 	map = new j1Map();
 	collisions = new j1Collisions();
-	//pathfinding = new j1Pathfinding();
+	pathfinding = new j1Pathfinding();
 	entitymanager = new j1EntityManager();
 	//gui = new j1Gui();
 	//font = new j1Fonts();
@@ -56,7 +57,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(map);
 	AddModule(collisions);
 	AddModule(entitymanager);
-	//AddModule(pathfinding);
+	AddModule(pathfinding);
 	//AddModule(font);
 	//AddModule(fade_to_black);
 
