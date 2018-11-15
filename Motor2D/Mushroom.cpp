@@ -26,12 +26,62 @@ bool Mushroom::Awake(pugi::xml_node& config)
 
 void Mushroom::MoveEntity(float dt)
 {
-	fPoint EnemyPos = { pos.x, pos.y };
-	fPoint PlayerPos = { App->entitymanager->player_entity->pos.x, App->entitymanager->player_entity->pos.y };
+	pos = original_pos;
+	original_pos.y += App->entitymanager->player_entity->gravity*dt;
+
+	iPoint EnemyPos = { original_pos.x, original_pos.y };
+	iPoint PlayerPos = { App->entitymanager->player_entity->pos.x, App->entitymanager->player_entity->pos.y };
 
 	if (abs(PlayerPos.x - EnemyPos.x) < alert_radius)
 	{
+		counter = 0;
 
+		App->pathfinding->CreatePath(EnemyPos, PlayerPos);
+		App->pathfinding->BackTrackingGround(PlayerPos, path);
+
+		move = true;
+	}
+	if (move)
+	{
+		iPoint Destination = { path[counter].x, path[counter].y };
+		animation = &walk;
+
+		if (EnemyPos.x < Destination.x)
+		{
+			original_pos.x += speed*dt;
+			flip = false;
+			if (EnemyPos.x >= Destination.x)
+			{
+				counter++;
+				move = false;
+			}
+		}
+
+		else
+		{
+			original_pos.x -= speed*dt;
+			flip = true;
+			if (EnemyPos.x <= Destination.x)
+			{
+				counter++;
+				move = false;
+			}
+		}
+
+		if (EnemyPos.x != Destination.x && EnemyPos.y != Destination.y)
+		{
+			move = false;
+		}
+
+	}
+	else
+	{
+		animation = &idle;
+	}
+
+	if (abs(App->entitymanager->player_entity->pos.x - EnemyPos.x) >= alert_radius)
+	{
+		move = false;
 	}
 
 }

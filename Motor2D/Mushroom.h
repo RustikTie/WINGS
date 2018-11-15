@@ -6,6 +6,7 @@
 #include "j1App.h"
 #include "j1Textures.h"
 #include "j1EntityManager.h"
+#include "j1Pathfinding.h"
 
 class Mushroom : public Entity
 {
