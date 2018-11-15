@@ -125,7 +125,6 @@ bool j1Collisions::Update(float dt)
 				{
 					App->entitymanager->player_entity->pos.x -= App->entitymanager->player_entity->speed*dt;
 				}				
-				
 			}
 		}
 
