@@ -564,15 +564,15 @@ bool j1Map::LoadObjectLayer(pugi::xml_node& node, ObjectLayer* layer)
 
 		if (object_type == "WALL")
 		{
-			App->collisions->AddCollider(collider, COLLIDER_WALL);
 			collider = { (int)layer->x[i], (int)layer->y[i], (int)layer->width[i], (int)layer->height[i] };
+			App->collisions->AddCollider(collider, COLLIDER_WALL);
 			layer->type[i] = WALL;
 						
 		}
 		if (object_type == "GROUND")
 		{
-			App->collisions->AddCollider(collider, COLLIDER_GROUND);
 			collider = { (int)layer->x[i], (int)layer->y[i], (int)layer->width[i], (int)layer->height[i] };
+			App->collisions->AddCollider(collider, COLLIDER_GROUND);
 			layer->type[i] = GROUND;
 		}
 		/*p2SString type(aux.child("properties").child("property").attribute("value").as_string());

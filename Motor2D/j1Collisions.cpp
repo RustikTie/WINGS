@@ -113,7 +113,7 @@ bool j1Collisions::Update(float dt)
 		if (colliders[i] == nullptr || colliders[i]->type == COLLIDER_NONE || colliders[i]->type == COLLIDER_PLAYER)
 			continue;
 
-		if (colliders[i]->type == COLLIDER_GROUND )
+		if (colliders[i]->type == COLLIDER_WALL )
 		{
 			if (colliders[i]->CheckCollision(App->entitymanager->player_entity->collider->rect) == true)
 			{
@@ -129,7 +129,7 @@ bool j1Collisions::Update(float dt)
 			}
 		}
 
-		if (colliders[i]->type == COLLIDER_WALL)
+		if (colliders[i]->type == COLLIDER_GROUND)
 		{
 			if (colliders[i]->CheckCollision(App->entitymanager->player_entity->collider->rect) == true)
 			{
