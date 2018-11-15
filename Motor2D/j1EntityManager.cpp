@@ -1,6 +1,7 @@
 #include "j1EntityManager.h"
 #include "Entity.h"
 #include "Player.h"
+#include "Mushroom.h"
 #include "j1Scene.h"
 #include "j1Map.h"
 #include "j1Textures.h"
@@ -146,25 +147,25 @@ bool j1EntityManager::CleanUp()
 	return true;
 }
 
-//bool j1EntityManager::AddEnemy(ENTITY_TYPES type, int x, int y)
-//{
-//	bool ret = false;
-//
-//	for (uint i = 0; i < MAX_ENEMIES; ++i)
-//	{
-//		if (queue[i].type == ENTITY_TYPES::NO_TYPE)
-//		{
-//			queue[i].type = type;
-//			queue[i].x = x;
-//			queue[i].y = y;
-//
-//			ret = true;
-//			break;
-//		}
-//	}
-//
-//	return ret;
-//}
+bool j1EntityManager::AddEnemy(ENTITY_TYPE type, int x, int y)
+{
+	bool ret = false;
+
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
+	{
+		if (queue[i].type == ENTITY_TYPE::NO_TYPE)
+		{
+			queue[i].type = type;
+			queue[i].x = x;
+			queue[i].y = y;
+
+			ret = true;
+			break;
+		}
+	}
+
+	return ret;
+}
 
 
 void j1EntityManager::SpawnEntity(const EntityInfo& info)
@@ -181,7 +182,9 @@ void j1EntityManager::SpawnEntity(const EntityInfo& info)
 		case ENTITY_TYPE::PLAYER:
 			entities[i] = new Player(info.x, info.y);
 			break;
-	
+		case ENTITY_TYPE::MUSHROOM:
+			entities[i] = new Mushroom(info.x, info.y);
+			break;
 		}
 	}
 }

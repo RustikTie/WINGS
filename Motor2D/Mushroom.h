@@ -6,6 +6,7 @@
 #include "j1App.h"
 #include "j1Textures.h"
 #include "j1EntityManager.h"
+
 class Mushroom : public Entity
 {
 public:
@@ -27,6 +28,7 @@ private:
 
 	fPoint			position;
 	float			speed;
+	float			alert_radius;
 };
 
 #endif

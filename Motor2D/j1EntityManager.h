@@ -19,6 +19,7 @@ enum ENTITY_TYPE
 {
 	NO_TYPE,
 	PLAYER,
+	MUSHROOM,
 };
 
 class Entity;
@@ -56,6 +57,8 @@ public:
 	//void EraseEnemies();
 
 	void SpawnEntity(const EntityInfo& info);
+
+	bool AddEnemy(ENTITY_TYPE type, int x, int y);
 
 	pugi::xml_document config_file;
 	pugi::xml_node entity_config;

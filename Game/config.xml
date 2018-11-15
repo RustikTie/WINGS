@@ -57,6 +57,7 @@
       <move value="false"/>
       <attack value="false"/>
       <scale value="1"/>
+      <alert_radius value="400"/>
     </mushroom>
 
     <beatle>
