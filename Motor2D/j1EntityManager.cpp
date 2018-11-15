@@ -2,6 +2,7 @@
 #include "Entity.h"
 #include "Player.h"
 #include "Mushroom.h"
+#include "Beetle.h"
 #include "j1Scene.h"
 #include "j1Map.h"
 #include "j1Textures.h"
@@ -184,6 +185,9 @@ void j1EntityManager::SpawnEntity(const EntityInfo& info)
 			break;
 		case ENTITY_TYPE::MUSHROOM:
 			entities[i] = new Mushroom(info.x, info.y);
+			break;
+		case ENTITY_TYPE::BEETLE:
+			entities[i] = new Beetle(info.x, info.y);
 			break;
 		}
 	}

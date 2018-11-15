@@ -1,18 +1,18 @@
-#include "Mushroom.h"
+#include "Beetle.h"
 
-Mushroom::Mushroom(int x, int y) : Entity(x, y)
+Beetle::Beetle(int x, int y) : Entity(x, y)
 {
 	collider = App->collisions->AddCollider({ (int)pos.x, (int)pos.y, 82, 95 }, COLLIDER_ENEMY, (j1Module*)App->entitymanager);
 }
-				
-Mushroom::~Mushroom()
+
+Beetle::~Beetle()
 {
 	App->tex->UnLoad(sprites);
 }
 
-bool Mushroom::Awake(pugi::xml_node& config)
+bool Beetle::Awake(pugi::xml_node& config)
 {
-	pugi::xml_node player = config.child("mushroom");
+	pugi::xml_node player = config.child("beetle");
 
 	speed = player.child("speed").attribute("value").as_float();
 	move = player.child("move").attribute("value").as_bool();
@@ -24,7 +24,7 @@ bool Mushroom::Awake(pugi::xml_node& config)
 	return true;
 }
 
-void Mushroom::MoveEntity(float dt)
+void Beetle::MoveEntity(float dt)
 {
 	pos = original_pos;
 	original_pos.y += App->entitymanager->player_entity->gravity*dt;
@@ -32,7 +32,7 @@ void Mushroom::MoveEntity(float dt)
 	iPoint EnemyPos = { (int)original_pos.x, (int)original_pos.y };
 	iPoint PlayerPos = { (int)App->entitymanager->player_entity->pos.x, (int)App->entitymanager->player_entity->pos.y };
 
-	if (abs(PlayerPos.x - EnemyPos.x) < alert_radius)
+	if (abs(PlayerPos.x - EnemyPos.x) < alert_radius && !move)
 	{
 		counter = 0;
 
@@ -41,15 +41,17 @@ void Mushroom::MoveEntity(float dt)
 
 		move = true;
 	}
+
 	if (move)
 	{
 		iPoint Destination = { path[counter].x, path[counter].y };
-		animation = &walk;
+
+		animation = &fly;
 
 		if (EnemyPos.x < Destination.x)
 		{
 			original_pos.x += speed*dt;
-			flip = false;
+			flip = true;
 			if (EnemyPos.x >= Destination.x)
 			{
 				counter++;
@@ -60,13 +62,34 @@ void Mushroom::MoveEntity(float dt)
 		else
 		{
 			original_pos.x -= speed*dt;
-			flip = true;
+			flip = false;
 			if (EnemyPos.x <= Destination.x)
 			{
 				counter++;
 				move = false;
 			}
 		}
+
+		if (EnemyPos.y < Destination.y)
+		{
+			original_pos.y += speed*dt;
+			if (EnemyPos.y >= Destination.y)
+			{
+				counter++;
+				move = false;
+			}
+		}
+
+		else
+		{
+			original_pos.y -= speed*dt;
+			if (EnemyPos.y < Destination.y)
+			{
+				counter++;
+				move = false;
+			}
+		}
+
 
 		if (EnemyPos.x != Destination.x && EnemyPos.y != Destination.y)
 		{
@@ -76,28 +99,27 @@ void Mushroom::MoveEntity(float dt)
 	}
 	else
 	{
-		animation = &idle;
+		animation = &fly;
 	}
 
 	if (abs(App->entitymanager->player_entity->pos.x - EnemyPos.x) >= alert_radius)
 	{
 		move = false;
 	}
-
 }
 
-void Mushroom::Draw(float dt)
+void Beetle::Draw(float dt)
 {
 
 }
 
-bool Mushroom::Load(pugi::xml_node& data)
+bool Beetle::Load(pugi::xml_node& data)
 {
-	
+
 	return true;
 }
 
-bool Mushroom::Save(pugi::xml_node& data) const
+bool Beetle::Save(pugi::xml_node& data) const
 {
 	
 	return true;

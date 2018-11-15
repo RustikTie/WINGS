@@ -20,6 +20,7 @@ enum ENTITY_TYPE
 	NO_TYPE,
 	PLAYER,
 	MUSHROOM,
+	BEETLE,
 };
 
 class Entity;

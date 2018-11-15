@@ -1,5 +1,5 @@
-#ifndef __MUSHROOM_H__
-#define __MUSHROOM_H__
+#ifndef __BEETLE_H__
+#define __BEETLE_H__
 
 #include "Entity.h"
 #include "Animation.h"
@@ -9,11 +9,11 @@
 #include "j1Pathfinding.h"
 #include "j1Scene.h"
 
-class Mushroom : public Entity
+class Beetle : public Entity
 {
 public:
-	Mushroom(int x, int y);
-	~Mushroom();
+	Beetle(int x, int y);
+	~Beetle();
 
 	bool Awake(pugi::xml_node&);
 	void MoveEntity(float dt);
@@ -24,7 +24,7 @@ public:
 
 private:
 	Animation		idle;
-	Animation		walk;
+	Animation		fly;
 
 	int				counter = 0;
 
