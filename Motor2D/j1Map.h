@@ -19,7 +19,7 @@ enum OBJECT_TYPE
 {
 	WALL,
 	GROUND,
-	
+	BLOCKER
 };
 // TODO 1: Create a struct for the map layer
 // ----------------------------------------------------

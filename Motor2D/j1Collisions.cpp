@@ -113,7 +113,7 @@ bool j1Collisions::Update(float dt)
 		if (colliders[i] == nullptr || colliders[i]->type == COLLIDER_NONE || colliders[i]->type == COLLIDER_PLAYER)
 			continue;
 
-		if (colliders[i]->type == COLLIDER_WALL )
+		if (colliders[i]->type == COLLIDER_WALL)
 		{
 			if (colliders[i]->CheckCollision(App->entitymanager->player_entity->collider->rect) == true)
 			{
@@ -121,10 +121,10 @@ bool j1Collisions::Update(float dt)
 				{
 					App->entitymanager->player_entity->pos.x += App->entitymanager->player_entity->speed*dt;
 				}
-				else if (App->entitymanager->player_entity->collider->rect.x <= colliders[i]->rect.x + colliders[i]->rect.w )
+				else if (App->entitymanager->player_entity->collider->rect.x <= colliders[i]->rect.x + colliders[i]->rect.w)
 				{
 					App->entitymanager->player_entity->pos.x -= App->entitymanager->player_entity->speed*dt;
-				}				
+				}
 			}
 		}
 
@@ -139,9 +139,13 @@ bool j1Collisions::Update(float dt)
 					App->entitymanager->player_entity->gliding = false;
 				}
 			}
-			
+
 		}
 
+		if (colliders[i]->type == COLLIDER_BLOCKER)
+		{
+			
+		}
 	}
 
 	DebugDraw();

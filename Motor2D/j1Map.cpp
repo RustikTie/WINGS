@@ -575,6 +575,12 @@ bool j1Map::LoadObjectLayer(pugi::xml_node& node, ObjectLayer* layer)
 			App->collisions->AddCollider(collider, COLLIDER_GROUND);
 			layer->type[i] = GROUND;
 		}
+		if (object_type == "BLOCKER")
+		{
+			collider = { (int)layer->x[i], (int)layer->y[i], (int)layer->width[i], (int)layer->height[i] };
+			App->collisions->AddCollider(collider, COLLIDER_BLOCKER);
+			layer->type[i] = BLOCKER;
+		}
 		/*p2SString type(aux.child("properties").child("property").attribute("value").as_string());
 		if (type == "WHITE WOLF")
 		{
