@@ -32,6 +32,7 @@ Player::Player(int x, int y) : Entity(x, y)
 Player::~Player()
 {
 	App->tex->UnLoad(graphics);
+
 }
 
 bool Player::Start()
@@ -39,7 +40,6 @@ bool Player::Start()
 	LOG("Loading Player");
 
 	graphics = App->tex->Load("textures/p1_spritesheet.png");
-	collider = App->collisions->AddCollider({ (int)pos.x, (int)pos.y, 72, 97 }, COLLIDER_PLAYER, (j1Module*)App->entitymanager);
 
 	return true;
 }
@@ -58,6 +58,10 @@ bool Player::Awake(pugi::xml_node& config)
 	jump_speed = player.child("jump_speed").attribute("value").as_float();
 	x_scale = player.child("scale").attribute("x").as_float();
 	y_scale = player.child("scale").attribute("y").as_float();
+
+	collider = App->collisions->AddCollider({ (int)pos.x, (int)pos.y, 72, 97 }, COLLIDER_PLAYER, (j1Module*)App->entitymanager);
+
+
 	return true;
 }
 

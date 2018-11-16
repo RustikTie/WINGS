@@ -30,7 +30,7 @@ struct Collider
 	bool to_delete = false;
 	COLLIDER_TYPE type;
 	j1Module* callback = nullptr;
-
+	int col_offset = 0;
 	Collider(SDL_Rect rectangle, COLLIDER_TYPE type, j1Module* callback = nullptr) :
 		rect(rectangle),
 		type(type),
@@ -44,6 +44,7 @@ struct Collider
 	}
 
 	bool CheckCollision(const SDL_Rect& r) const;
+	void SetCollisionOffset(const SDL_Rect& r, int speed, int dt);
 	//bool Collider::CheckCollisionDownwards(const SDL_Rect& r, float& gravity, float dt);
 	//bool Collider::CheckCollisionBackward(const SDL_Rect& r, float& force, float dt);
 	//bool Collider::CheckCollisionForward(const SDL_Rect& r, float& force, float dt);
