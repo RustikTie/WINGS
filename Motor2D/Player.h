@@ -57,6 +57,7 @@ public:
 	Animation		walk;
 private:
 	
+	float			old_grav = 0;
 	
 };
 

@@ -86,13 +86,13 @@ void Player::MoveEntity(float dt)
 	}
 
 	//JUMP & GLIDE
-	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN && !falling)
+	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN && !falling && !godmode)
 	{
 		jumping = true;
 		max_height = (pos.y - jump_height);
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT && falling)
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT && falling && !godmode)
 	{
 		gliding = true;
 		jumping = false;
@@ -110,13 +110,30 @@ void Player::MoveEntity(float dt)
 		if (!godmode)
 		{
 			godmode = true;
+			old_grav = gravity;
+			gravity = 0;
 		}
 		else
 		{
 			godmode = false;
+			gravity = old_grav;
 		}
 	}
 
+	if (godmode)
+	{
+		
+		if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
+		{
+			pos.y -= speed * dt;
+			current_anim = &idle;
+		}
+		if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
+		{
+			pos.y += speed * dt;
+			current_anim = &idle;
+		}
+	}
 	
 	//DEATH
 	if (pos.y > 2000)
