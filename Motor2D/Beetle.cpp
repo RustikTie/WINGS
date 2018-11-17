@@ -2,12 +2,24 @@
 
 Beetle::Beetle(int x, int y) : Entity(x, y)
 {
-	collider = App->collisions->AddCollider({ (int)pos.x, (int)pos.y, 82, 95 }, COLLIDER_ENEMY, (j1Module*)App->entitymanager);
+	idle.PushBack({ 8, 188, 128, 116 });
+	idle.PushBack({ 173, 188, 128, 116 });
+	idle.PushBack({ 327, 188, 128, 116 });
+	idle.loop = true;
+	idle.speed = 3.f;
+
+	fly.PushBack({ 8, 318, 128, 116 });
+	fly.PushBack({ 154, 318 , 128, 116 });
+	fly.PushBack({ 296, 318 , 128, 116 });
+	fly.loop = true;
+	fly.speed = 8.f;
+
+	collider = App->collisions->AddCollider({ (int)pos.x, (int)pos.y, 128, 116 }, COLLIDER_ENEMY, (j1Module*)App->entitymanager);
 }
 
 Beetle::~Beetle()
 {
-	App->tex->UnLoad(sprites);
+	//App->tex->UnLoad(sprites);
 }
 
 bool Beetle::Awake(pugi::xml_node& config)
@@ -27,12 +39,11 @@ bool Beetle::Awake(pugi::xml_node& config)
 void Beetle::MoveEntity(float dt)
 {
 	pos = original_pos;
-	original_pos.y += App->entitymanager->player_entity->gravity*dt;
 
 	iPoint EnemyPos = { (int)original_pos.x, (int)original_pos.y };
 	iPoint PlayerPos = { (int)App->entitymanager->player_entity->pos.x, (int)App->entitymanager->player_entity->pos.y };
 
-	if (abs(PlayerPos.x - EnemyPos.x) < alert_radius && !move)
+	if (abs(PlayerPos.x - EnemyPos.x) < alert_radius)
 	{
 		counter = 0;
 
@@ -110,7 +121,7 @@ void Beetle::MoveEntity(float dt)
 
 void Beetle::Draw(float dt)
 {
-
+	App->render->Blit(App->entitymanager->GetEntityAtlas(), pos.x, pos.y, x_scale, y_scale, flip, &(animation->GetCurrentFrame()));
 }
 
 bool Beetle::Load(pugi::xml_node& data)

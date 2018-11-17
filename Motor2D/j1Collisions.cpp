@@ -134,13 +134,13 @@ bool j1Collisions::Update(float dt)
 			{
 				if (App->entitymanager->player_entity->collider->rect.y + App->entitymanager->player_entity->collider->rect.h >= colliders[i]->rect.y)
 				{
-					colliders[i]->SetCollisionOffset(App->entitymanager->player_entity->collider->rect, App->entitymanager->player_entity->gravity, dt);
+					colliders[i]->SetCollisionOffset(App->entitymanager->player_entity->collider->rect, App->entitymanager->player_entity->gravity);
 					/*if (App->entitymanager->player_entity->pos.y + App->entitymanager->player_entity->collider->rect.h > colliders[i]->rect.y+1)
 					{
 						App->entitymanager->player_entity->pos.y -= colliders[i]->rect.y*dt;
 					}
 					*/
-					App->entitymanager->player_entity->pos.y -= colliders[i]->col_offset;
+					App->entitymanager->player_entity->pos.y -= colliders[i]->col_offset*dt;
 					App->entitymanager->player_entity->falling = false;
 					App->entitymanager->player_entity->gliding = false;
 				}
@@ -299,8 +299,7 @@ bool Collider::CheckCollision(const SDL_Rect& r)const
 	}
 }
 
-void Collider::SetCollisionOffset(const SDL_Rect& r, int speed, int dt)
+void Collider::SetCollisionOffset(const SDL_Rect& r, int speed)
 {
-	speed *= dt;
 	col_offset = r.y + r.h + speed - rect.y - 2;
 }

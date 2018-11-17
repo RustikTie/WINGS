@@ -34,7 +34,7 @@ bool j1EntityManager::Start()
 {
 	LOG("loading entities");
 
-	player_sprite = App->tex->Load("textures/p1_spritesheet.png");
+	entityAtlas = App->tex->Load("textures/entities.png");
 
 	if (App->scene->start == true)
 	{
@@ -266,7 +266,7 @@ bool j1EntityManager::Save(pugi::xml_node& data) const
 //
 //}
 
-//SDL_Texture* j1EntityManager::GetEntityAtlas() const
-//{
-//	return entityAtlas;
-//}
+SDL_Texture* j1EntityManager::GetEntityAtlas() const
+{
+	return entityAtlas;
+}

@@ -11,7 +11,7 @@ j1Pathfinding::~j1Pathfinding()
 
 bool j1Pathfinding::Start()
 {
-	pathfinder = App->tex->Load("assets/breadcrumbs.png");
+	//pathfinder = App->tex->Load("assets/breadcrumbs.png");
 
 	return true;
 }
@@ -125,19 +125,23 @@ int j1Pathfinding::CreatePath(const iPoint& origin, const iPoint& destination)
 			}
 			if (frontier.Pop(curr))
 			{
-				iPoint neighbors[4];
+				iPoint neighbors[8];
 				neighbors[0].create(curr.x + 1, curr.y + 0);
 				neighbors[1].create(curr.x + 0, curr.y + 1);
 				neighbors[2].create(curr.x - 1, curr.y + 0);
 				neighbors[3].create(curr.x + 0, curr.y - 1);
+				neighbors[4].create(curr.x + 1, curr.y + 1);
+				neighbors[5].create(curr.x - 1, curr.y - 1);
+				neighbors[6].create(curr.x - 1, curr.y + 1);
+				neighbors[7].create(curr.x + 1, curr.y - 1);
 
 
-				for (uint i = 0; i < 4; ++i)
+				for (uint i = 0; i < 8; ++i)
 				{
 					//uint point_dist = sqrt(pow((goal.x - neighbors[i].x), 2) + pow((goal.y - neighbors[i].y), 2));
 					uint point_dist = neighbors[i].DistanceTo(goal);
 
-					/*if (App->map->MovementCost(neighbors[i].x, neighbors[i].y) > 0 && App->entity_manager->wolf)
+					if (App->map->MovementCost(neighbors[i].x, neighbors[i].y) > 0)
 					{
 						if (visited.find(neighbors[i]) == -1 && breadcrumbs.find(neighbors[i]) == -1)
 						{
@@ -147,7 +151,7 @@ int j1Pathfinding::CreatePath(const iPoint& origin, const iPoint& destination)
 							breadcrumbs.add(curr);
 						}
 					}
-					if (App->map->MovementCost(neighbors[i].x, neighbors[i].y) >= 0 && App->entity_manager->bat)
+					/*if (App->map->MovementCost(neighbors[i].x, neighbors[i].y) >= 0 && App->entity_manager->bat)
 					{
 						if (visited.find(neighbors[i]) == -1 && breadcrumbs.find(neighbors[i]) == -1)
 						{

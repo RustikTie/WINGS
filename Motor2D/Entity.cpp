@@ -39,7 +39,7 @@ void Entity::Draw(float dt)
 
 	}*/
 	
-	if (collider != nullptr)
+	/*if (collider != nullptr)
 	{
 	collider->SetPos(pos.x, pos.y);
 	}
@@ -48,7 +48,7 @@ void Entity::Draw(float dt)
 	{
 	collider->SetPos(pos.x + 10, pos.y + 50);
 
-	}
+	}*/
 	
 	/*for (int i = 0; App->entity_manager->entities[i]; ++i)
 	{

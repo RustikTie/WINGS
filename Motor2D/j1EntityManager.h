@@ -18,9 +18,9 @@ class Player;
 enum ENTITY_TYPE
 {
 	NO_TYPE,
-	PLAYER,
 	MUSHROOM,
 	BEETLE,
+	PLAYER,
 };
 
 class Entity;
@@ -53,13 +53,15 @@ public:
 	bool Load(pugi::xml_node&);
 	bool Save(pugi::xml_node&) const;
 
-	fPoint			initial_pos = { 0.0f,0.0f };
+	fPoint				initial_pos = { 0.0f,0.0f };
 
 	//void EraseEnemies();
 
 	void SpawnEntity(const EntityInfo& info);
 
 	bool AddEnemy(ENTITY_TYPE type, int x, int y);
+
+	SDL_Texture* GetEntityAtlas() const;
 
 	pugi::xml_document config_file;
 	pugi::xml_node entity_config;
@@ -70,7 +72,7 @@ public:
 	Player*				player_entity =	nullptr;
 
 private:
-	SDL_Texture*		player_sprite = nullptr;
+	SDL_Texture * entityAtlas = nullptr;
 };
 
 #endif

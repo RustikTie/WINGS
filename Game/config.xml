@@ -30,15 +30,6 @@
     <folder>maps/</folder>
 		<map name = "map_test.png"/>		
   </map>
-  
-  <player_data>
-	<velocity value = "100"/>
-	<acceleration x = "200" y ="200" />
-	<position x = "500" y = "1000"/>
-	<gravity value = "2"/>
-	<jump velocity_y = "10" velocity_x = "160" height = "300"/>
-  	<scale x="3" y="3"/>
-  </player_data>
 
   <entities>
     <player>
@@ -60,12 +51,13 @@
       <alert_radius value="400"/>
     </mushroom>
 
-    <beatle>
+    <beetle>
       <speed value="100"/>
       <move value="false"/>
       <attack value="false"/>
       <scale value="1"/>
-    </beatle>
+      <alert_radius value="400"/>
+    </beetle>
   </entities>
 
 </config>

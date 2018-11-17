@@ -44,7 +44,7 @@ struct Collider
 	}
 
 	bool CheckCollision(const SDL_Rect& r) const;
-	void SetCollisionOffset(const SDL_Rect& r, int speed, int dt);
+	void SetCollisionOffset(const SDL_Rect& r, int speed);
 	//bool Collider::CheckCollisionDownwards(const SDL_Rect& r, float& gravity, float dt);
 	//bool Collider::CheckCollisionBackward(const SDL_Rect& r, float& force, float dt);
 	//bool Collider::CheckCollisionForward(const SDL_Rect& r, float& force, float dt);
