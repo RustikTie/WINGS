@@ -37,8 +37,8 @@ bool j1Scene::Start()
 	{
 		App->map->Load("map_test.tmx");
 		App->entitymanager->Start();
-		App->entitymanager->AddEnemy(MUSHROOM, 700, 700);
-		App->entitymanager->AddEnemy(BEETLE, 700, 800);
+		/*App->entitymanager->AddEnemy(MUSHROOM, 700, 200);
+		App->entitymanager->AddEnemy(BEETLE, 700, 800);*/
 		
 	}
 	if (level2)
@@ -116,7 +116,7 @@ bool j1Scene::Update(float dt)
 
 	App->win->SetTitle(title.GetString());
 
-	if (App->entitymanager->player_entity->pos.x >= 13300.f)
+	if (App->entitymanager->player_entity->pos.x >= 13500.f)
 
 	{
 		level2 = true;

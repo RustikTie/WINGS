@@ -151,16 +151,6 @@ int j1Pathfinding::CreatePath(const iPoint& origin, const iPoint& destination)
 							breadcrumbs.add(curr);
 						}
 					}
-					/*if (App->map->MovementCost(neighbors[i].x, neighbors[i].y) >= 0 && App->entity_manager->bat)
-					{
-						if (visited.find(neighbors[i]) == -1 && breadcrumbs.find(neighbors[i]) == -1)
-						{
-							cost_so_far[neighbors[i].x][neighbors[i].y] = point_dist;
-							frontier.Push(neighbors[i], point_dist);
-							visited.add(neighbors[i]);
-							breadcrumbs.add(curr);
-						}
-					}*/
 				}
 			}
 		}

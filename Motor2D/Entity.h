@@ -38,7 +38,7 @@ public:
 	fPoint			pos = { 0.0f,0.0f };
 	fPoint			collider_pos = { 0.0f,0.0f };
 	fPoint			original_pos = { 0.0f,0.0f };
-	fPoint			speed = { 0.0f,0.0f };
+	float			speed = 0;
 	fPoint			initial_pos = { 0.0f,0.0f };
 
 	Collider* collider = nullptr;

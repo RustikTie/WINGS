@@ -148,6 +148,39 @@ bool j1Collisions::Update(float dt)
 
 		}
 
+		/*for (uint j = 0; j < MAX_ENEMIES; ++j)
+		{
+			if (App->entitymanager->entities[j] != nullptr)
+			{
+				if (colliders[i]->type == COLLIDER_WALL)
+				{
+					if (colliders[i]->CheckCollision(App->entitymanager->entities[j]->collider->rect) == true)
+					{
+						if (App->entitymanager->entities[j]->collider->rect.x + App->entitymanager->entities[j]->collider->rect.w >= colliders[i]->rect.x + colliders[i]->rect.w)
+						{
+							App->entitymanager->entities[j]->original_pos.x += App->entitymanager->entities[j]->speed*dt;
+						}
+						else if (App->entitymanager->entities[j]->collider->rect.x <= colliders[i]->rect.x + colliders[i]->rect.w)
+						{
+							App->entitymanager->entities[j]->original_pos.x -= App->entitymanager->entities[j]->speed*dt;
+						}
+					}
+				}
+
+				if (colliders[i]->type == COLLIDER_GROUND)
+				{
+					if (colliders[i]->CheckCollision(App->entitymanager->entities[j]->collider->rect) == true)
+					{
+						if (App->entitymanager->entities[j]->collider->rect.y + App->entitymanager->entities[j]->collider->rect.h >= colliders[i]->rect.y)
+						{
+							colliders[i]->SetCollisionOffset(App->entitymanager->entities[j]->collider->rect, App->entitymanager->player_entity->gravity);
+							App->entitymanager->entities[j]->original_pos.y -= colliders[i]->col_offset*dt;
+						}
+					}
+
+				}
+			}
+		}*/
 		if (colliders[i]->type == COLLIDER_BLOCKER)
 		{
 			

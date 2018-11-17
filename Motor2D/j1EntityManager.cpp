@@ -82,15 +82,12 @@ bool j1EntityManager::Update(float dt)
 {
 	BROFILER_CATEGORY("PreUpdate EntityManager", Profiler::Color::Green)
 
-
-		
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{
 		if (entities[i] != nullptr)
 		{
 			entities[i]->MoveEntity(dt);
 			entities[i]->Draw(dt);
-			entities[i]->Awake(entity_config);
 		}
 	}
 	if (player_entity != nullptr)
@@ -115,9 +112,9 @@ bool j1EntityManager::PostUpdate()
 			{
 				if ((abs((int)App->render->camera.y) + SCREEN_HEIGHT + SPAWN_MARGIN) < entities[i]->pos.y)
 				{
-					LOG("DeSpawning enemy at %d", entities[i]->pos.y * SCREEN_SIZE);
+					/*LOG("DeSpawning enemy at %d", entities[i]->pos.y * SCREEN_SIZE);
 					delete entities[i];
-					entities[i] = nullptr;
+					entities[i] = nullptr;*/
 				}
 			}
 		}
@@ -185,9 +182,11 @@ void j1EntityManager::SpawnEntity(const EntityInfo& info)
 			break;
 		case ENTITY_TYPE::MUSHROOM:
 			entities[i] = new Mushroom(info.x, info.y);
+			entities[i]->Awake(entity_config);
 			break;
 		case ENTITY_TYPE::BEETLE:
 			entities[i] = new Beetle(info.x, info.y);
+			entities[i]->Awake(entity_config);
 			break;
 		}
 	}
