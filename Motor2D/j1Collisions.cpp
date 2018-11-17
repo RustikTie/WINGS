@@ -152,7 +152,7 @@ bool j1Collisions::Update(float dt)
 		{
 			if (App->entitymanager->entities[j] != nullptr)
 			{
-				if (colliders[i]->type == COLLIDER_WALL)
+				if (colliders[i]->type == COLLIDER_WALL || colliders[i]->type == COLLIDER_BLOCKER)
 				{
 					if (colliders[i]->CheckCollision(App->entitymanager->entities[j]->collider->rect) == true)
 					{
@@ -180,10 +180,6 @@ bool j1Collisions::Update(float dt)
 
 				}
 			}
-		}
-		if (colliders[i]->type == COLLIDER_BLOCKER)
-		{
-			
 		}
 	}
 

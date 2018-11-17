@@ -121,6 +121,7 @@ void Beetle::MoveEntity(float dt)
 
 void Beetle::Draw(float dt)
 {
+	collider->SetPos(pos.x, pos.y);
 	App->render->Blit(App->entitymanager->GetEntityAtlas(), pos.x, pos.y, x_scale, y_scale, flip, &(animation->GetCurrentFrame()));
 }
 
