@@ -148,7 +148,7 @@ bool j1Collisions::Update(float dt)
 
 		}
 
-		/*for (uint j = 0; j < MAX_ENEMIES; ++j)
+		for (uint j = 0; j < MAX_ENEMIES; ++j)
 		{
 			if (App->entitymanager->entities[j] != nullptr)
 			{
@@ -180,7 +180,7 @@ bool j1Collisions::Update(float dt)
 
 				}
 			}
-		}*/
+		}
 		if (colliders[i]->type == COLLIDER_BLOCKER)
 		{
 			

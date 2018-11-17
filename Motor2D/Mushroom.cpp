@@ -16,7 +16,7 @@ Mushroom::Mushroom(int x, int y) : Entity(x, y)
 	walk.loop = true;
 	walk.speed = 8.f;
 
-	collider = App->collisions->AddCollider({ (int)pos.x, (int)pos.y, 82, 95 }, COLLIDER_ENEMY, (j1Module*)App->entitymanager);
+	collider = App->collisions->AddCollider({ (int)pos.x, (int)pos.y, 82, 90 }, COLLIDER_ENEMY, (j1Module*)App->entitymanager);
 }
 				
 Mushroom::~Mushroom()
@@ -41,7 +41,7 @@ bool Mushroom::Awake(pugi::xml_node& config)
 void Mushroom::MoveEntity(float dt)
 {
 	pos = original_pos;
-	//original_pos.y += App->entitymanager->player_entity->gravity*dt;
+	original_pos.y += App->entitymanager->player_entity->gravity*dt;
 
 	iPoint EnemyPos = { (int)original_pos.x, (int)original_pos.y };
 	iPoint PlayerPos = { (int)App->entitymanager->player_entity->pos.x, (int)App->entitymanager->player_entity->pos.y };
@@ -103,6 +103,7 @@ void Mushroom::MoveEntity(float dt)
 
 void Mushroom::Draw(float dt)
 {
+	collider->SetPos(pos.x, pos.y);
 	App->render->Blit(App->entitymanager->GetEntityAtlas(), pos.x, pos.y, x_scale, y_scale, flip, &(animation->GetCurrentFrame()));
 }
 
