@@ -157,9 +157,11 @@ void j1Scene::ChangeMap(float x, float y)
 	{
 		App->map->CleanUp();
 		App->entitymanager->CleanUp();
-		App->map->Load("Map_2.tmx");
 		App->entitymanager->player_entity->SetPos(x, y);
 		level1 = false;
+		App->collisions->Erase_Non_Player_Colliders();
+		App->map->Load("Map_2.tmx");
+		
 	}
 
 	else
@@ -167,7 +169,8 @@ void j1Scene::ChangeMap(float x, float y)
 		App->map->CleanUp();
 		App->entitymanager->player_entity->SetPos(x, y);
 		App->entitymanager->CleanUp();
-		App->map->Load("map_test.tmx");
 		App->entitymanager->Start();
+		App->collisions->Erase_Non_Player_Colliders();
+		App->map->Load("map_test.tmx");
 	}
 }
