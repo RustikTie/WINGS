@@ -37,7 +37,7 @@ bool j1Scene::Start()
 	{
 		App->map->Load("map_test.tmx");
 		App->entitymanager->Start();
-		App->entitymanager->AddEnemy(MUSHROOM, 700, 300);
+		App->entitymanager->AddEnemy(MUSHROOM, 800, 300);
 		//App->entitymanager->AddEnemy(BEETLE, 700, 800);
 		
 	}
@@ -94,13 +94,13 @@ bool j1Scene::Update(float dt)
 
 		else
 		{
-			App->entitymanager->player_entity->SetPos(100, 1000);
+			App->entitymanager->player_entity->SetPos(500, 500);
 		}
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
 	{
-		App->entitymanager->player_entity->SetPos(100, 1000);
+		App->entitymanager->player_entity->SetPos(500, 1000);
 	}
 
 	App->map->Draw();

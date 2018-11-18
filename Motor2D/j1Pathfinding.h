@@ -36,9 +36,7 @@ public:
 	void DrawPath(p2DynArray<iPoint>& path);
 
 	//Backtracking function
-	void BackTrackingGround(const iPoint& start, p2DynArray<iPoint>& path);
-
-	void BackTrackingAir(const iPoint& start, p2DynArray<iPoint>& path);
+	void BackTracking(const iPoint& start, p2DynArray<iPoint>& path);
 
 	// Utility: returns true is the tile is walkable
 	bool IsWalkable(const iPoint& pos) const;

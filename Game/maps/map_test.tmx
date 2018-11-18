@@ -6028,7 +6028,7 @@
    <tile gid="9"/>
   </data>
  </layer>
- <objectgroup id="4" name="Objects" offsetx="-12" offsety="0">
+ <objectgroup id="4" name="Objects">
   <object id="23" x="1.33333" y="282.667" width="417.333" height="141.333">
    <properties>
     <property name="type" value="GROUND"/>

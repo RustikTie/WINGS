@@ -144,6 +144,7 @@ void Player::MoveEntity(float dt)
 	{
 		pos.x = 500;
 		pos.y = 500;
+		LOG("dead");
 	}
 	
 

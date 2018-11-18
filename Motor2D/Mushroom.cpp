@@ -54,7 +54,7 @@ void Mushroom::MoveEntity(float dt)
 		counter = 0;
 
 		App->pathfinding->CreatePath(EnemyPos, PlayerPos);
-		App->pathfinding->BackTrackingGround(PlayerPos, path);
+		App->pathfinding->BackTracking(PlayerPos, path);
 
 		move = true;
 	}

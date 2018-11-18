@@ -58,39 +58,23 @@ void j1Pathfinding::DrawPath(p2DynArray<iPoint>& trackingpath)
 	}
 }
 
-void j1Pathfinding::BackTrackingGround(const iPoint& start, p2DynArray<iPoint>& path)
+void j1Pathfinding::BackTracking(const iPoint& start, p2DynArray<iPoint>& path)
 {
 	path.Clear();
 
 	//iPoint goal = App->map->WorldToMap(start.x, start.y);
 	iPoint goal = { start.x, start.y };
 	iPoint curr = goal;
+	p2List_item<iPoint>* item;
 
+	item = breadcrumbs.end;
 	path.PushBack(curr);
 
-	while (curr != breadcrumbs.start->data && visited.find(goal) != -1)
+	while (item != breadcrumbs.start && visited.find(curr) != -1)
 	{
 		curr = breadcrumbs[visited.find(curr)];
 		path.PushBack(curr);
-	}
-
-	path.Flip();
-}
-
-void j1Pathfinding::BackTrackingAir(const iPoint& start, p2DynArray<iPoint>& path)
-{
-	path.Clear();
-
-	//iPoint goal = App->map->WorldToMap(start.x, start.y);
-	iPoint goal = { start.x, start.y };
-	iPoint curr = goal;
-
-	path.PushBack(curr);
-
-	while (curr != breadcrumbs.start->data && visited.find(goal) != -1)
-	{
-		curr = breadcrumbs[visited.find(curr)];
-		path.PushBack(curr);
+		item = item->prev;
 	}
 
 	path.Flip();
@@ -99,12 +83,14 @@ void j1Pathfinding::BackTrackingAir(const iPoint& start, p2DynArray<iPoint>& pat
 int j1Pathfinding::CreatePath(const iPoint& origin, const iPoint& destination)
 {
 	frontier.Clear();
-	breadcrumbs.clear();
 	visited.clear();
+	breadcrumbs.clear();
 
 	int ret = 0;
 
-	if (App->map->MovementCost(destination.x, destination.y) >= 0)
+	iPoint goal = App->map->WorldToMap(destination.x, destination.y);
+
+	if (App->map->MovementCost(goal.x, goal.y) >= 0)
 	{
 		ret = -1;
 	}
@@ -112,8 +98,6 @@ int j1Pathfinding::CreatePath(const iPoint& origin, const iPoint& destination)
 	if (ret != -1)
 	{
 		iPoint curr;
-
-		iPoint goal = App->map->WorldToMap(destination.x, destination.y);
 
 		frontier.Push(App->map->WorldToMap(origin.x, origin.y), 0);
 
