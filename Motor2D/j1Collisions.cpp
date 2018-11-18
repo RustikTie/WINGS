@@ -6,6 +6,7 @@
 #include "Entity.h"
 #include "Player.h"
 #include "j1Scene.h"
+#include "j1Pathfinding.h"
 #include "Brofiler\Brofiler.h"
 
 j1Collisions::j1Collisions() : j1Module()
@@ -240,13 +241,13 @@ void j1Collisions::DebugDraw()
 			}
 		}
 
-		/*for (uint i = 0; i < MAX_ENEMIES; ++i)
+		for (uint i = 0; i < MAX_ENEMIES; ++i)
 		{
-			if (App->entity_manager->entities[i] != nullptr)
+			if (App->entitymanager->entities[i] != nullptr)
 			{
-				App->pathfinding->DrawPath(App->entity_manager->entities[i]->path);
+				App->pathfinding->DrawPath(App->entitymanager->entities[i]->path);
 			}
-		}*/
+		}
 
 	}
 }

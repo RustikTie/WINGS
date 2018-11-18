@@ -212,6 +212,11 @@ bool j1EntityManager::Load(pugi::xml_node& data)
 				entities[i]->Load(mushroomnode);
 				mushroomnode = mushroomnode.next_sibling();
 			}
+			if (entities[i]->type == BEETLE)
+			{
+				entities[i]->Load(beetlenode);
+				mushroomnode = mushroomnode.next_sibling();
+			}
 		}
 	}
 	
@@ -237,6 +242,10 @@ bool j1EntityManager::Save(pugi::xml_node& data) const
 			if (entities[i]->type == MUSHROOM)
 			{
 				entities[i]->Save(mushroomnode);
+			}
+			if (entities[i]->type == BEETLE)
+			{
+				entities[i]->Save(beetlenode);
 			}
 		}
 	}
