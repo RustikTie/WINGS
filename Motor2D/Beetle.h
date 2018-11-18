@@ -26,7 +26,7 @@ private:
 	Animation		idle;
 	Animation		fly;
 
-	int				counter = 0;
+	uint			counter = 0;
 
 	bool			move = false;
 	bool			attack = false;

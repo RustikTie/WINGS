@@ -20,7 +20,6 @@ j1Collisions::j1Collisions() : j1Module()
 	matrix[COLLIDER_GROUND][COLLIDER_PLAYER] = true;
 	matrix[COLLIDER_GROUND][COLLIDER_ENEMY] = true;
 	matrix[COLLIDER_GROUND][COLLIDER_BLOCKER] = false;
-	matrix[COLLIDER_GROUND][COLLIDER_GOD] = false;
 	matrix[COLLIDER_GROUND][COLLIDER_PICK_UP] = false;
 
 	matrix[COLLIDER_WALL][COLLIDER_GROUND] = false;
@@ -28,7 +27,6 @@ j1Collisions::j1Collisions() : j1Module()
 	matrix[COLLIDER_WALL][COLLIDER_PLAYER] = true;
 	matrix[COLLIDER_WALL][COLLIDER_ENEMY] = true;
 	matrix[COLLIDER_WALL][COLLIDER_BLOCKER] = false;
-	matrix[COLLIDER_WALL][COLLIDER_GOD] = false;
 	matrix[COLLIDER_WALL][COLLIDER_PICK_UP] = false;
 
 	matrix[COLLIDER_PLAYER][COLLIDER_GROUND] = true;
@@ -36,35 +34,24 @@ j1Collisions::j1Collisions() : j1Module()
 	matrix[COLLIDER_PLAYER][COLLIDER_PLAYER] = false;
 	matrix[COLLIDER_PLAYER][COLLIDER_ENEMY] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_BLOCKER] = false;
-	matrix[COLLIDER_PLAYER][COLLIDER_GOD] = false;
 	matrix[COLLIDER_PLAYER][COLLIDER_PICK_UP] = true;
 
 	matrix[COLLIDER_ENEMY][COLLIDER_GROUND] = true;
 	matrix[COLLIDER_ENEMY][COLLIDER_PLAYER] = true;
 	matrix[COLLIDER_ENEMY][COLLIDER_ENEMY] = false;
 	matrix[COLLIDER_ENEMY][COLLIDER_BLOCKER] = true;
-	matrix[COLLIDER_ENEMY][COLLIDER_GOD] = false;
 	matrix[COLLIDER_ENEMY][COLLIDER_PICK_UP] = false;
 
 	matrix[COLLIDER_BLOCKER][COLLIDER_GROUND] = false;
 	matrix[COLLIDER_BLOCKER][COLLIDER_PLAYER] = false;
 	matrix[COLLIDER_BLOCKER][COLLIDER_ENEMY] = true;
 	matrix[COLLIDER_BLOCKER][COLLIDER_BLOCKER] = false;
-	matrix[COLLIDER_BLOCKER][COLLIDER_GOD] = false;
 	matrix[COLLIDER_BLOCKER][COLLIDER_PICK_UP] = false;
-
-	matrix[COLLIDER_GOD][COLLIDER_GROUND] = false;
-	matrix[COLLIDER_GOD][COLLIDER_PLAYER] = false;
-	matrix[COLLIDER_GOD][COLLIDER_ENEMY] = false;
-	matrix[COLLIDER_GOD][COLLIDER_BLOCKER] = false;
-	matrix[COLLIDER_GOD][COLLIDER_GOD] = false;
-	matrix[COLLIDER_GOD][COLLIDER_PICK_UP] = false;
-
+	
 	matrix[COLLIDER_PICK_UP][COLLIDER_GROUND] = false;
 	matrix[COLLIDER_PICK_UP][COLLIDER_PLAYER] = true;
 	matrix[COLLIDER_PICK_UP][COLLIDER_ENEMY] = false;
 	matrix[COLLIDER_PICK_UP][COLLIDER_BLOCKER] = false;
-	matrix[COLLIDER_PICK_UP][COLLIDER_GOD] = false;
 	matrix[COLLIDER_PICK_UP][COLLIDER_PICK_UP] = false;
 }
 
@@ -150,7 +137,7 @@ bool j1Collisions::Update(float dt)
 
 		if (colliders[i]->type == COLLIDER_ENEMY)
 		{
-			if (colliders[i]->CheckCollision(App->entitymanager->player_entity->collider->rect) == true)
+			if (colliders[i]->CheckCollision(App->entitymanager->player_entity->collider->rect) == true && !App->entitymanager->player_entity->godmode)
 			{
 				App->entitymanager->player_entity->SetPos(500, 1000);
 			}
