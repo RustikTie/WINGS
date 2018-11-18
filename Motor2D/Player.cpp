@@ -81,7 +81,8 @@ void Player::MoveEntity(float dt)
 		pos.x += speed * dt;
 		current_anim = &walk;
 		flip = false;
-		App->audio->PlayFx(walk_fx);
+		if (!jumping && !gliding && !falling)
+			App->audio->PlayFx(walk_fx);
 	}
 
 	//BACKWARD
@@ -90,7 +91,8 @@ void Player::MoveEntity(float dt)
 		pos.x -= speed * dt;
 		current_anim = &walk;
 		flip = true;
-		App->audio->PlayFx(walk_fx);
+		if (!jumping && !gliding && !falling)
+			App->audio->PlayFx(walk_fx);
 
 	}
 
