@@ -43,7 +43,7 @@ bool j1Scene::Start()
 		App->entitymanager->AddEnemy(MUSHROOM, 3000, 300);
 		App->entitymanager->AddEnemy(BEETLE, 2500, 700);
 		App->entitymanager->AddEnemy(MUSHROOM, 6000, 100);
-		App->entitymanager->AddEnemy(BEETLE, 6700, 2000);
+		App->entitymanager->AddEnemy(BEETLE, 6700, 1800);
 		App->entitymanager->AddEnemy(MUSHROOM, 10000, 200);
 		
 	}
@@ -142,6 +142,7 @@ bool j1Scene::Update(float dt)
 		level2 = true;
 		App->map->CleanUp();
 		App->entitymanager->CleanUp();
+		App->entitymanager->Start();
 		App->collisions->Erase_Non_Player_Colliders();
 		App->map->Load("Map_2.tmx");
 		App->entitymanager->player_entity->SetPos(500, 1000);
@@ -177,6 +178,7 @@ void j1Scene::ChangeMap(float x, float y)
 	{
 		App->map->CleanUp();
 		App->entitymanager->CleanUp();
+		App->entitymanager->Start();
 		App->entitymanager->player_entity->SetPos(x, y);
 		level1 = false;
 		App->collisions->Erase_Non_Player_Colliders();

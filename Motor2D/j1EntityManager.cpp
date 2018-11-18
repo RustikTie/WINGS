@@ -105,20 +105,6 @@ bool j1EntityManager::PostUpdate()
 {
 	BROFILER_CATEGORY("PreUpdate EntityManager", Profiler::Color::Blue)
 
-		// check camera position to decide what to spawn
-		for (uint i = 0; i < MAX_ENEMIES; ++i)
-		{
-			if (entities[i] != nullptr)
-			{
-				if ((abs((int)App->render->camera.y) + SCREEN_HEIGHT + SPAWN_MARGIN) < entities[i]->pos.y)
-				{
-					/*LOG("DeSpawning enemy at %d", entities[i]->pos.y * SCREEN_SIZE);
-					delete entities[i];
-					entities[i] = nullptr;*/
-				}
-			}
-		}
-
 	return true;
 }
 
