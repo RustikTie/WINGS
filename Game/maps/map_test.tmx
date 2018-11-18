@@ -6049,12 +6049,12 @@
     <property name="type" value="WALL"/>
    </properties>
   </object>
-  <object id="28" x="2114" y="1190" width="558" height="170">
+  <object id="28" x="2114" y="1190" width="536" height="170">
    <properties>
     <property name="type" value="GROUND"/>
    </properties>
   </object>
-  <object id="29" x="2628" y="1190" width="44" height="385.208">
+  <object id="29" x="2580" y="1211.33" width="90" height="363.875">
    <properties>
     <property name="type" value="WALL"/>
    </properties>
@@ -6064,22 +6064,22 @@
     <property name="type" value="GROUND"/>
    </properties>
   </object>
-  <object id="36" x="4902.67" y="1347.51" width="153.333" height="327.151">
+  <object id="36" x="4902.67" y="1354.18" width="153.333" height="320.484">
    <properties>
     <property name="type" value="WALL"/>
    </properties>
   </object>
-  <object id="37" x="4908" y="1330" width="322.575" height="69.33">
+  <object id="37" x="4914" y="1330" width="316.575" height="69.33">
    <properties>
     <property name="type" value="GROUND"/>
    </properties>
   </object>
-  <object id="38" x="5181.33" y="1147.82" width="89.333" height="342.181">
+  <object id="38" x="5181.33" y="1137.15" width="89.333" height="352.848">
    <properties>
     <property name="type" value="WALL"/>
    </properties>
   </object>
-  <object id="39" x="5190" y="1124.67" width="342.667" height="108.667">
+  <object id="39" x="5194" y="1120.67" width="338.667" height="108.667">
    <properties>
     <property name="type" value="GROUND"/>
    </properties>
@@ -6089,22 +6089,22 @@
     <property name="type" value="WALL"/>
    </properties>
   </object>
-  <object id="41" x="5893.33" y="772" width="550.667" height="149.333">
+  <object id="41" x="5893.33" y="772" width="544" height="149.333">
    <properties>
     <property name="type" value="GROUND"/>
    </properties>
   </object>
-  <object id="42" x="6261.33" y="796.425" width="178.667" height="923.575">
+  <object id="42" x="6261.33" y="796.425" width="192" height="923.575">
    <properties>
     <property name="type" value="WALL"/>
    </properties>
   </object>
-  <object id="43" x="6318.67" y="1608" width="1297.33" height="140">
+  <object id="43" x="6318.67" y="1608" width="1304" height="140">
    <properties>
     <property name="type" value="GROUND"/>
    </properties>
   </object>
-  <object id="44" x="7462.67" y="1629.34" width="166.667" height="468">
+  <object id="44" x="7472" y="1629.34" width="166.667" height="468">
    <properties>
     <property name="type" value="WALL"/>
    </properties>
@@ -6114,7 +6114,7 @@
     <property name="type" value="WALL"/>
    </properties>
   </object>
-  <object id="46" x="8971.33" y="1469.33" width="897.33" height="116">
+  <object id="46" x="8975.33" y="1469.33" width="893.33" height="116">
    <properties>
     <property name="type" value="GROUND"/>
    </properties>
@@ -6134,27 +6134,27 @@
     <property name="type" value="WALL"/>
    </properties>
   </object>
-  <object id="50" x="11072.7" y="700.667" width="948.67" height="68.667">
+  <object id="50" x="11072.7" y="700.667" width="964.67" height="68.667">
    <properties>
     <property name="type" value="GROUND"/>
    </properties>
   </object>
-  <object id="51" x="11898.7" y="728" width="141.333" height="1370.67">
+  <object id="51" x="11898.7" y="728" width="150.666" height="1370.67">
    <properties>
     <property name="type" value="WALL"/>
    </properties>
   </object>
-  <object id="52" x="12669.3" y="724.242" width="162.667" height="1374.43">
+  <object id="52" x="12678.6" y="724.242" width="153.334" height="1374.43">
    <properties>
     <property name="type" value="WALL"/>
    </properties>
   </object>
-  <object id="53" x="12694.7" y="699.333" width="1301.33" height="113.333">
+  <object id="53" x="12694.7" y="699.333" width="1313.33" height="113.333">
    <properties>
     <property name="type" value="GROUND"/>
    </properties>
   </object>
-  <object id="54" x="5538.67" y="913.667" width="342.667" height="108.667">
+  <object id="54" x="5545.34" y="911" width="336" height="108.667">
    <properties>
     <property name="type" value="GROUND"/>
    </properties>
@@ -6169,12 +6169,12 @@
     <property name="type" value="WALL"/>
    </properties>
   </object>
-  <object id="57" x="9883.33" y="1192" width="357.33" height="116">
+  <object id="57" x="9887.33" y="1192" width="353.33" height="116">
    <properties>
     <property name="type" value="GROUND"/>
    </properties>
   </object>
-  <object id="58" x="8477.33" y="1682" width="481.33" height="116">
+  <object id="58" x="8482.66" y="1680.67" width="486.663" height="121.333">
    <properties>
     <property name="type" value="GROUND"/>
    </properties>
