@@ -57,6 +57,16 @@ Mushroom SPRITE = https://www.vectorstock.com/royalty-free-vector/mushroom-enemy
 - Frame Cap
 - Bugfixing
 
+###
+
+- Entity system
+- Pathfinding
+- Enemies
+- Collisions
+- Save and load w/ enemies
+- Bugfixing
+- Gamebalancing
+
 ## License
 
 MIT License
