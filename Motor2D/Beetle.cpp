@@ -35,6 +35,7 @@ bool Beetle::Awake(pugi::xml_node& config)
 	x_scale = player.child("scale").attribute("value").as_float();
 	y_scale = player.child("scale").attribute("value").as_float();
 	alert_radius = player.child("alert_radius").attribute("value").as_float();
+	gravity = player.child("gravity").attribute("value").as_float();
 
 	return true;
 }

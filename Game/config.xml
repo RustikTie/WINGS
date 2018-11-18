@@ -50,6 +50,7 @@
       <attack value="false"/>
       <scale value="1"/>
       <alert_radius value="400"/>
+      <gravity value = "600"/>
     </mushroom>
 
     <beetle>
@@ -58,6 +59,7 @@
       <attack value="false"/>
       <scale value="1"/>
       <alert_radius value="400"/>
+      <gravity value = "600"/>
     </beetle>
   </entities>
 

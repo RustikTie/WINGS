@@ -6194,26 +6194,6 @@
     <property name="type" value="BLOCKER"/>
    </properties>
   </object>
-  <object id="63" x="5829.5" y="703.5" width="69" height="69">
-   <properties>
-    <property name="type" value="BLOCKER"/>
-   </properties>
-  </object>
-  <object id="64" x="5475.5" y="845.5" width="69" height="69">
-   <properties>
-    <property name="type" value="BLOCKER"/>
-   </properties>
-  </object>
-  <object id="65" x="5110" y="1050" width="69" height="69">
-   <properties>
-    <property name="type" value="BLOCKER"/>
-   </properties>
-  </object>
-  <object id="66" x="4832" y="1258" width="69" height="69">
-   <properties>
-    <property name="type" value="BLOCKER"/>
-   </properties>
-  </object>
   <object id="67" x="7637.5" y="1543.5" width="69" height="69">
    <properties>
     <property name="type" value="BLOCKER"/>

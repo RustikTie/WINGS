@@ -37,6 +37,7 @@ bool Mushroom::Awake(pugi::xml_node& config)
 	x_scale = player.child("scale").attribute("value").as_float();
 	y_scale = player.child("scale").attribute("value").as_float();
 	alert_radius = player.child("alert_radius").attribute("value").as_float();
+	gravity = player.child("gravity").attribute("value").as_float();
 
 	return true;
 }
@@ -44,7 +45,7 @@ bool Mushroom::Awake(pugi::xml_node& config)
 void Mushroom::MoveEntity(float dt)
 {
 	pos = original_pos;
-	original_pos.y += App->entitymanager->player_entity->gravity*dt;
+	original_pos.y += gravity*dt;
 
 	iPoint EnemyPos = { (int)original_pos.x, (int)original_pos.y };
 	iPoint PlayerPos = { (int)App->entitymanager->player_entity->pos.x, (int)App->entitymanager->player_entity->pos.y };

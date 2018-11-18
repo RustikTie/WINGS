@@ -172,7 +172,7 @@ bool j1Collisions::Update(float dt)
 					{
 						if (App->entitymanager->entities[j]->collider->rect.y + App->entitymanager->entities[j]->collider->rect.h >= colliders[i]->rect.y)
 						{
-							colliders[i]->SetCollisionOffset(App->entitymanager->entities[j]->collider->rect, App->entitymanager->player_entity->gravity);
+							colliders[i]->SetCollisionOffset(App->entitymanager->entities[j]->collider->rect, App->entitymanager->entities[j]->gravity);
 							App->entitymanager->entities[j]->original_pos.y -= colliders[i]->col_offset*dt;
 						}
 					}
