@@ -55,6 +55,12 @@ public:
 	Animation*		current_anim = nullptr;
 	Animation		idle;
 	Animation		walk;
+
+	uint walk_fx;
+	uint jump_fx;
+	uint glide_fx;
+	uint death_fx;
+	
 private:
 	
 	float			old_grav = 0;

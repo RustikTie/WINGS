@@ -45,9 +45,12 @@ bool j1Scene::Start()
 	{
 		App->map->CleanUp();
 		App->entitymanager->CleanUp();
+		App->entitymanager->Start();
 		App->map->Load("level2_v2.tmx");
 	}
 	
+	App->audio->PlayMusic("audio/music/BGM.ogg");
+
 	return true;
 }
 

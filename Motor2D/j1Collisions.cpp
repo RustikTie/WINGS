@@ -7,6 +7,7 @@
 #include "Player.h"
 #include "j1Scene.h"
 #include "j1Pathfinding.h"
+#include "j1Audio.h"
 #include "Brofiler\Brofiler.h"
 
 j1Collisions::j1Collisions() : j1Module()
@@ -141,6 +142,8 @@ bool j1Collisions::Update(float dt)
 			if (colliders[i]->CheckCollision(App->entitymanager->player_entity->collider->rect) == true && !App->entitymanager->player_entity->godmode)
 			{
 				App->entitymanager->player_entity->SetPos(500, 1000);
+				App->audio->PlayFx(App->entitymanager->player_entity->death_fx);
+
 			}
 		}
 
