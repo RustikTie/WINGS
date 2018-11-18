@@ -39,6 +39,7 @@ public:
 	bool			level2 = false;
 
 	int				map = 0;
+	int				volume = 50;
 
 private:
 };

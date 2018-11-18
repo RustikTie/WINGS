@@ -25,7 +25,7 @@ Player::Player(int x, int y) : Entity(x, y)
 	walk.PushBack({ 365, 0, 72, 97 });
 	walk.PushBack({ 292, 98, 72, 97 });
 	walk.loop = true;
-	walk.speed = 8.f;
+	walk.speed = 12.f;
 
 	current_anim = &idle;
 }
@@ -51,6 +51,8 @@ bool Player::Awake(pugi::xml_node& config)
 
 	pos.x = player.child("position").attribute("x").as_float();
 	pos.y = player.child("position").attribute("y").as_float();
+	original_pos.x = player.child("position").attribute("x").as_float();
+	original_pos.y = player.child("position").attribute("y").as_float();
 	speed = player.child("speed").attribute("value").as_float();
 	gravity = player.child("gravity").attribute("value").as_float();
 	acceleration = player.child("acceleration").attribute("value").as_float();
@@ -59,6 +61,7 @@ bool Player::Awake(pugi::xml_node& config)
 	jump_speed = player.child("jump_speed").attribute("value").as_float();
 	x_scale = player.child("scale").attribute("x").as_float();
 	y_scale = player.child("scale").attribute("y").as_float();
+	death_border = player.child("death_border").attribute("value").as_float();
 
 	collider = App->collisions->AddCollider({ (int)pos.x, (int)pos.y, 72, 97 }, COLLIDER_PLAYER, (j1Module*)App->entitymanager);
 
@@ -155,10 +158,10 @@ void Player::MoveEntity(float dt)
 	}
 	
 	//DEATH
-	if (pos.y > 1700)
+	if (pos.y > death_border)
 	{
-		pos.x = 500;
-		pos.y = 500;
+		pos.x = original_pos.x;
+		pos.y = original_pos.y;
 		LOG("dead");
 		App->audio->PlayFx(death_fx);
 

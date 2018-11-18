@@ -25,6 +25,9 @@ bool j1Scene::Awake()
 	LOG("Loading Scene");
 	bool ret = true;
 
+	Mix_VolumeMusic(volume);
+	Mix_Volume(-1, volume);
+
 	return ret;
 }
 
@@ -63,6 +66,17 @@ bool j1Scene::PreUpdate()
 // Called each loop iteration
 bool j1Scene::Update(float dt)
 {
+
+	if (App->input->GetKey(SDL_SCANCODE_KP_MINUS) == KEY_REPEAT)
+	{
+		volume -= 5;
+		Mix_VolumeMusic(volume);
+	}
+	if (App->input->GetKey(SDL_SCANCODE_KP_PLUS) == KEY_REPEAT)
+	{
+		volume += 5;
+		Mix_VolumeMusic(volume);
+	}
 	if(App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
 		App->LoadGame();
 

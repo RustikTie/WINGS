@@ -43,6 +43,7 @@ public:
 	float			jump_height;
 	float			jump_speed;
 	float			max_height;
+	float			death_border;
 
 	bool			jumping = false;
 	bool			gliding = false;
