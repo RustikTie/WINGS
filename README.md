@@ -30,6 +30,19 @@ The game is capped at 30FPS by default, you can edit the frame cap by accessing 
 
 ## Credits
 
+Jump SFX = https://freesound.org/people/RoseTheFl0wer/sounds/442715/
+Walk SFX = https://opengameart.org/content/512-sound-effects-8-bit-style
+Death SFX = https://opengameart.org/content/512-sound-effects-8-bit-style
+Glide SFX = https://opengameart.org/content/512-sound-effects-8-bit-style
+BGM = https://opengameart.org/content/games-a-bgm-track
+
+Tileset & Player SPRITE: https://opengameart.org/content/platformer-art-complete-pack-often-updated
+
+Background: https://www.gameart2d.com/free-platformer-game-tileset.html
+
+Beetle SPRITE = https://www.vectorstock.com/royalty-free-vector/stag-beetle-enemy-game-sprites-vector-21861431
+Mushroom SPRITE = https://www.vectorstock.com/royalty-free-vector/mushroom-enemy-game-sprites-vector-21861393
+
 ## License
 
 MIT License
