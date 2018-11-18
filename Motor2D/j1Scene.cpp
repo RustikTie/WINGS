@@ -37,7 +37,7 @@ bool j1Scene::Start()
 	{
 		App->map->Load("map_test.tmx");
 		App->entitymanager->Start();
-		App->entitymanager->AddEnemy(MUSHROOM, 800, 300);
+		App->entitymanager->AddEnemy(MUSHROOM, 900, 300);
 		//App->entitymanager->AddEnemy(BEETLE, 700, 800);
 		
 	}
@@ -124,7 +124,7 @@ bool j1Scene::Update(float dt)
 		App->entitymanager->CleanUp();
 		App->collisions->Erase_Non_Player_Colliders();
 		App->map->Load("Map_2.tmx");
-		App->entitymanager->player_entity->SetPos(100, 1000);
+		App->entitymanager->player_entity->SetPos(500, 1000);
 		level1 = false;
 	}
 

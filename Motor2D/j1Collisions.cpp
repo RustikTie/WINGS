@@ -148,6 +148,14 @@ bool j1Collisions::Update(float dt)
 
 		}
 
+		if (colliders[i]->type == COLLIDER_ENEMY)
+		{
+			if (colliders[i]->CheckCollision(App->entitymanager->player_entity->collider->rect) == true)
+			{
+				App->entitymanager->player_entity->SetPos(500, 1000);
+			}
+		}
+
 		for (uint j = 0; j < MAX_ENEMIES; ++j)
 		{
 			if (App->entitymanager->entities[j] != nullptr)
