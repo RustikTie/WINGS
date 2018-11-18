@@ -5,12 +5,18 @@
 	<textures />
 	<audio />
 	<map />
+	<:anonymous />
+	<scene />
 	<colliders />
 	<entities>
-		<player x="1331.45862" y="1000" map1="false" map2="true" />
+		<player x="1123" y="1115.78137" map1="true" map2="false" />
+		<mushroom>
+			<position x="846.099915" y="1122.76746" />
+		</mushroom>
+		<beetle>
+		</beetle>
 	</entities>
-	<scene />
 	<renderer>
-		<camera x="-931" y="-600" />
+		<camera x="-723" y="-695" />
 	</renderer>
 </game_state>

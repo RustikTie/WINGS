@@ -3,6 +3,7 @@
 #include "j1Render.h"
 #include "j1Scene.h"
 #include "j1Input.h"
+#include "j1Audio.h"
 
 Player::Player(int x, int y) : Entity(x, y)
 {
@@ -61,6 +62,10 @@ bool Player::Awake(pugi::xml_node& config)
 
 	collider = App->collisions->AddCollider({ (int)pos.x, (int)pos.y, 72, 97 }, COLLIDER_PLAYER, (j1Module*)App->entitymanager);
 
+	walk_fx = App->audio->LoadFx("audio/fx/Walk.wav");
+	jump_fx = App->audio->LoadFx("audio/fx/Jump.wav");
+	glide_fx = App->audio->LoadFx("audio/fx/Glide.wav");
+	death_fx = App->audio->LoadFx("audio/fx/Death.wav");
 
 	return true;
 }
@@ -73,6 +78,7 @@ void Player::MoveEntity(float dt)
 		pos.x += speed * dt;
 		current_anim = &walk;
 		flip = false;
+		App->audio->PlayFx(walk_fx);
 	}
 
 	//BACKWARD
@@ -81,6 +87,8 @@ void Player::MoveEntity(float dt)
 		pos.x -= speed * dt;
 		current_anim = &walk;
 		flip = true;
+		App->audio->PlayFx(walk_fx);
+
 	}
 
 	//IDLE
@@ -94,10 +102,17 @@ void Player::MoveEntity(float dt)
 	{
 		jumping = true;
 		max_height = (pos.y - jump_height);
+		App->audio->PlayFx(jump_fx);
+
 	}
 
 	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT && falling && !godmode)
 	{
+		if (!gliding)
+		{
+			App->audio->PlayFx(glide_fx);
+
+		}
 		gliding = true;
 		jumping = false;
 	}
@@ -145,6 +160,8 @@ void Player::MoveEntity(float dt)
 		pos.x = 500;
 		pos.y = 500;
 		LOG("dead");
+		App->audio->PlayFx(death_fx);
+
 	}
 	
 
