@@ -140,7 +140,7 @@ void Player::MoveEntity(float dt)
 	}
 	
 	//DEATH
-	if (pos.y > 2000)
+	if (pos.y > 1700)
 	{
 		pos.x = 500;
 		pos.y = 500;
