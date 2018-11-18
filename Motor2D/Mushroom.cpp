@@ -1,7 +1,10 @@
 #include "Mushroom.h"
+#include "Player.h"
 
 Mushroom::Mushroom(int x, int y) : Entity(x, y)
 {
+	type = MUSHROOM;
+
 	idle.PushBack({ 249, 0, 82, 90 });
 	idle.PushBack({ 166, 0, 82, 90 });
 	idle.PushBack({ 83, 0, 82, 90 });
@@ -109,12 +112,17 @@ void Mushroom::Draw(float dt)
 
 bool Mushroom::Load(pugi::xml_node& data)
 {
+	original_pos.x = data.attribute("x").as_float();
+	original_pos.y = data.attribute("y").as_float();
 	
 	return true;
 }
 
 bool Mushroom::Save(pugi::xml_node& data) const
 {
-	
+	pugi::xml_node playernode = data.append_child("position");
+	playernode.append_attribute("x") = original_pos.x;
+	playernode.append_attribute("y") = original_pos.y;
+
 	return true;
 }

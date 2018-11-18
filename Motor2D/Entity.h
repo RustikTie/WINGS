@@ -12,6 +12,8 @@
 
 struct SDL_Texture;
 
+enum ENTITY_TYPE;
+
 class Entity
 {
 protected:
@@ -31,7 +33,11 @@ public:
 	//bool LoadEnemyLayer(pugi::xml_node& node, EnemyLayer* layer);
 	virtual void MoveEntity(float dt) {};
 
+	virtual bool Load(pugi::xml_node&) { return false; };
+	virtual bool Save(pugi::xml_node&) const { return false; };
+
 public:
+	ENTITY_TYPE		type;
 
 	SDL_Texture * sprites = nullptr;
 

@@ -199,6 +199,23 @@ bool j1EntityManager::Load(pugi::xml_node& data)
 		player_entity->Load(data);
 	}
 
+	pugi::xml_node mushroomnode = data.append_child("muhsroom").first_child();
+	pugi::xml_node beetlenode = data.append_child("beetle").first_child();
+
+
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
+	{
+		if (entities[i] != nullptr)
+		{
+			if (entities[i]->type == MUSHROOM)
+			{
+				entities[i]->Load(mushroomnode);
+				mushroomnode = mushroomnode.next_sibling();
+			}
+		}
+	}
+	
+
 	return true;
 }
 
@@ -207,6 +224,21 @@ bool j1EntityManager::Save(pugi::xml_node& data) const
 	if (player_entity != nullptr)
 	{
 		player_entity->Save(data);
+	}
+
+	pugi::xml_node mushroomnode = data.append_child("muhsroom");
+	pugi::xml_node beetlenode = data.append_child("beetle");
+
+
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
+	{
+		if (entities[i] != nullptr)
+		{
+			if (entities[i]->type == MUSHROOM)
+			{
+				entities[i]->Save(mushroomnode);
+			}
+		}
 	}
 
 	return true;

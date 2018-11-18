@@ -1,7 +1,10 @@
 #include "Beetle.h"
+#include "Player.h"
 
 Beetle::Beetle(int x, int y) : Entity(x, y)
 {
+	type = BEETLE;
+
 	idle.PushBack({ 8, 188, 128, 116 });
 	idle.PushBack({ 173, 188, 128, 116 });
 	idle.PushBack({ 327, 188, 128, 116 });
@@ -127,12 +130,15 @@ void Beetle::Draw(float dt)
 
 bool Beetle::Load(pugi::xml_node& data)
 {
-
+	original_pos.x = data.child("position").attribute("x").as_float();
+	original_pos.y = data.child("position").attribute("y").as_float();
 	return true;
 }
 
 bool Beetle::Save(pugi::xml_node& data) const
 {
-	
+	pugi::xml_node playernode = data.append_child("position");
+	playernode.append_attribute("x") = original_pos.x;
+	playernode.append_attribute("y") = original_pos.y;
 	return true;
 }
