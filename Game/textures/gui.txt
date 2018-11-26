@@ -1,0 +1,35 @@
+BUTTON
+idle = 0 3 175 79
+hover = 191 0 175 79
+click = 378 0 175 79
+locked = 566 0 175 79
+WINDOW
+menu = 798 0 451 636
+level_end = 717 664 617 780
+HEART
+full = 0 919 53 45
+half = 0 825 53 45
+empty = 0 872 53 45
+SCORE
+star = 121 818 322 111
+money = 132 961 311 111
+FINAL SCORE
+3_star = 124 1125 452 199
+2_star = 124 1125 311 199
+1_star = 124 1125 130 199
+BACK ARROW
+idle = 1 362 74 78
+hover = 85 362 74 78 
+click = 169 362 74 78
+locked = 253 362 74 78
+NEXT ARROW
+idle = 1 272 74 78 
+hover = 85 272 74 78
+click = 169 272 74 78
+locked = 253 272 74 78
+RETRY
+idle = 1 719 74 78
+hover = 85 719 74 78
+click = 169 719 74 78
+locked = 253 719 74 78
+
