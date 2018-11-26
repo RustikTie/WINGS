@@ -15,7 +15,7 @@
 #include "j1Collisions.h"
 #include "j1EntityManager.h"
 #include "j1Pathfinding.h"
-//#include "j1Gui.h"
+#include "j1GUIManager.h"
 //#include "j1Fonts.h"
 //#include "j1FadeToBlack.h"
 #include "Brofiler/Brofiler.h"
@@ -41,7 +41,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	collisions = new j1Collisions();
 	pathfinding = new j1Pathfinding();
 	entitymanager = new j1EntityManager();
-	//gui = new j1Gui();
+	gui = new j1GUIManager();
 	//font = new j1Fonts();
 	//fade_to_black = new j1FadeToBlack();
 
@@ -52,7 +52,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(win);
 	AddModule(tex);
 	AddModule(audio);
-	//AddModule(gui);
+	AddModule(gui);
 	AddModule(map);
 	AddModule(pathfinding);
 	AddModule(scene);

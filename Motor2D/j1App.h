@@ -23,6 +23,7 @@ class j1Gui;
 class j1Fonts;
 class j1FadeToBlack;
 class Entity;
+class j1GUIManager;
 
 class j1App
 {
@@ -99,10 +100,10 @@ public:
 	j1Collisions*		collisions = NULL;
 	j1Pathfinding*		pathfinding = NULL;
 	j1EntityManager*	entitymanager = NULL;
-	j1Gui*				gui = NULL;
 	j1Fonts*			font = NULL;
 	j1FadeToBlack*		fade_to_black = NULL;
 	Entity*				entity = NULL;
+	j1GUIManager*		gui = NULL;
 
 	p2SString			load_game;
 	mutable p2SString	save_game;

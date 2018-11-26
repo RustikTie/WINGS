@@ -57,6 +57,12 @@
     <ClCompile Include="Beetle.cpp">
       <Filter>Desenvolupament  ========\Entities</Filter>
     </ClCompile>
+    <ClCompile Include="j1GUIManager.cpp">
+      <Filter>Desenvolupament  ========\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Widgets.cpp">
+      <Filter>Desenvolupament  ========\GUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -139,6 +145,12 @@
     <ClInclude Include="Beetle.h">
       <Filter>Desenvolupament  ========\Entities</Filter>
     </ClInclude>
+    <ClInclude Include="j1GUIManager.h">
+      <Filter>Desenvolupament  ========\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Widgets.h">
+      <Filter>Desenvolupament  ========\GUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Programacio 2 ===========">
@@ -161,6 +173,9 @@
     </Filter>
     <Filter Include="Desenvolupament  ========\Entities">
       <UniqueIdentifier>{9c3fee31-b665-4851-bc92-c88c140f3200}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Desenvolupament  ========\GUI">
+      <UniqueIdentifier>{419667c3-8926-4aaf-991f-ff4fd290253a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
