@@ -62,6 +62,7 @@ bool Player::Awake(pugi::xml_node& config)
 	x_scale = player.child("scale").attribute("x").as_float();
 	y_scale = player.child("scale").attribute("y").as_float();
 	death_border = player.child("death_border").attribute("value").as_float();
+	lives = player.child("lives").attribute("value").as_int();
 
 	collider = App->collisions->AddCollider({ (int)pos.x, (int)pos.y, 72, 97 }, COLLIDER_PLAYER, (j1Module*)App->entitymanager);
 
@@ -164,8 +165,14 @@ void Player::MoveEntity(float dt)
 	{
 		pos.x = original_pos.x;
 		pos.y = original_pos.y;
+		lives -= 1;
 		LOG("dead");
 		App->audio->PlayFx(death_fx);
+
+	}
+
+	if (lives <= 0)
+	{
 
 	}
 	
