@@ -23,7 +23,7 @@
   </file_system>
 
   <gui>
-    <atlas file="gui/gui.png"/>
+    <atlas file="textures/gui.png"/>
   </gui>
 
   <map>

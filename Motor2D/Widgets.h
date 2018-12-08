@@ -5,14 +5,7 @@
 #include "SDL/include/SDL.h"
 #include "p2Point.h"
 
-enum ElementType
-{
-	IMAGE,
-	WINDOW,
-	BUTTON,
-	TEXT,
-	NOTYPE,
-};
+
 
 class Widgets : public j1GUIManager
 {
@@ -22,7 +15,7 @@ public:
 
 	virtual void Draw() {}
 
-private:
+protected:
 	iPoint pos;
 	ElementType type;
 };
