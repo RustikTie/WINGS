@@ -25,6 +25,7 @@ class j1FadeToBlack;
 class Entity;
 class j1GUIManager;
 
+
 class j1App
 {
 public:
