@@ -109,6 +109,8 @@ public:
 	p2SString			load_game;
 	mutable p2SString	save_game;
 
+	bool				pause_game;
+
 private:
 
 	p2List<j1Module*>	modules;

@@ -34,7 +34,7 @@ bool j1Scene::Awake()
 // Called before the first frame
 bool j1Scene::Start()
 {
-	
+	App->pause_game = false;
 	//App->map->Load("iso.tmx");
 	if (level1)
 	{
@@ -121,6 +121,18 @@ bool j1Scene::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
 	{
 		App->entitymanager->player_entity->SetPos(500, 1000);
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN)
+	{
+		if (App->pause_game)
+		{
+			App->pause_game = false;
+		}
+		else
+		{
+			App->pause_game = true;
+		}
 	}
 
 	App->map->Draw();
