@@ -17,7 +17,7 @@
 #include "j1Pathfinding.h"
 #include "j1GUIManager.h"
 //#include "j1Fonts.h"
-//#include "j1FadeToBlack.h"
+#include "j1FadeToBlack.h"
 #include "Brofiler/Brofiler.h"
 
 // Constructor
@@ -43,7 +43,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	entitymanager = new j1EntityManager();
 	gui = new j1GUIManager();
 	//font = new j1Fonts();
-	//fade_to_black = new j1FadeToBlack();
+	fade_to_black = new j1FadeToBlack();
 
 
 	// Ordered for awake / Start / Update
@@ -58,9 +58,8 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(scene);
 	AddModule(collisions);
 	AddModule(entitymanager);
-	
 	//AddModule(font);
-	//AddModule(fade_to_black);
+	AddModule(fade_to_black);
 
 	// render last to swap buffer
 	AddModule(render);
@@ -206,7 +205,15 @@ void j1App::PrepareUpdate()
 	frame_count++;
 	last_sec_frame_count++;
 
-	dt = frame_time.ReadSec();
+	if (pause_game)
+	{
+		dt = 0;
+	}
+	else
+	{
+		dt = frame_time.ReadSec();
+	}
+	
 	frame_time.Start();
 
 }

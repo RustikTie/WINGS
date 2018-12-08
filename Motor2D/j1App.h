@@ -25,6 +25,7 @@ class j1FadeToBlack;
 class Entity;
 class j1GUIManager;
 
+
 class j1App
 {
 public:
@@ -107,6 +108,8 @@ public:
 
 	p2SString			load_game;
 	mutable p2SString	save_game;
+
+	bool				pause_game;
 
 private:
 

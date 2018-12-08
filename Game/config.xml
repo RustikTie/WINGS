@@ -42,6 +42,7 @@
       <jump_speed value = "1000" />
       <scale x="1" y="1"/>
       <death_border value="1700"/>
+      <lives value="3"/>
     </player>
 
     <mushroom>
