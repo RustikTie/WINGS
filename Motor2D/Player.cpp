@@ -215,10 +215,13 @@ bool Player::Load(pugi::xml_node& data)
 {
 	pos.x = data.child("player").attribute("x").as_float();
 	pos.y = data.child("player").attribute("y").as_float();
+	if (App->scene->level1 != data.child("player").attribute("map1").as_bool())
+	{
+		App->scene->ChangeMap(pos.x, pos.y);
+	}
 	App->scene->level1 = data.child("player").attribute("map1").as_bool();
 	App->scene->level2 = data.child("player").attribute("map2").as_bool();
 
-	App->scene->ChangeMap(pos.x, pos.y);
 
 	return true;
 }

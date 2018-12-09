@@ -54,28 +54,28 @@ bool j1GUIManager::CleanUp()
 	return true;
 }
 
-Widgets* j1GUIManager::AddBackground(int x, int y, ElementType type, bool show, SDL_Rect rec)
-{
-	
-
-}
-
-Widgets* j1GUIManager::AddButton(int x, int y, ElementType type, bool show, SDL_Rect* rec, const char* text)
-{
-	
-}
-
-Widgets* j1GUIManager::AddText(int x, int y, ElementType type, bool show, const char* text, int font)
-{
-	
-}
-
-Widgets* j1GUIManager::AddWindow(int x, int y, ElementType type, bool show, SDL_Rect rec)
-{
-	
-}
-
-Widgets* j1GUIManager::AddImage(int x, int y, ElementType type, bool show, SDL_Rect rec)
-{
-	
-}
+//Widgets* j1GUIManager::AddBackground(int x, int y, ElementType type, bool show, SDL_Rect rec)
+//{
+//	
+//
+//}
+//
+//Widgets* j1GUIManager::AddButton(int x, int y, ElementType type, bool show, SDL_Rect* rec, const char* text)
+//{
+//	
+//}
+//
+//Widgets* j1GUIManager::AddText(int x, int y, ElementType type, bool show, const char* text, int font)
+//{
+//	
+//}
+//
+//Widgets* j1GUIManager::AddWindow(int x, int y, ElementType type, bool show, SDL_Rect rec)
+//{
+//	
+//}
+//
+//Widgets* j1GUIManager::AddImage(int x, int y, ElementType type, bool show, SDL_Rect rec)
+//{
+//	
+//}

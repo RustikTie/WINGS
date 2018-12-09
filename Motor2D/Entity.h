@@ -39,7 +39,7 @@ public:
 public:
 	ENTITY_TYPE		type;
 
-	SDL_Texture * sprites = nullptr;
+	//SDL_Texture * sprites = nullptr;
 
 	fPoint			pos = { 0.0f,0.0f };
 	fPoint			collider_pos = { 0.0f,0.0f };

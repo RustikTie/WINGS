@@ -38,19 +38,19 @@ public:
 
 	bool CleanUp();
 
-	Widgets* AddBackground(int x, int y, ElementType type, bool show, SDL_Rect rec);
+	/*Widgets* AddBackground(int x, int y, ElementType type, bool show, SDL_Rect rec);
 	Widgets* AddButton(int x, int y, ElementType type, bool show, SDL_Rect* rec, const char* text = nullptr);
 	Widgets* AddText(int x, int y, ElementType type, bool show, const char* text, int font);
 	Widgets* AddWindow(int x, int y, ElementType type, bool show, SDL_Rect rec);
-	Widgets* AddImage(int x, int y, ElementType type, bool show, SDL_Rect rec);
+	Widgets* AddImage(int x, int y, ElementType type, bool show, SDL_Rect rec);*/
 
 public:
 
 	bool cleaning = false;
 
-	SDL_Texture* GetAtlas() const;
+	/*SDL_Texture* GetAtlas() const;
 	SDL_Texture* GetBackground() const;
-	SDL_Texture* GetGuiAtlas() const;
+	SDL_Texture* GetGuiAtlas() const;*/
 
 	p2List<Widgets*> widgets;
 	p2DynArray<_TTF_Font*> fonts;
@@ -67,6 +67,6 @@ private:
 	SDL_Texture* atlas;
 	p2SString atlas_file_name;
 };
-};
+
 
 #endif //__GUI_MANAGER__H

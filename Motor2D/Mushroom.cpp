@@ -24,7 +24,7 @@ Mushroom::Mushroom(int x, int y) : Entity(x, y)
 				
 Mushroom::~Mushroom()
 {
-	App->tex->UnLoad(sprites);
+	//App->tex->UnLoad(sprites);
 }
 
 bool Mushroom::Awake(pugi::xml_node& config)
