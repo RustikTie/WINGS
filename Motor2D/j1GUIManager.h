@@ -48,9 +48,9 @@ public:
 
 	bool cleaning = false;
 
-	/*SDL_Texture* GetAtlas() const;
+	SDL_Texture* GetAtlas() const;
 	SDL_Texture* GetBackground() const;
-	SDL_Texture* GetGuiAtlas() const;*/
+	SDL_Texture* GetGuiAtlas() const;
 
 	p2List<Widgets*> widgets;
 	p2DynArray<_TTF_Font*> fonts;

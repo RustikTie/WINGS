@@ -77,7 +77,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Beetle.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="Image.cpp" />
     <ClCompile Include="j1Collisions.cpp" />
     <ClCompile Include="j1EntityManager.cpp" />
     <ClCompile Include="j1FadeToBlack.cpp" />
@@ -99,12 +101,16 @@
     <ClCompile Include="j1Window.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PugiXml\src\pugixml.cpp" />
+    <ClCompile Include="Text.cpp" />
     <ClCompile Include="Widgets.cpp" />
+    <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Beetle.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="Image.h" />
     <ClInclude Include="j1Collisions.h" />
     <ClInclude Include="j1EntityManager.h" />
     <ClInclude Include="j1FadeToBlack.h" />
@@ -133,7 +139,9 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="PugiXml\src\pugiconfig.hpp" />
     <ClInclude Include="PugiXml\src\pugixml.hpp" />
+    <ClInclude Include="Text.h" />
     <ClInclude Include="Widgets.h" />
+    <ClInclude Include="Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

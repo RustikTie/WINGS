@@ -5,7 +5,7 @@
 #include "SDL/include/SDL.h"
 #include "p2Point.h"
 
-enum ElementType
+enum WidgetType
 {
 	IMAGE,
 	WINDOW,
@@ -17,14 +17,14 @@ enum ElementType
 class Widgets : public j1GUIManager
 {
 public:
-	Widgets(int x, int y, ElementType type);
+	Widgets(int x, int y, WidgetType type);
 	~Widgets();
 
 	virtual void Draw() {}
 
 public:
 	iPoint pos;
-	ElementType type;
+	WidgetType type;
 	UIEvents event_type;
 
 	SDL_Rect* texture_rect;

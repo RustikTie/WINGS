@@ -79,3 +79,18 @@ bool j1GUIManager::CleanUp()
 //{
 //	
 //}
+
+SDL_Texture* j1GUIManager::GetAtlas() const
+{
+	return atlas;
+}
+
+SDL_Texture* j1GUIManager::GetBackground() const
+{
+	return background;
+}
+
+SDL_Texture* j1GUIManager::GetGuiAtlas() const
+{
+	return guiAtlas;
+}

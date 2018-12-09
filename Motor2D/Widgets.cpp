@@ -5,7 +5,7 @@
 #include "j1GUIManager.h"
 
 
-Widgets::Widgets(int x, int y, ElementType type) :pos(x, y), type(type)
+Widgets::Widgets(int x, int y, WidgetType type) :pos(x, y), type(type)
 {
 }
 
