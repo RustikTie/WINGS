@@ -16,7 +16,7 @@
 #include "j1EntityManager.h"
 #include "j1Pathfinding.h"
 #include "j1GUIManager.h"
-//#include "j1Fonts.h"
+#include "j1Fonts.h"
 #include "j1FadeToBlack.h"
 #include "Brofiler/Brofiler.h"
 
@@ -42,7 +42,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	pathfinding = new j1Pathfinding();
 	entitymanager = new j1EntityManager();
 	gui = new j1GUIManager();
-	//font = new j1Fonts();
+	font = new j1Fonts();
 	fade_to_black = new j1FadeToBlack();
 
 
@@ -58,7 +58,7 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(scene);
 	AddModule(collisions);
 	AddModule(entitymanager);
-	//AddModule(font);
+	AddModule(font);
 	AddModule(fade_to_black);
 
 	// render last to swap buffer
