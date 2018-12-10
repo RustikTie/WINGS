@@ -12,6 +12,18 @@ Button::Button(int x, int y, WidgetType type, ButtonType btype, bool show, SDL_R
 	this->type = btype;
 	texture_rect = &rec;
 	ButtonBox = App->gui->GetGuiAtlas();
+
+	if (text != nullptr)
+	{
+		buttontext = text;
+		ButtonText = App->font->Print(buttontext, { 255, 255, 255 }, App->gui->font);
+	}
+
+
+	texture_rect = &rec;
+	tex_width = rec.w;
+	tex_height = rec.h;
+
 	this->show = show;
 }
 

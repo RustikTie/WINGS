@@ -8,7 +8,6 @@
 #include "j1Input.h"
 #include "j1Scene.h"
 #include "Widgets.h"
-//#include "Background.h"
 #include "Button.h"
 #include "Text.h"
 #include "Window.h"
@@ -19,6 +18,7 @@
 
 j1GUIManager::j1GUIManager()
 {
+	name.create("gui");
 }
 
 
@@ -29,13 +29,18 @@ j1GUIManager::~j1GUIManager()
 bool j1GUIManager::Awake(pugi::xml_node& config)
 {
 	LOG("Loading GUI atlas");
+
 	atlas_file_name = config.child("atlas").attribute("file").as_string("");
 	return true;
 }
 
 bool j1GUIManager::Start()
 {
+
 	guiAtlas = App->tex->Load(atlas_file_name.GetString());
+	
+	font = App->font->Load("fonts/SF Slapstick Comic.tff", 30);
+
 	return true;
 }
 
@@ -124,6 +129,18 @@ bool j1GUIManager::PostUpdate()
 
 bool j1GUIManager::CleanUp()
 {
+	LOG("Freeing GUI");
+
+	p2List_item<Widgets*>* item;
+	item = widgets.start;
+
+	while (item != nullptr)
+	{
+		RELEASE(item->data);
+		item = item->next;
+	}
+
+	widgets.clear();
 	return true;
 }
 
@@ -133,26 +150,37 @@ bool j1GUIManager::CleanUp()
 //
 //}
 
+
+Widgets* j1GUIManager::AddText(int x, int y, WidgetType type, bool show, const char* text, int font)
+{
+	Widgets* widget = new Text(x, y, type, show, text, font);
+	widgets.add(widget);
+
+	return widget;
+}
+
+Widgets* j1GUIManager::AddWindow(int x, int y, WidgetType type, bool show, SDL_Rect rec)
+{
+	Widgets* widget = new Window(x, y, type, show, rec);
+	widgets.add(widget);
+
+	return widget;
+}
+
+Widgets* j1GUIManager::AddImage(int x, int y, WidgetType type, bool show, SDL_Rect rec)
+{
+	Widgets* widget = new Image(x, y, type, show, rec);
+	widgets.add(widget);
+
+	return widget;
+}
+
+
 Widgets* j1GUIManager::AddButton(int x, int y, WidgetType type, ButtonType btype, bool show, SDL_Rect rec, const char* text)
 {
 	Widgets* widget = new Button(x, y, type, btype, show, rec, text);
 	widgets.add(widget);
 	return widget;
-}
-
-Widgets* j1GUIManager::AddText(int x, int y, WidgetType type, bool show, const char* text, int font)
-{
-	
-}
-
-Widgets* j1GUIManager::AddWindow(int x, int y, WidgetType type, bool show, SDL_Rect rec)
-{
-	
-}
-
-Widgets* j1GUIManager::AddImage(int x, int y, WidgetType type, bool show, SDL_Rect rec)
-{
-	
 }
 
 
