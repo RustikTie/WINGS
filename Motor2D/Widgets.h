@@ -5,14 +5,7 @@
 #include "SDL/include/SDL.h"
 #include "p2Point.h"
 
-enum WidgetType
-{
-	IMAGE,
-	WINDOW,
-	BUTTON,
-	TEXT,
-	NOTYPE,
-};
+
 
 class Widgets : public j1GUIManager
 {

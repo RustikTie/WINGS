@@ -78,7 +78,9 @@
     <ClCompile Include="Text.cpp">
       <Filter>Desenvolupament  ========\GUI</Filter>
     </ClCompile>
-    <ClCompile Include="Image.cpp" />
+    <ClCompile Include="Image.cpp">
+      <Filter>Desenvolupament  ========\GUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -182,7 +184,9 @@
     <ClInclude Include="Text.h">
       <Filter>Desenvolupament  ========\GUI</Filter>
     </ClInclude>
-    <ClInclude Include="Image.h" />
+    <ClInclude Include="Image.h">
+      <Filter>Desenvolupament  ========\GUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Programacio 2 ===========">

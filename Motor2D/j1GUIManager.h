@@ -13,9 +13,25 @@ enum UIEvents
 	MOUSE_DOWN,
 	MOUSE_UP
 };
-
+enum WidgetType
+{
+	IMAGE,
+	WINDOW,
+	BUTTON,
+	TEXT,
+	NOTYPE,
+};
+enum ButtonType
+{
+	MAIN,
+	BACK,
+	EXIT,
+	NEXT,
+	RESTART,
+};
 class Widgets;
-enum ElementType;
+enum WidgetType;
+enum ButtonType;
 struct SDL_Texture;
 struct SDL_Rect;
 struct _TTF_Font;
@@ -38,17 +54,18 @@ public:
 
 	bool CleanUp();
 
-	/*Widgets* AddBackground(int x, int y, ElementType type, bool show, SDL_Rect rec);
-	Widgets* AddButton(int x, int y, ElementType type, bool show, SDL_Rect* rec, const char* text = nullptr);
-	Widgets* AddText(int x, int y, ElementType type, bool show, const char* text, int font);
-	Widgets* AddWindow(int x, int y, ElementType type, bool show, SDL_Rect rec);
-	Widgets* AddImage(int x, int y, ElementType type, bool show, SDL_Rect rec);*/
+	//Widgets* AddBackground(int x, int y, ElementType type, bool show, SDL_Rect rec);
+	Widgets* AddButton(int x, int y, WidgetType type, ButtonType btype, bool show, SDL_Rect rec, const char* text = nullptr);
+	Widgets* AddText(int x, int y, WidgetType type, bool show, const char* text, int font);
+	Widgets* AddWindow(int x, int y, WidgetType type, bool show, SDL_Rect rec);
+	Widgets* AddImage(int x, int y, WidgetType type, bool show, SDL_Rect rec);
+
+	bool MouseCollision(Widgets* widget);
 
 public:
 
 	bool cleaning = false;
 
-	SDL_Texture* GetAtlas() const;
 	SDL_Texture* GetBackground() const;
 	SDL_Texture* GetGuiAtlas() const;
 
