@@ -18,6 +18,7 @@
 
 j1GUIManager::j1GUIManager()
 {
+	name.create("gui");
 }
 
 
@@ -25,13 +26,22 @@ j1GUIManager::~j1GUIManager()
 {
 }
 
-bool j1GUIManager::Awake(pugi::xml_node&)
+bool j1GUIManager::Awake(pugi::xml_node& config)
 {
+	LOG("Loading GUI atlas");
+	bool ret = true;
+
+	atlas_file_name = config.child("atlas").attribute("file").as_string("");
 	return true;
 }
 
 bool j1GUIManager::Start()
 {
+	atlas = App->tex->Load(atlas_file_name.GetString());
+
+	guiAtlas = App->tex->Load("textures/gui.png");
+	
+	font = App->font->Load("fonts/SF Slapstick Comic.tff", 30);
 	return true;
 }
 
@@ -50,6 +60,18 @@ bool j1GUIManager::PostUpdate()
 
 bool j1GUIManager::CleanUp()
 {
+	LOG("Freeing GUI");
+
+	p2List_item<Widgets*>* item;
+	item = widgets.start;
+
+	while (item != nullptr)
+	{
+		RELEASE(item->data);
+		item = item->next;
+	}
+
+	widgets.clear();
 	return true;
 }
 
@@ -98,4 +120,24 @@ SDL_Texture* j1GUIManager::GetBackground() const
 SDL_Texture* j1GUIManager::GetGuiAtlas() const
 {
 	return guiAtlas;
+}
+
+bool j1GUIManager::MouseCollision(Widgets* widget)
+{
+	bool ret = false;
+	if (widget->type == BUTTON)
+	{
+		int x, y;
+		App->input->GetMousePosition(x, y);
+
+		int posx = widget->pos.x + App->render->camera.x;
+		int posy = widget->pos.y + App->render->camera.y;
+
+		if (x > posx && x < posx + widget->tex_width*0.5f
+			&& y > posy && y < posy + widget->tex_height*0.5f)
+		{
+			ret = true;
+		}
+	}
+	return ret;
 }
