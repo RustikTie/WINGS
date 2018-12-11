@@ -37,8 +37,8 @@ bool j1GUIManager::Awake(pugi::xml_node& config)
 
 bool j1GUIManager::Start()
 {
-
 	guiAtlas = App->tex->Load(atlas_file_name.GetString());
+	background = App->tex->Load("textures/background.png");
 
 	fonts.PushBack(App->font->Load("fonts/SFSlapstickComic.ttf", 30));
 

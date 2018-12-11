@@ -11,7 +11,7 @@ j1Pathfinding::~j1Pathfinding()
 
 bool j1Pathfinding::Start()
 {
-	pathfinder = App->tex->Load("maps/Pathtile.png");
+	pathfinder = App->tex->Load("textures/Pathtile.png");
 
 	return true;
 }

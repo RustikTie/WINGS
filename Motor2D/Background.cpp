@@ -17,5 +17,5 @@ Background::~Background()
 
 void Background::Draw()
 {
-	App->render->Blit(App->gui->GetGuiAtlas(), pos.x, pos.y, 1, 1, false, &rec);
+	App->render->Blit(App->gui->GetBackground(), pos.x, pos.y, 1, 1, false, &rec);
 }

@@ -19,6 +19,7 @@ enum WidgetType
 	WINDOW,
 	BUTTON,
 	TEXT,
+	BACKGROUND,
 	NOTYPE,
 };
 enum ButtonType
