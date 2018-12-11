@@ -44,7 +44,7 @@ public:
 	float			jump_speed;
 	float			max_height;
 	float			death_border;
-	int				lives = 3;
+	int				lives;
 
 	bool			jumping = false;
 	bool			gliding = false;
@@ -63,6 +63,12 @@ public:
 	uint glide_fx;
 	uint death_fx;
 	
+	//to add through xml
+	SDL_Rect life = { 0, 919, 53, 45 };
+	SDL_Rect empty = { 0, 872, 53, 45 };
+	SDL_Rect half = { 0, 825, 53, 45 };
+	SDL_Rect character = { 0, 969, 53, 47 };
+
 private:
 	
 	float			old_grav = 0;
