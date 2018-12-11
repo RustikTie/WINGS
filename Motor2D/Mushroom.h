@@ -18,7 +18,7 @@ public:
 	bool Awake(pugi::xml_node&);
 	void MoveEntity(float dt);
 	void Draw(float dt);
-
+	void OnCollision();
 	bool Load(pugi::xml_node&);
 	bool Save(pugi::xml_node&) const;
 

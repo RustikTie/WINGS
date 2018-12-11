@@ -143,3 +143,8 @@ bool Beetle::Save(pugi::xml_node& data) const
 	playernode.append_attribute("y") = original_pos.y;
 	return true;
 }
+
+void Beetle::OnCollision()
+{
+
+}

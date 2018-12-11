@@ -57,10 +57,8 @@ void Entity::Draw(float dt)
 	}*/
 }
 
-void Entity::OnCollision(Collider* c)
-{
-	if (collider->type == COLLIDER_PLAYER)
-	{
 
-	}
+void Entity::OnCollision()
+{
+
 }

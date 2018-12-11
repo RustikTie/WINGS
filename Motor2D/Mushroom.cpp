@@ -127,3 +127,8 @@ bool Mushroom::Save(pugi::xml_node& data) const
 
 	return true;
 }
+
+void Mushroom::OnCollision()
+{
+
+}

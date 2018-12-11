@@ -21,6 +21,7 @@ enum ENTITY_TYPE
 	MUSHROOM,
 	BEETLE,
 	PLAYER,
+	COIN,
 };
 
 class Entity;
@@ -71,6 +72,7 @@ public:
 	Entity*				entities[MAX_ENEMIES];
 	Player*				player_entity =	nullptr;
 
+	p2List<Entity*>		coins;
 private:
 	SDL_Texture * entityAtlas = nullptr;
 };

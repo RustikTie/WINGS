@@ -6,6 +6,7 @@
 #include "j1Scene.h"
 #include "j1Map.h"
 #include "j1Textures.h"
+#include "Coins.h"
 #include "Brofiler\Brofiler.h"
 
 #define SPAWN_MARGIN 100
@@ -180,6 +181,11 @@ void j1EntityManager::SpawnEntity(const EntityInfo& info)
 		case ENTITY_TYPE::BEETLE:
 			entities[i] = new Beetle(info.x, info.y);
 			entities[i]->Awake(entity_config);
+			break;
+		case ENTITY_TYPE::COIN:
+			entities[i] = new Coins(info.x, info.y);
+			coins.add(entities[i]);
+
 			break;
 		}
 	}

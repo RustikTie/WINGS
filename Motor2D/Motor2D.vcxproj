@@ -79,6 +79,7 @@
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="Beetle.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Coins.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="j1Collisions.cpp" />
@@ -111,6 +112,7 @@
     <ClInclude Include="Background.h" />
     <ClInclude Include="Beetle.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="Coins.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="j1Collisions.h" />

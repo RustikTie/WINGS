@@ -84,6 +84,9 @@
     <ClCompile Include="Background.cpp">
       <Filter>Desenvolupament  ========\GUI</Filter>
     </ClCompile>
+    <ClCompile Include="Coins.cpp">
+      <Filter>Desenvolupament  ========\Entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -192,6 +195,9 @@
     </ClInclude>
     <ClInclude Include="Background.h">
       <Filter>Desenvolupament  ========\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Coins.h">
+      <Filter>Desenvolupament  ========\Entities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

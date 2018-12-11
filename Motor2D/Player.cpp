@@ -287,3 +287,8 @@ bool Player::Save(pugi::xml_node& data) const
 
 	return true;
 }
+
+void Player::OnCollision()
+{
+
+}

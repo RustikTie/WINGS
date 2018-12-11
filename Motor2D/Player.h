@@ -30,6 +30,7 @@ public:
 
 	bool Load(pugi::xml_node&);
 	bool Save(pugi::xml_node&) const;
+	void OnCollision();
 
 public:
 
@@ -44,7 +45,9 @@ public:
 	float			jump_speed;
 	float			max_height;
 	float			death_border;
-	int				lives;
+	int				lives = 0;
+	int				score = 0;
+	int				coins_grabbed = 0;
 
 	bool			jumping = false;
 	bool			gliding = false;
@@ -58,16 +61,16 @@ public:
 	Animation		idle;
 	Animation		walk;
 
-	uint walk_fx;
-	uint jump_fx;
-	uint glide_fx;
-	uint death_fx;
+	uint			walk_fx;
+	uint			jump_fx;
+	uint			glide_fx;
+	uint			death_fx;
 	
 	//to add through xml
-	SDL_Rect life = { 0, 919, 53, 45 };
-	SDL_Rect empty = { 0, 872, 53, 45 };
-	SDL_Rect half = { 0, 825, 53, 45 };
-	SDL_Rect character = { 0, 969, 53, 47 };
+	SDL_Rect		life = { 0, 919, 53, 45 };
+	SDL_Rect		empty = { 0, 872, 53, 45 };
+	SDL_Rect		half = { 0, 825, 53, 45 };
+	SDL_Rect		character = { 0, 969, 53, 47 };
 
 private:
 	

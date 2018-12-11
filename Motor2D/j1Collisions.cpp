@@ -151,6 +151,24 @@ bool j1Collisions::Update(float dt)
 
 				}
 			}
+
+			if (colliders[i]->type == COLLIDER_PICK_UP)
+			{
+				if (colliders[i]->CheckCollision(App->entitymanager->player_entity->collider->rect) == true)
+				{
+					p2List_item<Entity*>* item;
+					item = App->entitymanager->coins.start;
+					while (item != NULL)
+					{
+						if (colliders[i] == item->data->collider)
+						{
+							item->data->OnCollision();
+							colliders[i]->to_delete = true;
+						}
+						item = item->next;
+					}
+				}
+			}
 		}
 
 		//ENEMY COLLISIONS

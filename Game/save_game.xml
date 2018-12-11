@@ -4,17 +4,17 @@
 	<window />
 	<textures />
 	<audio />
-	<:anonymous />
+	<gui />
 	<map />
 	<:anonymous />
 	<scene />
 	<colliders />
 	<entities>
-		<player x="2311.5" y="1115.35571" map1="true" map2="false" />
+		<player x="3600.5" y="1467.14197" map1="true" map2="false" />
 		<mushroom>
-			<position x="0" y="214.782196" />
-			<position x="0" y="214.782196" />
-			<position x="0" y="214.782196" />
+			<position x="0" y="214.768188" />
+			<position x="0" y="214.768188" />
+			<position x="0" y="214.768188" />
 		</mushroom>
 		<beetle>
 			<position x="0" y="0" />
@@ -24,6 +24,6 @@
 	<fonts />
 	<fadetoblack />
 	<renderer>
-		<camera x="-1911" y="-695" />
+		<camera x="-3200" y="-1046" />
 	</renderer>
 </game_state>
