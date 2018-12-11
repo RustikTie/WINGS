@@ -2,6 +2,7 @@
 #define __j1SCENE_H__
 
 #include "j1Module.h"
+#include "p2List.h"
 
 struct SDL_Texture;
 class Widgets;
@@ -88,9 +89,13 @@ private:
 	Widgets* MusicVol = nullptr;
 	Widgets* FXVol = nullptr;
 
+	SDL_Rect rect_window;
+
 	SDL_Rect hover;
 	SDL_Rect idle;
 	SDL_Rect click;
+
+	p2List<Widgets*> MenuButtons;
 
 private:
 	bool			Quit = true;

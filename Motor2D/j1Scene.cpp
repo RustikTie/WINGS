@@ -36,6 +36,8 @@ bool j1Scene::Awake()
 // Called before the first frame
 bool j1Scene::Start()
 {
+	rect_window = { 798, 0, 451, 630 };
+
 	idle = { 4, 0, 175, 79 };
 	hover = { 191, 0, 175, 79 };
 	click = { 378, 0, 175, 79 };
@@ -48,11 +50,18 @@ bool j1Scene::Start()
 
 		App->map->CleanUp();
 		App->entitymanager->CleanUp();
+		BigWindow = App->gui->AddWindow(66, 80, WINDOW, false, rect_window);
 		StartButton = App->gui->AddButton(100, 100, BUTTON, MAIN, 1, true, &idle, "Play");
 		Continue = App->gui->AddButton(100, 200, BUTTON, MAIN, 1, true, &idle, "Continue");
 		Options = App->gui->AddButton(100, 300, BUTTON, MAIN, 1, true, &idle, "Settings");
 		Credits = App->gui->AddButton(100, 400, BUTTON, MAIN, 1, true, &idle, "Credits");
 		QuitButton = App->gui->AddButton(100, 500, BUTTON, MAIN, 1, true, &idle, "Exit");
+
+		MenuButtons.add(StartButton);
+		MenuButtons.add(Continue);
+		MenuButtons.add(Options);
+		MenuButtons.add(Credits);
+		MenuButtons.add(QuitButton);
 
 	}
 	if (level1)
@@ -231,6 +240,14 @@ bool j1Scene::MouseEvents(Widgets* widget)
 			App->gui->cleaning = true;
 			menu = false;
 			level1 = true;
+		}
+		if (widget == Options && widget->show)
+		{
+			BigWindow->show = true;
+			for (int i = 0; i < MenuButtons.count(); ++i)
+			{
+				MenuButtons[i]->show = false;
+			}
 		}
 		if (widget == QuitButton && widget->show)
 		{
