@@ -14,8 +14,7 @@ Button::Button(int x, int y, WidgetType type, ButtonType btype, float scale, boo
 
 	if (text != nullptr)
 	{
-		buttontext = text;
-		ButtonText = App->font->Print(buttontext, { 255, 255, 255 }, App->gui->font);
+		ButtonText = App->font->Print(text, { 255, 255, 255 }, App->gui->fonts[0]);
 	}
 
 	blit_scale = scale;

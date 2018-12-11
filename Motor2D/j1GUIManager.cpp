@@ -39,8 +39,8 @@ bool j1GUIManager::Start()
 {
 
 	guiAtlas = App->tex->Load(atlas_file_name.GetString());
-	
-	font = App->font->Load("fonts/SF Slapstick Comic.tff", 30);
+
+	fonts.PushBack(App->font->Load("fonts/SFSlapstickComic.ttf", 30));
 
 	return true;
 }

@@ -44,11 +44,9 @@ bool j1Scene::Start()
 	//App->map->Load("iso.tmx");
 	if (menu)
 	{
-		App->render->camera.x = 0;
-		App->render->camera.y = 0;
 		App->map->CleanUp();
 		App->entitymanager->CleanUp();
-		StartButton = App->gui->AddButton(100, 100, BUTTON, MAIN, 1, true, &idle);
+		StartButton = App->gui->AddButton(100, 100, BUTTON, MAIN, 1, true, &idle, "Start");
 	}
 	if (level1)
 	{
