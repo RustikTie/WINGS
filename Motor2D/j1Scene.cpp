@@ -116,7 +116,7 @@ bool j1Scene::Update(float dt)
 		if (level1 == false)
 		{
 
-			start = false;
+			menu = false;
 			App->map->CleanUp();
 			App->entitymanager->CleanUp();
 			App->collisions->Erase_Non_Player_Colliders();

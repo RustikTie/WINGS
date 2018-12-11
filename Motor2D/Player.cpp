@@ -4,6 +4,8 @@
 #include "j1Scene.h"
 #include "j1Input.h"
 #include "j1Audio.h"
+#include "j1GUIManager.h"
+ 
 
 Player::Player(int x, int y) : Entity(x, y)
 {
@@ -209,6 +211,23 @@ void Player::Draw(float dt)
 {
 	App->render->Blit(graphics, pos.x, pos.y, x_scale, y_scale, flip, &(current_anim->GetCurrentFrame()));
 	collider->SetPos(pos.x, pos.y);
+	SDL_Rect life = { 0, 919, 53, 45 };
+	SDL_Rect empty = { 0, 872, 53, 45 };
+	if (lives == 3)
+	{
+		App->render->Blit(App->gui->GetGuiAtlas(), pos.x - 420, pos.y -380, 1.f, 1.f, false, &life);
+		App->render->Blit(App->gui->GetGuiAtlas(), pos.x - 370, pos.y - 380, 1.f, 1.f, false, &life);
+		App->render->Blit(App->gui->GetGuiAtlas(), pos.x - 320, pos.y - 380, 1.f, 1.f, false, &life);
+
+	}
+	if (lives == 2)
+	{
+		App->render->Blit(App->gui->GetGuiAtlas(), pos.x - 320, pos.y - 380, 1.f, 1.f, false, &empty);
+		App->render->Blit(App->gui->GetGuiAtlas(), pos.x - 370, pos.y - 380, 1.f, 1.f, false, &life);
+		App->render->Blit(App->gui->GetGuiAtlas(), pos.x - 420, pos.y - 380, 1.f, 1.f, false, &life);
+
+
+	}
 
 }
 
