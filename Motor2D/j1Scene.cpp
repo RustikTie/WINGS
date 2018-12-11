@@ -44,6 +44,8 @@ bool j1Scene::Start()
 	//App->map->Load("iso.tmx");
 	if (menu)
 	{
+		Background = App->gui->AddBackground(0, 0, BACKGROUND, true, { 0,0,1024,768 });
+
 		App->map->CleanUp();
 		App->entitymanager->CleanUp();
 		StartButton = App->gui->AddButton(100, 100, BUTTON, MAIN, 1, true, &idle, "Play");
