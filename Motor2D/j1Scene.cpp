@@ -36,7 +36,7 @@ bool j1Scene::Awake()
 // Called before the first frame
 bool j1Scene::Start()
 {
-	idle = { 0, 0, 175, 79 };
+	idle = { 4, 0, 175, 79 };
 	hover = { 191, 0, 175, 79 };
 	click = { 378, 0, 175, 79 };
 
@@ -44,10 +44,10 @@ bool j1Scene::Start()
 	//App->map->Load("iso.tmx");
 	if (menu)
 	{
-		App->render->camera.x = 0;
-		App->render->camera.y = 0;
 		App->map->CleanUp();
 		App->entitymanager->CleanUp();
+		App->render->camera.x = 0;
+		App->render->camera.y = 0;
 		StartButton = App->gui->AddButton(100, 100, BUTTON, MAIN, true, &idle);
 	}
 	if (level1)

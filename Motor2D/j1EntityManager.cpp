@@ -93,6 +93,10 @@ bool j1EntityManager::Update(float dt)
 	if (player_entity != nullptr)
 	{
 		player_entity->MoveEntity(dt);
+
+	}
+	if (player_entity != nullptr)
+	{
 		player_entity->Draw(dt);
 		player_entity->Jump_Glide(dt);
 	}
@@ -127,6 +131,9 @@ bool j1EntityManager::CleanUp()
 			queue[i].type = NO_TYPE;
 		}
 	}
+
+	delete player_entity;
+	player_entity = nullptr;
 
 	return true;
 }

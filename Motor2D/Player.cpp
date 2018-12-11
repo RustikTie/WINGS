@@ -78,6 +78,7 @@ bool Player::Awake(pugi::xml_node& config)
 
 void Player::MoveEntity(float dt)
 {
+
 	//FORWARD
 	if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 	{
@@ -162,27 +163,33 @@ void Player::MoveEntity(float dt)
 		}
 	}
 	
+
+
 	//DEATH
 	if (pos.y > death_border)
 	{
 		pos.x = original_pos.x;
 		pos.y = original_pos.y;
-		lives -= 1;
+		lives -= 2;
 		LOG("dead");
 		App->audio->PlayFx(death_fx);
 
 	}
+	//CAMERA
+
+	App->render->camera.x = (-pos.x + 400);
+	App->render->camera.y = (-pos.y + 400);
 
 	if (lives <= 0)
 	{
-
+		App->scene->menu = true;
+		App->scene->level1 = false;
+		App->scene->level2 = false;
+		App->scene->Start();
 	}
 	
 
-	//CAMERA
-	
-	App->render->camera.x = (-pos.x + 400);
-	App->render->camera.y = (-pos.y + 400);
+
 	
 }
 
@@ -211,23 +218,47 @@ void Player::Draw(float dt)
 {
 	App->render->Blit(graphics, pos.x, pos.y, x_scale, y_scale, flip, &(current_anim->GetCurrentFrame()));
 	collider->SetPos(pos.x, pos.y);
-	SDL_Rect life = { 0, 919, 53, 45 };
-	SDL_Rect empty = { 0, 872, 53, 45 };
-	if (lives == 3)
+
+	App->render->Blit(App->gui->GetGuiAtlas(), pos.x - 395, pos.y - 392, 1.f, 1.f, false, &character);
+	switch (lives)
 	{
-		App->render->Blit(App->gui->GetGuiAtlas(), pos.x - 420, pos.y -380, 1.f, 1.f, false, &life);
-		App->render->Blit(App->gui->GetGuiAtlas(), pos.x - 370, pos.y - 380, 1.f, 1.f, false, &life);
-		App->render->Blit(App->gui->GetGuiAtlas(), pos.x - 320, pos.y - 380, 1.f, 1.f, false, &life);
-
+	case 6:
+		App->render->Blit(App->gui->GetGuiAtlas(), pos.x - 230, pos.y - 390, 1.f, 1.f, false, &life);
+		App->render->Blit(App->gui->GetGuiAtlas(), pos.x - 340, pos.y - 390, 1.f, 1.f, false, &life);
+		App->render->Blit(App->gui->GetGuiAtlas(), pos.x - 285, pos.y - 390, 1.f, 1.f, false, &life);
+		break;
+	case 5:
+		App->render->Blit(App->gui->GetGuiAtlas(), pos.x - 230, pos.y - 390, 1.f, 1.f, false, &half);
+		App->render->Blit(App->gui->GetGuiAtlas(), pos.x - 285, pos.y - 390, 1.f, 1.f, false, &life);
+		App->render->Blit(App->gui->GetGuiAtlas(), pos.x - 340, pos.y - 390, 1.f, 1.f, false, &life);
+		break;
+	case 4:
+		App->render->Blit(App->gui->GetGuiAtlas(), pos.x - 230, pos.y - 390, 1.f, 1.f, false, &empty);
+		App->render->Blit(App->gui->GetGuiAtlas(), pos.x - 285, pos.y - 390, 1.f, 1.f, false, &life);
+		App->render->Blit(App->gui->GetGuiAtlas(), pos.x - 340, pos.y - 390, 1.f, 1.f, false, &life);
+		break;
+	case 3:
+		App->render->Blit(App->gui->GetGuiAtlas(), pos.x - 230, pos.y - 390, 1.f, 1.f, false, &empty);
+		App->render->Blit(App->gui->GetGuiAtlas(), pos.x - 285, pos.y - 390, 1.f, 1.f, false, &half);
+		App->render->Blit(App->gui->GetGuiAtlas(), pos.x - 340, pos.y - 390, 1.f, 1.f, false, &life);
+		break;
+	case 2:
+		App->render->Blit(App->gui->GetGuiAtlas(), pos.x - 230, pos.y - 390, 1.f, 1.f, false, &empty);
+		App->render->Blit(App->gui->GetGuiAtlas(), pos.x - 285, pos.y - 390, 1.f, 1.f, false, &empty);
+		App->render->Blit(App->gui->GetGuiAtlas(), pos.x - 340, pos.y - 390, 1.f, 1.f, false, &life);
+		break;
+	case 1:
+		App->render->Blit(App->gui->GetGuiAtlas(), pos.x - 230, pos.y - 390, 1.f, 1.f, false, &empty);
+		App->render->Blit(App->gui->GetGuiAtlas(), pos.x - 285, pos.y - 390, 1.f, 1.f, false, &empty);
+		App->render->Blit(App->gui->GetGuiAtlas(), pos.x - 340, pos.y - 390, 1.f, 1.f, false, &half);
+		break;
+	case 0: 
+		App->render->Blit(App->gui->GetGuiAtlas(), pos.x - 230, pos.y - 390, 1.f, 1.f, false, &empty);
+		App->render->Blit(App->gui->GetGuiAtlas(), pos.x - 285, pos.y - 390, 1.f, 1.f, false, &empty);
+		App->render->Blit(App->gui->GetGuiAtlas(), pos.x - 340, pos.y - 390, 1.f, 1.f, false, &empty);
+		break;
 	}
-	if (lives == 2)
-	{
-		App->render->Blit(App->gui->GetGuiAtlas(), pos.x - 320, pos.y - 380, 1.f, 1.f, false, &empty);
-		App->render->Blit(App->gui->GetGuiAtlas(), pos.x - 370, pos.y - 380, 1.f, 1.f, false, &life);
-		App->render->Blit(App->gui->GetGuiAtlas(), pos.x - 420, pos.y - 380, 1.f, 1.f, false, &life);
 
-
-	}
 
 }
 
