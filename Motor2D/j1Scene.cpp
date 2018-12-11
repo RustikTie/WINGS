@@ -48,7 +48,7 @@ bool j1Scene::Start()
 		App->entitymanager->CleanUp();
 		App->render->camera.x = 0;
 		App->render->camera.y = 0;
-		StartButton = App->gui->AddButton(100, 100, BUTTON, MAIN, true, &idle);
+		StartButton = App->gui->AddButton(100, 100, BUTTON, MAIN, 1, true, &idle);
 	}
 	if (level1)
 	{
