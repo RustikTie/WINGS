@@ -55,6 +55,38 @@ public:
 	bool maycontinue = false;
 
 private:
+	Widgets* Background = nullptr;
+	Widgets* Continue = nullptr;
+	Widgets* StartButton = nullptr;
+	Widgets* QuitButton = nullptr;
+	Widgets* Options = nullptr;
+	Widgets* Credits = nullptr;
+	Widgets* BigWindow = nullptr;
+	Widgets* Menu_Credits = nullptr;
+	Widgets* Menu_Options = nullptr;
+	Widgets* OptionsTitle = nullptr;
+	Widgets* CreditTitle = nullptr;
+	Widgets* CreditText = nullptr;
+	Widgets* CreditText1 = nullptr;
+	Widgets* CreditText2 = nullptr;
+	Widgets* CreditText3 = nullptr;
+	Widgets* CreditText4 = nullptr;
+	Widgets* CreditText5 = nullptr;
+	Widgets* CreditText6 = nullptr;
+	Widgets* CreditText7 = nullptr;
+	Widgets* CreditText8 = nullptr;
+	Widgets* CreditText9 = nullptr;
+	Widgets* CreditText10 = nullptr;
+	Widgets* CreditText11 = nullptr;
+	Widgets* CreditText12 = nullptr;
+	Widgets* CreditText13 = nullptr;
+	Widgets* CreditText14 = nullptr;
+	Widgets* Plus = nullptr;
+	Widgets* Minus = nullptr;
+	Widgets* FXPlus = nullptr;
+	Widgets* FXMinus = nullptr;
+	Widgets* MusicVol = nullptr;
+	Widgets* FXVol = nullptr;
 
 	SDL_Rect hover;
 	SDL_Rect idle;

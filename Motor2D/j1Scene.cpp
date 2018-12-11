@@ -10,6 +10,7 @@
 #include "j1Scene.h"
 #include "j1EntityManager.h"
 #include "j1GUIManager.h"
+#include "Widgets.h"
 
 j1Scene::j1Scene() : j1Module()
 {
@@ -47,7 +48,7 @@ bool j1Scene::Start()
 		App->render->camera.y = 0;
 		App->map->CleanUp();
 		App->entitymanager->CleanUp();
-		App->gui->AddButton(100, 100, BUTTON, MAIN, true, &idle);
+		Continue = App->gui->AddButton(100, 100, BUTTON, MAIN, true, &idle);
 	}
 	if (level1)
 	{
@@ -196,6 +197,45 @@ bool j1Scene::CleanUp()
 	return true;
 }
 
+bool j1Scene::MouseEvents(Widgets* widget)
+{
+	switch (widget->event_type)
+	{
+	case MOUSE_ENTER:
+		if (widget->type == BUTTON)
+		{
+			widget->texture_rect = &hover;
+		}
+		break;
+
+	case MOUSE_EXIT:
+		if (widget->type == BUTTON)
+		{
+			widget->texture_rect = &idle;
+		}
+		break;
+
+	case MOUSE_DOWN:
+		if (widget->type == BUTTON)
+		{
+			widget->texture_rect = &click;
+		}
+		break;
+
+	case MOUSE_UP:
+		if (widget->type == BUTTON)
+		{
+			widget->texture_rect = &idle;
+		}
+		break;
+
+	default:
+		break;
+	}
+
+	return true;
+}
+
 void j1Scene::ChangeMap(float x, float y)
 {
 	if (level2)
@@ -221,7 +261,3 @@ void j1Scene::ChangeMap(float x, float y)
 	}
 }
 
-bool j1Scene::MouseEvents(Widgets* widget)
-{
-	return true;
-}
