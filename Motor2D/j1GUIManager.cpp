@@ -8,6 +8,7 @@
 #include "j1Input.h"
 #include "j1Scene.h"
 #include "Widgets.h"
+#include "Background.h"
 #include "Button.h"
 #include "Text.h"
 #include "Window.h"
@@ -144,11 +145,13 @@ bool j1GUIManager::CleanUp()
 	return true;
 }
 
-//Widgets* j1GUIManager::AddBackground(int x, int y, ElementType type, bool show, SDL_Rect rec)
-//{
-//	
-//
-//}
+Widgets* j1GUIManager::AddBackground(int x, int y, WidgetType type, bool show, SDL_Rect rec)
+{
+	Widgets* widget = new Background(x, y, type, show, rec);
+	widgets.add(widget);
+
+	return widget;
+}
 
 
 Widgets* j1GUIManager::AddText(int x, int y, WidgetType type, bool show, const char* text, int font)
@@ -176,9 +179,9 @@ Widgets* j1GUIManager::AddImage(int x, int y, WidgetType type, bool show, SDL_Re
 }
 
 
-Widgets* j1GUIManager::AddButton(int x, int y, WidgetType type, ButtonType btype, bool show, SDL_Rect* rec, const char* text)
+Widgets* j1GUIManager::AddButton(int x, int y, WidgetType type, ButtonType btype, float scale, bool show, SDL_Rect* rec, const char* text)
 {
-	Widgets* widget = new Button(x, y, type, btype, show, rec, text);
+	Widgets* widget = new Button(x, y, type, btype, scale, show, rec, text);
 	widgets.add(widget);
 	return widget;
 }
@@ -205,8 +208,8 @@ bool j1GUIManager::MouseCollision(Widgets* widget)
 		int posx = widget->pos.x + App->render->camera.x;
 		int posy = widget->pos.y + App->render->camera.y;
 
-		if (x > posx && x < posx + widget->tex_width*0.5f
-			&& y > posy && y < posy + widget->tex_height*0.5f)
+		if (x > posx && x < posx + widget->tex_width
+			&& y > posy && y < posy + widget->tex_height)
 		{
 			ret = true;
 		}
