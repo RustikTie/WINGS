@@ -46,7 +46,11 @@ bool j1Scene::Start()
 	{
 		App->map->CleanUp();
 		App->entitymanager->CleanUp();
-		StartButton = App->gui->AddButton(100, 100, BUTTON, MAIN, 1, true, &idle, "Start");
+		StartButton = App->gui->AddButton(100, 100, BUTTON, MAIN, 1, true, &idle, "Play");
+		Continue = App->gui->AddButton(100, 200, BUTTON, MAIN, 1, true, &idle, "Continue");
+		Options = App->gui->AddButton(100, 300, BUTTON, MAIN, 1, true, &idle, "Settings");
+		Credits = App->gui->AddButton(100, 400, BUTTON, MAIN, 1, true, &idle, "Credits");
+		QuitButton = App->gui->AddButton(100, 500, BUTTON, MAIN, 1, true, &idle, "Exit");
 
 	}
 	if (level1)
@@ -136,7 +140,7 @@ bool j1Scene::Update(float dt)
 		App->entitymanager->player_entity->SetPos(500, 1000);
 	}
 
-	if (App->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN)
+	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN && !menu)
 	{
 		if (App->pause_game)
 		{
@@ -174,12 +178,11 @@ bool j1Scene::Update(float dt)
 // Called each loop iteration
 bool j1Scene::PostUpdate()
 {
-	bool ret = true;
 
-	if(App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
-		ret = false;
+	/*if(App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
+		ret = false;*/
 
-	return ret;
+	return Quit;
 }
 
 // Called before quitting
@@ -225,6 +228,10 @@ bool j1Scene::MouseEvents(Widgets* widget)
 			App->gui->cleaning = true;
 			menu = false;
 			level1 = true;
+		}
+		if (widget == QuitButton && widget->show)
+		{
+			Quit = false;
 		}
 		break;
 

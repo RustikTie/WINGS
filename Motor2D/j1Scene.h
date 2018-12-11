@@ -91,6 +91,9 @@ private:
 	SDL_Rect hover;
 	SDL_Rect idle;
 	SDL_Rect click;
+
+private:
+	bool			Quit = true;
 };
 
 #endif // __j1SCENE_H__
