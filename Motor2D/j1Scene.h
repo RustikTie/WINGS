@@ -55,6 +55,10 @@ public:
 	bool maycontinue = false;
 
 private:
+
+	SDL_Rect hover;
+	SDL_Rect idle;
+	SDL_Rect click;
 };
 
 #endif // __j1SCENE_H__

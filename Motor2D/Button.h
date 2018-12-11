@@ -7,7 +7,7 @@
 class Button : public Widgets
 {
 public:
-	Button(int x, int y, WidgetType type, ButtonType btype, bool show, SDL_Rect rec, const char* text);
+	Button(int x, int y, WidgetType type, ButtonType btype, bool show, SDL_Rect* rec, const char* text);
 	~Button();
 
 	void Draw();

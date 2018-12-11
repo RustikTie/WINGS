@@ -94,7 +94,10 @@ bool j1Collisions::Update(float dt)
 	BROFILER_CATEGORY("Update Collisions", Profiler::Color::Green)
 
 	Collider* c;
-	App->entitymanager->player_entity->falling = true;
+	if (App->entitymanager->player_entity != nullptr)
+	{
+		App->entitymanager->player_entity->falling = true;
+	}
 
 	for (uint i = 0; i < MAX_COLLIDERS; ++i)
 	{

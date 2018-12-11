@@ -35,13 +35,19 @@ bool j1Scene::Awake()
 // Called before the first frame
 bool j1Scene::Start()
 {
+	idle = { 0, 0, 175, 79 };
+	hover = { 191, 0, 175, 79 };
+	click = { 378, 0, 175, 79 };
+
 	App->pause_game = false;
 	//App->map->Load("iso.tmx");
 	if (menu)
 	{
+		App->render->camera.x = 0;
+		App->render->camera.y = 0;
 		App->map->CleanUp();
 		App->entitymanager->CleanUp();
-		App->gui->AddButton(0, 0, BUTTON, MAIN, true, { 0, 3, 175, 79});
+		App->gui->AddButton(100, 100, BUTTON, MAIN, true, &idle);
 	}
 	if (level1)
 	{
@@ -154,7 +160,7 @@ bool j1Scene::Update(float dt)
 	//				map_coordinates.x, map_coordinates.y);
 	//App->win->SetTitle(title.GetString());
 
-	if (App->entitymanager->player_entity->pos.x >= 13500.f)
+	if (App->entitymanager->player_entity != nullptr && App->entitymanager->player_entity->pos.x >= 13500.f )
 
 	{
 		level2 = true;

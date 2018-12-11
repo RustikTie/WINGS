@@ -178,9 +178,10 @@ void Player::MoveEntity(float dt)
 	
 
 	//CAMERA
+	
 	App->render->camera.x = (-pos.x + 400);
 	App->render->camera.y = (-pos.y + 400);
-
+	
 }
 
 void Player::Jump_Glide(float dt)

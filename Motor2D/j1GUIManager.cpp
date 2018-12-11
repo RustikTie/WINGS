@@ -176,7 +176,7 @@ Widgets* j1GUIManager::AddImage(int x, int y, WidgetType type, bool show, SDL_Re
 }
 
 
-Widgets* j1GUIManager::AddButton(int x, int y, WidgetType type, ButtonType btype, bool show, SDL_Rect rec, const char* text)
+Widgets* j1GUIManager::AddButton(int x, int y, WidgetType type, ButtonType btype, bool show, SDL_Rect* rec, const char* text)
 {
 	Widgets* widget = new Button(x, y, type, btype, show, rec, text);
 	widgets.add(widget);

@@ -36,7 +36,7 @@ bool j1EntityManager::Start()
 
 	entityAtlas = App->tex->Load("textures/entities.png");
 
-	if (App->scene->start == true)
+	if (App->scene->menu == false)
 	{
 		if (player_entity == nullptr)
 		{

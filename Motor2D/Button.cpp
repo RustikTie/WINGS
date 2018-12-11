@@ -7,10 +7,9 @@
 #include "j1Fonts.h"
 #include "j1GUIManager.h"
 
-Button::Button(int x, int y, WidgetType type, ButtonType btype, bool show, SDL_Rect rec, const char* text) : Widgets(x, y, type)
+Button::Button(int x, int y, WidgetType type, ButtonType btype, bool show, SDL_Rect* rec, const char* text) : Widgets(x, y, type)
 {
 	this->type = btype;
-	texture_rect = &rec;
 	ButtonBox = App->gui->GetGuiAtlas();
 
 	if (text != nullptr)
@@ -20,9 +19,9 @@ Button::Button(int x, int y, WidgetType type, ButtonType btype, bool show, SDL_R
 	}
 
 
-	texture_rect = &rec;
-	tex_width = rec.w;
-	tex_height = rec.h;
+	texture_rect = rec;
+	tex_width = rec->w;
+	tex_height = rec->h;
 
 	this->show = show;
 }

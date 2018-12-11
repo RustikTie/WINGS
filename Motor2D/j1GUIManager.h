@@ -56,7 +56,7 @@ public:
 
 
 	//Widgets* AddBackground(int x, int y, ElementType type, bool show, SDL_Rect rec);
-	Widgets* AddButton(int x, int y, WidgetType type, ButtonType btype, bool show, SDL_Rect rec, const char* text = nullptr);
+	Widgets* AddButton(int x, int y, WidgetType type, ButtonType btype, bool show, SDL_Rect* rec, const char* text = nullptr);
 	Widgets* AddText(int x, int y, WidgetType type, bool show, const char* text, int font);
 	Widgets* AddWindow(int x, int y, WidgetType type, bool show, SDL_Rect rec);
 	Widgets* AddImage(int x, int y, WidgetType type, bool show, SDL_Rect rec);
