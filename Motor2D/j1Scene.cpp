@@ -48,7 +48,7 @@ bool j1Scene::Start()
 		App->render->camera.y = 0;
 		App->map->CleanUp();
 		App->entitymanager->CleanUp();
-		Continue = App->gui->AddButton(100, 100, BUTTON, MAIN, true, &idle);
+		StartButton = App->gui->AddButton(100, 100, BUTTON, MAIN, true, &idle);
 	}
 	if (level1)
 	{
@@ -152,16 +152,10 @@ bool j1Scene::Update(float dt)
 	App->map->Draw();
 
 	int x, y;
-	//App->input->GetMousePosition(x, y);
-	//iPoint map_coordinates = App->map->WorldToMap(x - App->render->camera.x, y - App->render->camera.y);
-	//p2SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d Tile:%d,%d",
-	//				App->map->data.width, App->map->data.height,
-	//				App->map->data.tile_width, App->map->data.tile_height,
-	//				App->map->data.tilesets.count(),
-	//				map_coordinates.x, map_coordinates.y);
-	//App->win->SetTitle(title.GetString());
 
-	if (App->entitymanager->player_entity != nullptr && App->entitymanager->player_entity->pos.x >= 13500.f )
+
+	if (App->entitymanager->player_entity != nullptr 
+		&& App->entitymanager->player_entity->pos.x >= 13500.f )
 
 	{
 		level2 = true;
@@ -226,6 +220,12 @@ bool j1Scene::MouseEvents(Widgets* widget)
 		if (widget->type == BUTTON)
 		{
 			widget->texture_rect = &idle;
+		}
+		if (widget == StartButton && widget->show)
+		{
+			App->gui->cleaning = true;
+			menu = false;
+			level1 = true;
 		}
 		break;
 
