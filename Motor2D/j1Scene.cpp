@@ -66,7 +66,8 @@ bool j1Scene::Start()
 	else {
 
 		PauseMenu.add(PauseWindow = App->gui->AddWindow(500, 80, WINDOW, 1, 1, false, rect_window));
-		PauseMenu.add(PauseToMenu = App->gui->AddButton(630, 220, BUTTON, MAIN, 1, false, &idle, "Menu"));
+		PauseMenu.add(Resume = App->gui->AddButton(630, 220, BUTTON, BACK, 1, false, &idle, "Resume"));
+		PauseMenu.add(PauseToMenu = App->gui->AddButton(630, 320, BUTTON, BACK, 1, false, &idle, "Menu"));
 		
 		if (level1)
 		{
@@ -251,7 +252,7 @@ bool j1Scene::MouseEvents(Widgets* widget)
 		{
 			widget->texture_rect = &idle;
 		}
-
+		//MainMenu
 		if (widget == StartButton && widget->show)
 		{
 			App->gui->cleaning = true;
@@ -287,7 +288,7 @@ bool j1Scene::MouseEvents(Widgets* widget)
 		{
 			Quit = false;
 		}
-
+		//Setting Menu
 		if (widget == Menu_Options && widget->show)
 		{
 			for (int i = 0; i < MenuButtons.count(); ++i)
@@ -299,7 +300,7 @@ bool j1Scene::MouseEvents(Widgets* widget)
 				OptionsWidgets[i]->show = false;
 			}
 		}
-
+		//Credits Menu
 		if (widget == Menu_Credits && widget->show)
 		{
 			for (int i = 0; i < MenuButtons.count(); ++i)
@@ -312,7 +313,36 @@ bool j1Scene::MouseEvents(Widgets* widget)
 			}
 		}
 		break;
+		//Pause Menu
+		if (widget == PauseToMenu && widget->show)
+		{
+			menu = true;
+			level1 = false;
+			level2 = false;
 
+			App->map->CleanUp();
+			App->entitymanager->CleanUp();
+
+			for (int i = 0; i < MenuButtons.count(); ++i)
+			{
+				MenuButtons[i]->show = true;
+			}
+			for (int i = 0; i < PauseMenu.count(); ++i)
+			{
+				PauseMenu[i]->show = false;
+			}
+			
+		}
+
+		if (widget == Resume && widget->show)
+		{
+			App->pause_game = false;
+
+			for (int i = 0; i < PauseMenu.count(); ++i)
+			{
+				PauseMenu[i]->show = false;
+			}
+		}
 	default:
 		break;
 	}
