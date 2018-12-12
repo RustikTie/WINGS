@@ -5,7 +5,7 @@
 #include "j1GUIManager.h"
 
 // window coords {16, 528, 457, 485 }
-Window::Window(int x, int y, WidgetType type, bool show, SDL_Rect rec) : Widgets(x, y, type)
+Window::Window(int x, int y, WidgetType type, float scalex, float scaley, bool show, SDL_Rect rec) : Widgets(x, y, type)
 {
 	this->rec = rec;
 	this->tex = App->gui->GetGuiAtlas();
@@ -13,6 +13,9 @@ Window::Window(int x, int y, WidgetType type, bool show, SDL_Rect rec) : Widgets
 
 	pos.x = x;
 	pos.y = y;
+
+	scale.x = scalex;
+	scale.y = scaley;
 }
 
 Window::~Window()
@@ -28,7 +31,7 @@ void Window::Draw()
 {
 	if (show)
 	{
-		App->render->Blit(App->gui->GetGuiAtlas(), pos.x, pos.y, 2, 1, false, &rec, NULL);
+		App->render->Blit(App->gui->GetGuiAtlas(), pos.x, pos.y, scale.x, scale.y, false, &rec, NULL);
 	}
 
 }

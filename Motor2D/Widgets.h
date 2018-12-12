@@ -22,9 +22,13 @@ public:
 
 	SDL_Rect* texture_rect;
 	SDL_Rect debug_rect;
+	fPoint scale;
 
 	uint tex_width;
 	uint tex_height;
+
+	int rect_x;
+	int rect_y;
 
 	bool mouse_in = false;
 	bool mouse_out = false;

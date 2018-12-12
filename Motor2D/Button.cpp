@@ -17,7 +17,10 @@ Button::Button(int x, int y, WidgetType type, ButtonType btype, float scale, boo
 		ButtonText = App->font->Print(text, { 255, 255, 255 }, App->gui->fonts[0]);
 	}
  
-	blit_scale = scale;
+	pos.x = x;
+	pos.y = y;
+
+	this->scale = { scale, scale };
 
 	texture_rect = rec;
 	tex_width = rec->w*scale;
@@ -36,13 +39,13 @@ void Button::Draw()
 {
 	if (show)
 	{
-		int rect_x = pos.x - App->render->camera.x;
-		int rect_y = pos.y - App->render->camera.y;
+		rect_x = pos.x - App->render->camera.x;
+		rect_y = pos.y - App->render->camera.y;
 
 		debug_rect = { rect_x, rect_y, (int)(tex_width), (int)(tex_height) };
 
-		App->render->Blit(ButtonBox, pos.x, pos.y, blit_scale, blit_scale, false, texture_rect);
-		App->render->Blit(ButtonText, pos.x + (tex_width / 6), pos.y + (tex_height / 7), 1, 1, false);
+		App->render->Blit(ButtonBox, rect_x, rect_y, scale.x, scale.x, false, texture_rect);
+		App->render->Blit(ButtonText, rect_x + (tex_width / 6), rect_y + (tex_height / 7), 1, 1, false);
 		if (debug == true)
 		{
 			App->render->DrawQuad(debug_rect, 0, 255, 0, 50);
