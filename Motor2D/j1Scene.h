@@ -91,6 +91,10 @@ private:
 	Widgets* FXVol = nullptr;
 
 	Widgets* PauseWindow = nullptr;
+	Widgets* PauseToMenu = nullptr;
+	Widgets* Resume = nullptr;
+	Widgets* PausePlus = nullptr;
+	Widgets* PauseMinus = nullptr;
 
 	SDL_Rect rect_window;
 	SDL_Rect rect_score;

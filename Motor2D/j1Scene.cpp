@@ -57,15 +57,16 @@ bool j1Scene::Start()
 		MenuButtons.add(Credits = App->gui->AddButton(100, 400, BUTTON, MAIN, 1, true, &idle, "Credits"));
 		MenuButtons.add(QuitButton = App->gui->AddButton(100, 500, BUTTON, MAIN, 1, true, &idle, "Exit"));
 		
-		OptionsWidgets.add(OptionWindow = App->gui->AddWindow(66, 80, WINDOW, false, rect_window));
+		OptionsWidgets.add(OptionWindow = App->gui->AddWindow(66, 80, WINDOW, 2, 1, false, rect_window));
 		OptionsWidgets.add(Menu_Options = App->gui->AddButton(0, 0, BUTTON, BACK, 1, false, &idle, "BACK"));
 
-		CreditsWidgets.add(CreditsWindow = App->gui->AddWindow(66, 80, WINDOW, false, rect_window));
+		CreditsWidgets.add(CreditsWindow = App->gui->AddWindow(66, 80, WINDOW, 2, 1, false, rect_window));
 		CreditsWidgets.add(Menu_Credits = App->gui->AddButton(0, 0, BUTTON, BACK, 1, false, &idle, "BACK"));
 	}
 	else {
 
-		PauseMenu.add(PauseWindow = App->gui->AddWindow(66, 80, WINDOW, false, rect_window));
+		PauseMenu.add(PauseWindow = App->gui->AddWindow(500, 80, WINDOW, 1, 1, false, rect_window));
+		PauseMenu.add(PauseToMenu = App->gui->AddButton(630, 220, BUTTON, MAIN, 1, false, &idle, "Menu"));
 		
 		if (level1)
 		{

@@ -59,8 +59,8 @@ public:
 	Widgets* AddBackground(int x, int y, WidgetType type, bool show, SDL_Rect rec);
 	Widgets* AddButton(int x, int y, WidgetType type, ButtonType btype, float scale, bool show, SDL_Rect* rec, const char* text = nullptr);
 	Widgets* AddText(int x, int y, WidgetType type, bool show, const char* text, int font);
-	Widgets* AddWindow(int x, int y, WidgetType type, bool show, SDL_Rect rec);
 	Widgets* AddImage(int x, int y, WidgetType type, bool show, SDL_Rect rec, float scale);
+	Widgets* AddWindow(int x, int y, WidgetType type, float scale_x, float scale_y, bool show, SDL_Rect rec);
 
 	bool MouseCollision(Widgets* widget);
 

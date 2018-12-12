@@ -195,7 +195,7 @@ void Player::MoveEntity(float dt)
 		App->scene->Start();
 	}
 	
-
+	current_anim->speed = 100.f*dt;
 
 	
 }

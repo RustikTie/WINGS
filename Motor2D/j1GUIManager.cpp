@@ -162,9 +162,9 @@ Widgets* j1GUIManager::AddText(int x, int y, WidgetType type, bool show, const c
 	return widget;
 }
 
-Widgets* j1GUIManager::AddWindow(int x, int y, WidgetType type, bool show, SDL_Rect rec)
+Widgets* j1GUIManager::AddWindow(int x, int y, WidgetType type, float scale_x, float scale_y, bool show, SDL_Rect rec)
 {
-	Widgets* widget = new Window(x, y, type, show, rec);
+	Widgets* widget = new Window(x, y, type, scale_x, scale_y, show, rec);
 	widgets.add(widget);
 
 	return widget;
@@ -205,8 +205,8 @@ bool j1GUIManager::MouseCollision(Widgets* widget)
 		int x, y;
 		App->input->GetMousePosition(x, y);
 
-		int posx = widget->pos.x + App->render->camera.x;
-		int posy = widget->pos.y + App->render->camera.y;
+		int posx = widget->rect_x + App->render->camera.x;
+		int posy = widget->rect_y + App->render->camera.y;
 
 		if (x > posx && x < posx + widget->tex_width
 			&& y > posy && y < posy + widget->tex_height)
