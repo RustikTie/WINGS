@@ -50,39 +50,45 @@ bool j1Scene::Start()
 
 		App->map->CleanUp();
 		App->entitymanager->CleanUp();
-		BigWindow = App->gui->AddWindow(66, 80, WINDOW, false, rect_window);
-		StartButton = App->gui->AddButton(100, 100, BUTTON, MAIN, 1, true, &idle, "Play");
-		Continue = App->gui->AddButton(100, 200, BUTTON, MAIN, 1, true, &idle, "Continue");
-		Options = App->gui->AddButton(100, 300, BUTTON, MAIN, 1, true, &idle, "Settings");
-		Credits = App->gui->AddButton(100, 400, BUTTON, MAIN, 1, true, &idle, "Credits");
-		QuitButton = App->gui->AddButton(100, 500, BUTTON, MAIN, 1, true, &idle, "Exit");
-
-		MenuButtons.add(StartButton);
-		MenuButtons.add(Continue);
-		MenuButtons.add(Options);
-		MenuButtons.add(Credits);
-		MenuButtons.add(QuitButton);
-
-	}
-	if (level1)
-	{
-		App->map->Load("map_test.tmx");
-		App->entitymanager->Start();
-		App->entitymanager->AddEnemy(MUSHROOM, 3000, 300);
-		App->entitymanager->AddEnemy(COIN, 2500, 900);
-
-		App->entitymanager->AddEnemy(BEETLE, 2500, 700);
-		App->entitymanager->AddEnemy(MUSHROOM, 6000, 100);
-		App->entitymanager->AddEnemy(BEETLE, 6700, 1800);
-		App->entitymanager->AddEnemy(MUSHROOM, 10000, 200);
 		
+		MenuButtons.add(StartButton = App->gui->AddButton(100, 100, BUTTON, MAIN, 1, true, &idle, "Play"));
+		MenuButtons.add(Continue = App->gui->AddButton(100, 200, BUTTON, MAIN, 1, true, &idle, "Continue"));
+		MenuButtons.add(Options = App->gui->AddButton(100, 300, BUTTON, MAIN, 1, true, &idle, "Settings"));
+		MenuButtons.add(Credits = App->gui->AddButton(100, 400, BUTTON, MAIN, 1, true, &idle, "Credits"));
+		MenuButtons.add(QuitButton = App->gui->AddButton(100, 500, BUTTON, MAIN, 1, true, &idle, "Exit"));
+		
+		OptionsWidgets.add(OptionWindow = App->gui->AddWindow(66, 80, WINDOW, false, rect_window));
+		OptionsWidgets.add(Menu_Options = App->gui->AddButton(0, 0, BUTTON, BACK, 1, false, &idle, "BACK"));
+
+		CreditsWidgets.add(CreditsWindow = App->gui->AddWindow(66, 80, WINDOW, false, rect_window));
+		CreditsWidgets.add(Menu_Credits = App->gui->AddButton(0, 0, BUTTON, BACK, 1, false, &idle, "BACK"));
 	}
-	if (level2)
-	{
-		App->map->CleanUp();
-		App->entitymanager->CleanUp();
-		App->entitymanager->Start();
-		App->map->Load("level2_v2.tmx");
+	else {
+
+		PauseMenu.add(PauseWindow = App->gui->AddWindow(66, 80, WINDOW, false, rect_window));
+		
+		if (level1)
+		{
+			App->map->Load("map_test.tmx");
+			App->entitymanager->Start();
+			App->entitymanager->AddEnemy(MUSHROOM, 3000, 300);
+			App->entitymanager->AddEnemy(COIN, 2500, 900);
+
+			App->entitymanager->AddEnemy(BEETLE, 2500, 700);
+			App->entitymanager->AddEnemy(MUSHROOM, 6000, 100);
+			App->entitymanager->AddEnemy(BEETLE, 6700, 1800);
+			App->entitymanager->AddEnemy(MUSHROOM, 10000, 200);
+
+		}
+		if (level2)
+		{
+			App->map->CleanUp();
+			App->entitymanager->CleanUp();
+			App->entitymanager->Start();
+			App->map->Load("level2_v2.tmx");
+
+			
+		}
 	}
 	
 	App->audio->PlayMusic("audio/music/BGM.ogg");
@@ -158,11 +164,22 @@ bool j1Scene::Update(float dt)
 		if (App->pause_game)
 		{
 			App->pause_game = false;
+
+			for (int i = 0; i < PauseMenu.count(); ++i)
+			{
+				PauseMenu[i]->show = false;
+			}
 		}
 		else
 		{
 			App->pause_game = true;
+
+			for (int i = 0; i < PauseMenu.count(); ++i)
+			{
+				PauseMenu[i]->show = true;
+			}
 		}
+
 	}
 
 	App->map->Draw();
@@ -191,9 +208,6 @@ bool j1Scene::Update(float dt)
 // Called each loop iteration
 bool j1Scene::PostUpdate()
 {
-
-	/*if(App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
-		ret = false;*/
 
 	return Quit;
 }
@@ -236,23 +250,65 @@ bool j1Scene::MouseEvents(Widgets* widget)
 		{
 			widget->texture_rect = &idle;
 		}
+
 		if (widget == StartButton && widget->show)
 		{
 			App->gui->cleaning = true;
 			menu = false;
 			level1 = true;
 		}
+
 		if (widget == Options && widget->show)
 		{
-			BigWindow->show = true;
 			for (int i = 0; i < MenuButtons.count(); ++i)
 			{
 				MenuButtons[i]->show = false;
 			}
+			for (int i = 0; i < OptionsWidgets.count(); ++i)
+			{
+				OptionsWidgets[i]->show = true;
+			}
 		}
+
+		if (widget == Credits && widget->show)
+		{
+			for (int i = 0; i < MenuButtons.count(); ++i)
+			{
+				MenuButtons[i]->show = false;
+			}
+			for (int i = 0; i < CreditsWidgets.count(); ++i)
+			{
+				CreditsWidgets[i]->show = true;
+			}
+		}
+
 		if (widget == QuitButton && widget->show)
 		{
 			Quit = false;
+		}
+
+		if (widget == Menu_Options && widget->show)
+		{
+			for (int i = 0; i < MenuButtons.count(); ++i)
+			{
+				MenuButtons[i]->show = true;
+			}
+			for (int i = 0; i < OptionsWidgets.count(); ++i)
+			{
+				OptionsWidgets[i]->show = false;
+			}
+		}
+
+		if (widget == Menu_Credits && widget->show)
+		{
+			for (int i = 0; i < MenuButtons.count(); ++i)
+			{
+				MenuButtons[i]->show = true;
+			}
+			for (int i = 0; i < CreditsWidgets.count(); ++i)
+			{
+				CreditsWidgets[i]->show = false;
+			}
 		}
 		break;
 

@@ -62,7 +62,8 @@ private:
 	Widgets* QuitButton = nullptr;
 	Widgets* Options = nullptr;
 	Widgets* Credits = nullptr;
-	Widgets* BigWindow = nullptr;
+	Widgets* OptionWindow = nullptr;
+	Widgets* CreditsWindow = nullptr;
 	Widgets* Menu_Credits = nullptr;
 	Widgets* Menu_Options = nullptr;
 	Widgets* OptionsTitle = nullptr;
@@ -89,6 +90,8 @@ private:
 	Widgets* MusicVol = nullptr;
 	Widgets* FXVol = nullptr;
 
+	Widgets* PauseWindow = nullptr;
+
 	SDL_Rect rect_window;
 
 	SDL_Rect hover;
@@ -96,6 +99,9 @@ private:
 	SDL_Rect click;
 
 	p2List<Widgets*> MenuButtons;
+	p2List<Widgets*> OptionsWidgets;
+	p2List<Widgets*> CreditsWidgets;
+	p2List<Widgets*> PauseMenu;
 
 private:
 	bool			Quit = true;
