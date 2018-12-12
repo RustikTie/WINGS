@@ -41,7 +41,7 @@ bool j1GUIManager::Start()
 	background = App->tex->Load("textures/background.png");
 
 	fonts.PushBack(App->font->Load("fonts/SFSlapstickComic.ttf", 30));
-
+	
 	return true;
 }
 
