@@ -162,17 +162,17 @@ Widgets* j1GUIManager::AddText(int x, int y, WidgetType type, bool show, const c
 	return widget;
 }
 
-Widgets* j1GUIManager::AddWindow(int x, int y, WidgetType type, float scalex, float scaley, bool show, SDL_Rect rec)
+Widgets* j1GUIManager::AddWindow(int x, int y, WidgetType type, float scale_x, float scale_y, bool show, SDL_Rect rec)
 {
-	Widgets* widget = new Window(x, y, type, scalex, scaley, show, rec);
+	Widgets* widget = new Window(x, y, type, scale_x, scale_y, show, rec);
 	widgets.add(widget);
 
 	return widget;
 }
 
-Widgets* j1GUIManager::AddImage(int x, int y, WidgetType type, bool show, SDL_Rect rec)
+Widgets* j1GUIManager::AddImage(int x, int y, WidgetType type, bool show, SDL_Rect rec, float scale)
 {
-	Widgets* widget = new Image(x, y, type, show, rec);
+	Widgets* widget = new Image(x, y, type, show, rec, scale);
 	widgets.add(widget);
 
 	return widget;

@@ -14,6 +14,7 @@ public:
 	~Widgets();
 
 	virtual void Draw() {}
+	virtual void EditText(char* text) {}
 
 public:
 	iPoint pos;

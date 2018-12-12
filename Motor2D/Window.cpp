@@ -5,7 +5,7 @@
 #include "j1GUIManager.h"
 
 // window coords {16, 528, 457, 485 }
-Window::Window(int x, int y, WidgetType type, float scalex, float scaley, bool show, SDL_Rect rec) : Widgets(x, y, type)
+Window::Window(int x, int y, WidgetType type, float scale_x, float scale_y, bool show, SDL_Rect rec) : Widgets(x, y, type)
 {
 	this->rec = rec;
 	this->tex = App->gui->GetGuiAtlas();
@@ -14,8 +14,8 @@ Window::Window(int x, int y, WidgetType type, float scalex, float scaley, bool s
 	pos.x = x;
 	pos.y = y;
 
-	scale.x = scalex;
-	scale.y = scaley;
+	scale.x = scale_x;
+	scale.y = scale_y;
 }
 
 Window::~Window()

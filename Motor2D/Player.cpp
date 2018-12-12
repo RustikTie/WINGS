@@ -5,7 +5,8 @@
 #include "j1Input.h"
 #include "j1Audio.h"
 #include "j1GUIManager.h"
- 
+#include "Widgets.h"
+#include "Text.h"
 
 Player::Player(int x, int y) : Entity(x, y)
 {
@@ -51,6 +52,7 @@ bool Player::Awake(pugi::xml_node& config)
 {
 	pugi::xml_node player = config.child("player");
 
+	// PLAYER DATA
 	pos.x = player.child("position").attribute("x").as_float();
 	pos.y = player.child("position").attribute("y").as_float();
 	original_pos.x = player.child("position").attribute("x").as_float();
@@ -68,11 +70,16 @@ bool Player::Awake(pugi::xml_node& config)
 
 	collider = App->collisions->AddCollider({ (int)pos.x, (int)pos.y, 72, 97 }, COLLIDER_PLAYER, (j1Module*)App->entitymanager);
 
+	// SFX
 	walk_fx = App->audio->LoadFx("audio/fx/Walk.wav");
 	jump_fx = App->audio->LoadFx("audio/fx/Jump.wav");
 	glide_fx = App->audio->LoadFx("audio/fx/Glide.wav");
 	death_fx = App->audio->LoadFx("audio/fx/Death.wav");
 
+	//	GUI
+	App->gui->AddImage(850, 10, IMAGE, true, rect_score, 0.5f);
+	sprintf_s(score_text, 10, "%i", score);
+	score_counter = App->gui->AddText(900, 24, TEXT, true, score_text, 0);
 	return true;
 }
 
@@ -188,7 +195,7 @@ void Player::MoveEntity(float dt)
 		App->scene->Start();
 	}
 	
-
+	current_anim->speed = 100.f*dt;
 
 	
 }
@@ -218,7 +225,6 @@ void Player::Draw(float dt)
 {
 	App->render->Blit(graphics, pos.x, pos.y, x_scale, y_scale, flip, &(current_anim->GetCurrentFrame()));
 	collider->SetPos(pos.x, pos.y);
-
 	App->render->Blit(App->gui->GetGuiAtlas(), pos.x - 395, pos.y - 392, 1.f, 1.f, false, &character);
 	switch (lives)
 	{
@@ -259,6 +265,7 @@ void Player::Draw(float dt)
 		break;
 	}
 
+	UpdateScore();
 
 }
 
@@ -291,4 +298,10 @@ bool Player::Save(pugi::xml_node& data) const
 void Player::OnCollision()
 {
 
+}
+
+void Player::UpdateScore()
+{
+	sprintf_s(score_text, 10, "%i", score);
+	score_counter->EditText(score_text);
 }

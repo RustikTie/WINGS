@@ -8,7 +8,7 @@
 class Window : public Widgets
 {
 public:
-	Window(int x, int y, WidgetType type, float scalex, float scaley, bool show, SDL_Rect rec);
+	Window(int x, int y, WidgetType type, float scale_x, float scale_y, bool show, SDL_Rect rec);
 
 	void LinkWidgets(Widgets* widget);
 	void Draw();
