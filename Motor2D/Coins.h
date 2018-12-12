@@ -23,8 +23,8 @@ private:
 	bool				grabbed = false;
 	bool				alive = true;
 	int					score = 1000;
-	int					coinsGrabbed = 0;
-
+	int					coins_grabbed = 0;
+	uint				coin_fx = 0;
 };
 
 #endif // !__COINS_H__

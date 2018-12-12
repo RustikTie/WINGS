@@ -55,6 +55,7 @@ j1Collisions::j1Collisions() : j1Module()
 	matrix[COLLIDER_PICK_UP][COLLIDER_ENEMY] = false;
 	matrix[COLLIDER_PICK_UP][COLLIDER_BLOCKER] = false;
 	matrix[COLLIDER_PICK_UP][COLLIDER_PICK_UP] = false;
+
 }
 
 // Destructor
@@ -66,6 +67,8 @@ j1Collisions::~j1Collisions()
 bool j1Collisions::Awake()
 {
 	LOG("Loading Scene");
+
+
 	bool ret = true;
 
 	return ret;
@@ -158,6 +161,7 @@ bool j1Collisions::Update(float dt)
 				{
 					p2List_item<Entity*>* item;
 					item = App->entitymanager->coins.start;
+
 					while (item != NULL)
 					{
 						if (colliders[i] == item->data->collider)

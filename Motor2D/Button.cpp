@@ -16,7 +16,7 @@ Button::Button(int x, int y, WidgetType type, ButtonType btype, float scale, boo
 	{
 		ButtonText = App->font->Print(text, { 255, 255, 255 }, App->gui->fonts[0]);
 	}
-
+ 
 	blit_scale = scale;
 
 	texture_rect = rec;

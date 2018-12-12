@@ -70,10 +70,13 @@ public:
 	bool checkColisionList(Collider* enemCollider);
 	void Erase_Non_Player_Colliders();
 
+
+
 private:
 	Collider * colliders[MAX_COLLIDERS];
 	bool matrix[COLLIDER_MAX][COLLIDER_MAX];
 	bool debug = false;
+
 };
 
 #endif // __ModuleCollision_H__

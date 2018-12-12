@@ -69,11 +69,12 @@ bool j1Scene::Start()
 		App->map->Load("map_test.tmx");
 		App->entitymanager->Start();
 		App->entitymanager->AddEnemy(MUSHROOM, 3000, 300);
+		App->entitymanager->AddEnemy(COIN, 2500, 900);
+
 		App->entitymanager->AddEnemy(BEETLE, 2500, 700);
 		App->entitymanager->AddEnemy(MUSHROOM, 6000, 100);
 		App->entitymanager->AddEnemy(BEETLE, 6700, 1800);
 		App->entitymanager->AddEnemy(MUSHROOM, 10000, 200);
-		App->entitymanager->AddEnemy(COIN, 2500, 400);
 		
 	}
 	if (level2)
