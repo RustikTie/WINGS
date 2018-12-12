@@ -170,9 +170,9 @@ Widgets* j1GUIManager::AddWindow(int x, int y, WidgetType type, bool show, SDL_R
 	return widget;
 }
 
-Widgets* j1GUIManager::AddImage(int x, int y, WidgetType type, bool show, SDL_Rect rec)
+Widgets* j1GUIManager::AddImage(int x, int y, WidgetType type, bool show, SDL_Rect rec, float scale)
 {
-	Widgets* widget = new Image(x, y, type, show, rec);
+	Widgets* widget = new Image(x, y, type, show, rec, scale);
 	widgets.add(widget);
 
 	return widget;

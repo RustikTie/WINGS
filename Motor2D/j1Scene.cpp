@@ -37,7 +37,7 @@ bool j1Scene::Awake()
 bool j1Scene::Start()
 {
 	rect_window = { 798, 0, 451, 630 };
-
+	rect_score = { 132, 961, 311, 111 };
 	idle = { 4, 0, 175, 79 };
 	hover = { 191, 0, 175, 79 };
 	click = { 378, 0, 175, 79 };
@@ -78,6 +78,8 @@ bool j1Scene::Start()
 			App->entitymanager->AddEnemy(MUSHROOM, 6000, 100);
 			App->entitymanager->AddEnemy(BEETLE, 6700, 1800);
 			App->entitymanager->AddEnemy(MUSHROOM, 10000, 200);
+
+			//App->gui->AddText();
 
 		}
 		if (level2)

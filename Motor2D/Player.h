@@ -7,6 +7,8 @@
 #include "j1Textures.h"
 #include "j1EntityManager.h"
 
+class Widgets;
+
 class Player : public Entity
 {
 public:
@@ -27,7 +29,7 @@ public:
 	void Jump_Glide(float dt);
 
 	void Draw(float dt);
-
+	void UpdateScore();
 	bool Load(pugi::xml_node&);
 	bool Save(pugi::xml_node&) const;
 	void OnCollision();
@@ -71,11 +73,14 @@ public:
 	SDL_Rect		empty = { 0, 872, 53, 45 };
 	SDL_Rect		half = { 0, 825, 53, 45 };
 	SDL_Rect		character = { 0, 969, 53, 47 };
+	SDL_Rect		rect_score = { 132, 961, 311, 111 };
+
+	char			score_text[100];
 
 private:
 	
 	float			old_grav = 0;
-	
+	Widgets*		score_counter = nullptr;
 };
 
 #endif

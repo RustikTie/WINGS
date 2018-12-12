@@ -93,6 +93,7 @@ private:
 	Widgets* PauseWindow = nullptr;
 
 	SDL_Rect rect_window;
+	SDL_Rect rect_score;
 
 	SDL_Rect hover;
 	SDL_Rect idle;
