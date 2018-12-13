@@ -226,6 +226,7 @@ void Player::Draw(float dt)
 	App->render->Blit(graphics, pos.x, pos.y, x_scale, y_scale, flip, &(current_anim->GetCurrentFrame()));
 	collider->SetPos(pos.x, pos.y);
 	App->render->Blit(App->gui->GetGuiAtlas(), pos.x - 395, pos.y - 392, 1.f, 1.f, false, &character);
+
 	switch (lives)
 	{
 	case 6:

@@ -90,6 +90,7 @@
     <ClCompile Include="Slider.cpp">
       <Filter>Desenvolupament  ========\GUI</Filter>
     </ClCompile>
+    <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="j1Window.h">
@@ -205,6 +206,7 @@
     <ClInclude Include="Slider.h">
       <Filter>Desenvolupament  ========\GUI</Filter>
     </ClInclude>
+    <ClInclude Include="Timer.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Programacio 2 ===========">

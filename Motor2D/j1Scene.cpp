@@ -46,6 +46,7 @@ bool j1Scene::Start()
 	//App->map->Load("iso.tmx");
 	if (menu)
 	{
+
 		Background = App->gui->AddBackground(0, 0, BACKGROUND, true, { 0,0,1024,768 });
 
 		App->map->CleanUp();
@@ -62,6 +63,9 @@ bool j1Scene::Start()
 
 		CreditsWidgets.add(CreditsWindow = App->gui->AddWindow(66, 80, WINDOW, 2, 1, false, rect_window));
 		CreditsWidgets.add(Menu_Credits = App->gui->AddButton(0, 0, BUTTON, BACK, 1, false, &idle, "BACK"));
+
+		App->gui->AddTimer(200, 100, TIMER, true, 0, idle);
+
 	}
 	else {
 

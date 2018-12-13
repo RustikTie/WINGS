@@ -14,6 +14,7 @@
 #include "Window.h"
 #include "Image.h"
 #include "Slider.h"
+#include "Timer.h"
 #include "Brofiler\Brofiler.h"
 
 
@@ -190,6 +191,13 @@ Widgets* j1GUIManager::AddButton(int x, int y, WidgetType type, ButtonType btype
 Widgets* j1GUIManager::AddSlider(int x, int y, WidgetType type, SDL_Rect rect)
 {
 	Widgets* widget = new Slider(x, y, type, rect);
+	widgets.add(widget);
+	return widget;
+}
+
+Widgets* j1GUIManager::AddTimer(int x, int y,  WidgetType type, bool show, int font, SDL_Rect rect)
+{
+	Widgets* widget = new Timer(x, y, type, show, font, rect);
 	widgets.add(widget);
 	return widget;
 }
