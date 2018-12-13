@@ -32,4 +32,8 @@ idle = 1 719 74 78
 hover = 85 719 74 78
 click = 169 719 74 78
 locked = 253 719 74 78
+SLIDER
+background = 351 551 358 56
+bar =351 633 358 56
+button = 416 96 75 79
 

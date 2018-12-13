@@ -20,6 +20,7 @@ enum WidgetType
 	BUTTON,
 	TEXT,
 	BACKGROUND,
+	SLIDER,
 	NOTYPE,
 };
 enum ButtonType
@@ -61,6 +62,7 @@ public:
 	Widgets* AddText(int x, int y, WidgetType type, bool show, const char* text, int font);
 	Widgets* AddImage(int x, int y, WidgetType type, bool show, SDL_Rect rec, float scale);
 	Widgets* AddWindow(int x, int y, WidgetType type, float scale_x, float scale_y, bool show, SDL_Rect rec);
+	Widgets* AddSlider(int x, int y, WidgetType type, SDL_Rect rect);
 
 	bool MouseCollision(Widgets* widget);
 

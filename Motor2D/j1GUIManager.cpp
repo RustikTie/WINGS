@@ -13,6 +13,7 @@
 #include "Text.h"
 #include "Window.h"
 #include "Image.h"
+#include "Slider.h"
 #include "Brofiler\Brofiler.h"
 
 
@@ -186,6 +187,12 @@ Widgets* j1GUIManager::AddButton(int x, int y, WidgetType type, ButtonType btype
 	return widget;
 }
 
+Widgets* j1GUIManager::AddSlider(int x, int y, WidgetType type, SDL_Rect rect)
+{
+	Widgets* widget = new Slider(x, y, type, rect);
+	widgets.add(widget);
+	return widget;
+}
 
 SDL_Texture* j1GUIManager::GetBackground() const
 {
