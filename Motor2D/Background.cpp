@@ -17,5 +17,8 @@ Background::~Background()
 
 void Background::Draw()
 {
-	App->render->Blit(App->gui->GetBackground(), pos.x, pos.y, 1, 1, false, &rec);
+	if (show)
+	{
+		App->render->Blit(App->gui->GetBackground(), pos.x, pos.y, 1, 1, false, &rec);
+	}
 }

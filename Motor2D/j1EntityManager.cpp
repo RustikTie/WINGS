@@ -89,7 +89,14 @@ bool j1EntityManager::Update(float dt)
 		{
 			entities[i]->MoveEntity(dt);
 			entities[i]->Draw(dt);
+
+			if (i == 0)
+			{
+				LOG("%d", entities[0]->collider->rect.y);
+			}
 		}
+
+		
 	}
 	if (player_entity != nullptr)
 	{
@@ -165,7 +172,7 @@ void j1EntityManager::SpawnEntity(const EntityInfo& info)
 	// find room for the new enemy
 	uint i = 0;
 	for (; entities[i] != nullptr && i < MAX_ENEMIES; ++i);
-
+	
 	if (i != MAX_ENEMIES)
 	{
 		switch (info.type)

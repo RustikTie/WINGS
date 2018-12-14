@@ -212,6 +212,10 @@ void j1App::PrepareUpdate()
 	else
 	{
 		dt = frame_time.ReadSec();
+		if (dt > 4.0f/ (float)cap)
+		{
+			dt = 1.0f / (float)cap;
+		}
 	}
 	
 	frame_time.Start();

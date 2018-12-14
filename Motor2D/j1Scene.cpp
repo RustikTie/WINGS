@@ -44,60 +44,58 @@ bool j1Scene::Start()
 
 	App->pause_game = false;
 	//App->map->Load("iso.tmx");
-	if (menu)
+	
+
+	App->map->CleanUp();
+	App->entitymanager->CleanUp();
+		
+
+	MenuButtons.add(Background = App->gui->AddBackground(0, 0, BACKGROUND, true, { 0,0,1024,768 }));
+	MenuButtons.add(StartButton = App->gui->AddButton(100, 100, BUTTON, MAIN, 1, true, &idle, "Play"));
+	MenuButtons.add(Continue = App->gui->AddButton(100, 200, BUTTON, MAIN, 1, true, &idle, "Continue"));
+	MenuButtons.add(Options = App->gui->AddButton(100, 300, BUTTON, MAIN, 1, true, &idle, "Settings"));
+	MenuButtons.add(Credits = App->gui->AddButton(100, 400, BUTTON, MAIN, 1, true, &idle, "Credits"));
+	MenuButtons.add(QuitButton = App->gui->AddButton(100, 500, BUTTON, MAIN, 1, true, &idle, "Exit"));
+	
+	OptionsWidgets.add(Background = App->gui->AddBackground(0, 0, BACKGROUND, false, { 0,0,1024,768 }));
+	OptionsWidgets.add(OptionWindow = App->gui->AddWindow(66, 80, WINDOW, 2, 1, false, rect_window));
+	OptionsWidgets.add(Menu_Options = App->gui->AddButton(0, 0, BUTTON, BACK, 1, false, &idle, "BACK"));
+
+	CreditsWidgets.add(Background = App->gui->AddBackground(0, 0, BACKGROUND, false, { 0,0,1024,768 }));
+	CreditsWidgets.add(CreditsWindow = App->gui->AddWindow(66, 80, WINDOW, 2, 1, false, rect_window));
+	CreditsWidgets.add(Menu_Credits = App->gui->AddButton(0, 0, BUTTON, BACK, 1, false, &idle, "BACK"));
+
+	//App->gui->AddTimer(200, 100, TIMER, true, 0, idle);
+
+	PauseMenu.add(PauseWindow = App->gui->AddWindow(500, 80, WINDOW, 1, 1, false, rect_window));
+	PauseMenu.add(Resume = App->gui->AddButton(630, 220, BUTTON, BACK, 1, false, &idle, "Resume"));
+	PauseMenu.add(PauseToMenu = App->gui->AddButton(630, 320, BUTTON, BACK, 1, false, &idle, "Menu"));
+		
+	if (level1)
 	{
+		App->map->Load("map_test.tmx");
+		App->entitymanager->Start();
+		App->entitymanager->AddEnemy(MUSHROOM, 3000, 100);
+		App->entitymanager->AddEnemy(COIN, 2500, 900);
 
-		Background = App->gui->AddBackground(0, 0, BACKGROUND, true, { 0,0,1024,768 });
+		App->entitymanager->AddEnemy(BEETLE, 2500, 700);
+		App->entitymanager->AddEnemy(MUSHROOM, 6000, 100);
+		App->entitymanager->AddEnemy(BEETLE, 6700, 1800);
+		App->entitymanager->AddEnemy(MUSHROOM, 10000, 200);
 
+		//App->gui->AddText();
+
+	}
+	if (level2)
+	{
 		App->map->CleanUp();
 		App->entitymanager->CleanUp();
+		App->entitymanager->Start();
+		App->map->Load("level2_v2.tmx");
+
 		
-		MenuButtons.add(StartButton = App->gui->AddButton(100, 100, BUTTON, MAIN, 1, true, &idle, "Play"));
-		MenuButtons.add(Continue = App->gui->AddButton(100, 200, BUTTON, MAIN, 1, true, &idle, "Continue"));
-		MenuButtons.add(Options = App->gui->AddButton(100, 300, BUTTON, MAIN, 1, true, &idle, "Settings"));
-		MenuButtons.add(Credits = App->gui->AddButton(100, 400, BUTTON, MAIN, 1, true, &idle, "Credits"));
-		MenuButtons.add(QuitButton = App->gui->AddButton(100, 500, BUTTON, MAIN, 1, true, &idle, "Exit"));
-		
-		OptionsWidgets.add(OptionWindow = App->gui->AddWindow(66, 80, WINDOW, 2, 1, false, rect_window));
-		OptionsWidgets.add(Menu_Options = App->gui->AddButton(0, 0, BUTTON, BACK, 1, false, &idle, "BACK"));
-
-		CreditsWidgets.add(CreditsWindow = App->gui->AddWindow(66, 80, WINDOW, 2, 1, false, rect_window));
-		CreditsWidgets.add(Menu_Credits = App->gui->AddButton(0, 0, BUTTON, BACK, 1, false, &idle, "BACK"));
-
-		App->gui->AddTimer(200, 100, TIMER, true, 0, idle);
-
 	}
-	else {
-
-		PauseMenu.add(PauseWindow = App->gui->AddWindow(500, 80, WINDOW, 1, 1, false, rect_window));
-		PauseMenu.add(Resume = App->gui->AddButton(630, 220, BUTTON, BACK, 1, false, &idle, "Resume"));
-		PauseMenu.add(PauseToMenu = App->gui->AddButton(630, 320, BUTTON, BACK, 1, false, &idle, "Menu"));
-		
-		if (level1)
-		{
-			App->map->Load("map_test.tmx");
-			App->entitymanager->Start();
-			App->entitymanager->AddEnemy(MUSHROOM, 3000, 300);
-			App->entitymanager->AddEnemy(COIN, 2500, 900);
-
-			App->entitymanager->AddEnemy(BEETLE, 2500, 700);
-			App->entitymanager->AddEnemy(MUSHROOM, 6000, 100);
-			App->entitymanager->AddEnemy(BEETLE, 6700, 1800);
-			App->entitymanager->AddEnemy(MUSHROOM, 10000, 200);
-
-			//App->gui->AddText();
-
-		}
-		if (level2)
-		{
-			App->map->CleanUp();
-			App->entitymanager->CleanUp();
-			App->entitymanager->Start();
-			App->map->Load("level2_v2.tmx");
-
-			
-		}
-	}
+	
 	
 	App->audio->PlayMusic("audio/music/BGM.ogg");
 
@@ -261,9 +259,13 @@ bool j1Scene::MouseEvents(Widgets* widget)
 		//MainMenu
 		if (widget == StartButton && widget->show)
 		{
-			App->gui->cleaning = true;
 			menu = false;
 			level1 = true;
+			Start();
+			for (int i = 0; i < MenuButtons.count(); ++i)
+			{
+				MenuButtons[i]->show = false;
+			}
 		}
 
 		if (widget == Options && widget->show)
@@ -318,7 +320,6 @@ bool j1Scene::MouseEvents(Widgets* widget)
 				CreditsWidgets[i]->show = false;
 			}
 		}
-		break;
 		//Pause Menu
 		if (widget == PauseToMenu && widget->show)
 		{
@@ -337,9 +338,7 @@ bool j1Scene::MouseEvents(Widgets* widget)
 			{
 				PauseMenu[i]->show = false;
 			}
-			
 		}
-
 		if (widget == Resume && widget->show)
 		{
 			App->pause_game = false;
@@ -349,6 +348,7 @@ bool j1Scene::MouseEvents(Widgets* widget)
 				PauseMenu[i]->show = false;
 			}
 		}
+		break;
 	default:
 		break;
 	}
