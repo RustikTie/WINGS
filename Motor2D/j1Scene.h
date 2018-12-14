@@ -102,6 +102,7 @@ private:
 	SDL_Rect hover;
 	SDL_Rect idle;
 	SDL_Rect click;
+	SDL_Rect locked;
 
 	p2List<Widgets*> MenuButtons;
 	p2List<Widgets*> OptionsWidgets;
@@ -110,6 +111,8 @@ private:
 
 private:
 	bool			Quit = true;
+	p2SString		load_game;
+	bool			saved_game = false;
 };
 
 #endif // __j1SCENE_H__
