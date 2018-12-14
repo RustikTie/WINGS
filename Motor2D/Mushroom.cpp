@@ -20,6 +20,7 @@ Mushroom::Mushroom(int x, int y) : Entity(x, y)
 	walk.speed = 8.f;
 
 	collider = App->collisions->AddCollider({ (int)pos.x, (int)pos.y, 82, 90 }, COLLIDER_ENEMY, (j1Module*)App->entitymanager);
+	collider->rect = { (int)pos.x, (int)pos.y, 82, 90 };
 }
 				
 Mushroom::~Mushroom()
@@ -45,10 +46,17 @@ bool Mushroom::Awake(pugi::xml_node& config)
 void Mushroom::MoveEntity(float dt)
 {
 	pos = original_pos;
-	original_pos.y += gravity*dt;
+	
+	original_pos.y += gravity * dt;
 
 	iPoint EnemyPos = { (int)original_pos.x, (int)original_pos.y };
 	iPoint PlayerPos = { (int)App->entitymanager->player_entity->pos.x, (int)App->entitymanager->player_entity->pos.y };
+
+	if (EnemyPos.x - PlayerPos.x < alert_radius)
+	{
+		
+	}
+	
 
 	if (abs(PlayerPos.x - EnemyPos.x) < alert_radius)
 	{
@@ -103,7 +111,7 @@ void Mushroom::MoveEntity(float dt)
 		move = false;
 	}
 
-	/*collider->SetPos((int)pos.x, (int)pos.y);*/
+	collider->SetPos((int)pos.x, (int)pos.y);
 
 }
 

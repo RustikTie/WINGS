@@ -50,6 +50,7 @@ bool j1EntityManager::Start()
 			player_entity->Start();
 		}
 	}
+
 	return true;
 }
 
@@ -92,7 +93,7 @@ bool j1EntityManager::Update(float dt)
 
 			if (i == 0)
 			{
-				LOG("%d", entities[0]->collider->rect.y);
+				LOG("%d %d", entities[0]->collider->rect.x, entities[0]->collider->rect.y);
 			}
 		}
 
