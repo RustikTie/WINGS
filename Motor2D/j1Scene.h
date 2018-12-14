@@ -98,6 +98,9 @@ private:
 
 	SDL_Rect rect_window;
 	SDL_Rect rect_score;
+	SDL_Rect bg_rect = { 351, 551, 358, 56 };
+	SDL_Rect bar_rect = { 351, 633, 358,56 };
+	SDL_Rect slider_rect = { 416, 96, 75, 79 };
 
 	SDL_Rect hover;
 	SDL_Rect idle;

@@ -78,6 +78,7 @@ bool j1Scene::Start()
 	CreditsWidgets.add(CreditsWindow = App->gui->AddWindow(66, 80, WINDOW, 2, 1, false, rect_window));
 	CreditsWidgets.add(Menu_Credits = App->gui->AddButton(0, 0, BUTTON, BACK, 1, false, &idle, "BACK"));
 
+	FXVol = App->gui->AddSlider(200, 200, SLIDER, bg_rect, bar_rect, &slider_rect, true);
 	//App->gui->AddTimer(200, 100, TIMER, true, 0, idle);
 
 	PauseMenu.add(PauseWindow = App->gui->AddWindow(500, 80, WINDOW, 1, 1, false, rect_window));
@@ -272,10 +273,17 @@ bool j1Scene::MouseEvents(Widgets* widget)
 		{
 			if (widget == Continue && !saved_game)
 			{
-			}
+			}			
 			else
 				widget->texture_rect = &click;
 		}
+		if (widget->type == SLIDER)
+		{
+			int x, y;
+			App->input->GetMousePosition(x, y);
+			widget->updateValue(x);
+		}
+		
 		break;
 
 	case MOUSE_UP:

@@ -63,7 +63,7 @@ public:
 	Widgets* AddText(int x, int y, WidgetType type, bool show, const char* text, int font);
 	Widgets* AddImage(int x, int y, WidgetType type, bool show, SDL_Rect rec, float scale);
 	Widgets* AddWindow(int x, int y, WidgetType type, float scale_x, float scale_y, bool show, SDL_Rect rec);
-	Widgets* AddSlider(int x, int y, WidgetType type, SDL_Rect rect);
+	Widgets* AddSlider(int x, int y, WidgetType type, SDL_Rect bg_rect, SDL_Rect bar_rect, SDL_Rect* slider_rect, bool show);
 	Widgets* AddTimer(int x, int y, WidgetType type, bool show, int font, SDL_Rect rect);
 	bool MouseCollision(Widgets* widget);
 

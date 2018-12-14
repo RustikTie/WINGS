@@ -14,6 +14,9 @@ public:
 	~Widgets();
 
 	virtual void Draw() {}
+
+	virtual void updateValue(float value) { }
+	virtual int getValue() { return 0; }
 	virtual void EditText(char* text) {}
 
 public:

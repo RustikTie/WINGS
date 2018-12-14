@@ -188,9 +188,9 @@ Widgets* j1GUIManager::AddButton(int x, int y, WidgetType type, ButtonType btype
 	return widget;
 }
 
-Widgets* j1GUIManager::AddSlider(int x, int y, WidgetType type, SDL_Rect rect)
+Widgets* j1GUIManager::AddSlider(int x, int y, WidgetType type, SDL_Rect bg_rect, SDL_Rect bar_rect, SDL_Rect* slider_rect, bool show)
 {
-	Widgets* widget = new Slider(x, y, type, rect);
+	Widgets* widget = new Slider(x, y, type, bg_rect, bar_rect, slider_rect, show);
 	widgets.add(widget);
 	return widget;
 }
@@ -215,7 +215,8 @@ SDL_Texture* j1GUIManager::GetGuiAtlas() const
 bool j1GUIManager::MouseCollision(Widgets* widget)
 {
 	bool ret = false;
-	if (widget->type == BUTTON)
+	
+	if (widget->type == BUTTON || widget->type == SLIDER)
 	{
 		int x, y;
 		App->input->GetMousePosition(x, y);
@@ -229,5 +230,6 @@ bool j1GUIManager::MouseCollision(Widgets* widget)
 			ret = true;
 		}
 	}
+
 	return ret;
 }
