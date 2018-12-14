@@ -30,6 +30,7 @@ private:
 
 	bool			move = false;
 	bool			attack = false;
+	bool			alive = true;
 
 	fPoint			position;
 	float			speed;

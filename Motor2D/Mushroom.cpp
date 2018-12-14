@@ -20,6 +20,7 @@ Mushroom::Mushroom(int x, int y) : Entity(x, y)
 	walk.speed = 8.f;
 
 	collider = App->collisions->AddCollider({ (int)pos.x, (int)pos.y, 50, 60}, COLLIDER_ENEMY, (j1Module*)App->entitymanager);
+	death_collider = App->collisions->AddCollider({ (int)pos.x, (int)pos.y, 40, 10 }, COLLIDER_DEATH, (j1Module*)App->entitymanager);
 }
 				
 Mushroom::~Mushroom()
@@ -44,79 +45,87 @@ bool Mushroom::Awake(pugi::xml_node& config)
 
 void Mushroom::MoveEntity(float dt)
 {
-	pos = original_pos;
-	
-	original_pos.y += gravity * dt;
-
-	iPoint EnemyPos = { (int)original_pos.x, (int)original_pos.y };
-	iPoint PlayerPos = { (int)App->entitymanager->player_entity->pos.x, (int)App->entitymanager->player_entity->pos.y };
-
-	if (EnemyPos.x - PlayerPos.x < alert_radius)
+	if (alive)
 	{
-		
-	}
-	
 
-	if (abs(PlayerPos.x - EnemyPos.x) < alert_radius)
-	{
-		counter = 0;
+		pos = original_pos;
 
-		App->pathfinding->CreatePath(EnemyPos, PlayerPos);
-		App->pathfinding->BackTracking(PlayerPos, path);
+		original_pos.y += gravity * dt;
 
-		move = true;
-	}
-	if (move)
-	{
-		iPoint Destination = { path[counter].x, path[counter].y };
-		animation = &walk;
+		iPoint EnemyPos = { (int)original_pos.x, (int)original_pos.y };
+		iPoint PlayerPos = { (int)App->entitymanager->player_entity->pos.x, (int)App->entitymanager->player_entity->pos.y };
 
-		if (EnemyPos.x < Destination.x)
+		if (EnemyPos.x - PlayerPos.x < alert_radius)
 		{
-			original_pos.x += speed*dt;
-			flip = true;
-			if (EnemyPos.x >= Destination.x)
-			{
-				counter++;
-				move = false;
-			}
+
 		}
 
+
+		if (abs(PlayerPos.x - EnemyPos.x) < alert_radius)
+		{
+			counter = 0;
+
+			App->pathfinding->CreatePath(EnemyPos, PlayerPos);
+			App->pathfinding->BackTracking(PlayerPos, path);
+
+			move = true;
+		}
+		if (move)
+		{
+			iPoint Destination = { path[counter].x, path[counter].y };
+			animation = &walk;
+
+			if (EnemyPos.x < Destination.x)
+			{
+				original_pos.x += speed * dt;
+				flip = true;
+				if (EnemyPos.x >= Destination.x)
+				{
+					counter++;
+					move = false;
+				}
+			}
+
+			else
+			{
+				original_pos.x -= speed * dt;
+				flip = false;
+				if (EnemyPos.x <= Destination.x)
+				{
+					counter++;
+					move = false;
+				}
+			}
+
+
+			if (EnemyPos.x != Destination.x && EnemyPos.y != Destination.y)
+			{
+				move = false;
+			}
+
+		}
 		else
 		{
-			original_pos.x -= speed*dt;
-			flip = false;
-			if (EnemyPos.x <= Destination.x)
-			{
-				counter++;
-				move = false;
-			}
+			animation = &idle;
 		}
 
-
-		if (EnemyPos.x != Destination.x && EnemyPos.y != Destination.y)
+		if (abs(App->entitymanager->player_entity->pos.x - EnemyPos.x) >= alert_radius)
 		{
 			move = false;
 		}
 
+		collider->SetPos((int)pos.x + 10, (int)pos.y + 20);
+		death_collider->SetPos((int)pos.x + 15, (int)pos.y + 10);
 	}
-	else
-	{
-		animation = &idle;
-	}
-
-	if (abs(App->entitymanager->player_entity->pos.x - EnemyPos.x) >= alert_radius)
-	{
-		move = false;
-	}
-
-	collider->SetPos((int)pos.x+10, (int)pos.y+20);
 
 }
 
 void Mushroom::Draw(float dt)
 {
-	App->render->Blit(App->entitymanager->GetEntityAtlas(), pos.x, pos.y, x_scale, y_scale, flip, &(animation->GetCurrentFrame()));
+	if (alive)
+	{
+		App->render->Blit(App->entitymanager->GetEntityAtlas(), pos.x, pos.y, x_scale, y_scale, flip, &(animation->GetCurrentFrame()));
+	}
 }
 
 bool Mushroom::Load(pugi::xml_node& data)
@@ -138,5 +147,5 @@ bool Mushroom::Save(pugi::xml_node& data) const
 
 void Mushroom::OnCollision()
 {
-
+	alive = false;
 }

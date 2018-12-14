@@ -187,6 +187,9 @@ void Player::MoveEntity(float dt)
 	App->render->camera.x = (-pos.x + 400);
 	App->render->camera.y = (-pos.y + 400);
 
+	current_anim->speed = 100.f*dt;
+
+
 	if (lives <= 0)
 	{
 		App->scene->menu = true;
@@ -195,7 +198,6 @@ void Player::MoveEntity(float dt)
 		App->scene->Start();
 	}
 	
-	current_anim->speed = 100.f*dt;
 
 	
 }

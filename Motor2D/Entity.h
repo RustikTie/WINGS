@@ -49,7 +49,7 @@ public:
 	fPoint			initial_pos = { 0.0f,0.0f };
 
 	Collider* collider = nullptr;
-
+	Collider* death_collider = nullptr;
 	p2DynArray<iPoint> path;
 
 	int x_scale;

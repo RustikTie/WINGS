@@ -17,7 +17,9 @@ Beetle::Beetle(int x, int y) : Entity(x, y)
 	fly.loop = true;
 	fly.speed = 8.f;
 
-	collider = App->collisions->AddCollider({ (int)pos.x, (int)pos.y, 128, 60 }, COLLIDER_ENEMY, (j1Module*)App->entitymanager);
+	collider = App->collisions->AddCollider({ (int)pos.x, (int)pos.y+50, 128, 60 }, COLLIDER_ENEMY, (j1Module*)App->entitymanager);
+	death_collider = App->collisions->AddCollider({ (int)pos.x+5, (int)pos.y+45, 118, 10 }, COLLIDER_DEATH, (j1Module*)App->entitymanager);
+
 }
 
 Beetle::~Beetle()
@@ -42,91 +44,101 @@ bool Beetle::Awake(pugi::xml_node& config)
 
 void Beetle::MoveEntity(float dt)
 {
-	pos = original_pos;
-
-	iPoint EnemyPos = { (int)original_pos.x, (int)original_pos.y };
-	iPoint PlayerPos = { (int)App->entitymanager->player_entity->pos.x, (int)App->entitymanager->player_entity->pos.y };
-
-	if (abs(PlayerPos.x - EnemyPos.x) < alert_radius)
+	if (alive)
 	{
-		counter = 0;
+		pos = original_pos;
 
-		App->pathfinding->CreatePath(EnemyPos, PlayerPos);
-		App->pathfinding->BackTracking(PlayerPos, path);
+		iPoint EnemyPos = { (int)original_pos.x, (int)original_pos.y };
+		iPoint PlayerPos = { (int)App->entitymanager->player_entity->pos.x, (int)App->entitymanager->player_entity->pos.y };
 
-		move = true;
-	}
-
-	if (move)
-	{
-		iPoint Destination = { path[counter].x, path[counter].y };
-
-		animation = &fly;
-
-		if (EnemyPos.x < Destination.x)
+		if (abs(PlayerPos.x - EnemyPos.x) < alert_radius)
 		{
-			original_pos.x += speed*dt;
-			flip = true;
-			if (EnemyPos.x >= Destination.x)
-			{
-				counter++;
-				move = false;
-			}
+			counter = 0;
+
+			App->pathfinding->CreatePath(EnemyPos, PlayerPos);
+			App->pathfinding->BackTracking(PlayerPos, path);
+
+			move = true;
 		}
 
-		else
+		if (move)
 		{
-			original_pos.x -= speed*dt;
-			flip = false;
-			if (EnemyPos.x <= Destination.x)
-			{
-				counter++;
-				move = false;
-			}
-		}
+			iPoint Destination = { path[counter].x, path[counter].y };
 
-		if (EnemyPos.y < Destination.y)
-		{
-			original_pos.y += speed*dt;
-			if (EnemyPos.y >= Destination.y)
-			{
-				counter++;
-				move = false;
-			}
-		}
+			animation = &fly;
 
-		else
-		{
-			original_pos.y -= speed*dt;
+			if (EnemyPos.x < Destination.x)
+			{
+				original_pos.x += speed * dt;
+				flip = true;
+				if (EnemyPos.x >= Destination.x)
+				{
+					counter++;
+					move = false;
+				}
+			}
+
+			else
+			{
+				original_pos.x -= speed * dt;
+				flip = false;
+				if (EnemyPos.x <= Destination.x)
+				{
+					counter++;
+					move = false;
+				}
+			}
+
 			if (EnemyPos.y < Destination.y)
 			{
-				counter++;
+				original_pos.y += speed * dt;
+				if (EnemyPos.y >= Destination.y)
+				{
+					counter++;
+					move = false;
+				}
+			}
+
+			else
+			{
+				original_pos.y -= speed * dt;
+				if (EnemyPos.y < Destination.y)
+				{
+					counter++;
+					move = false;
+				}
+			}
+
+
+			if (EnemyPos.x != Destination.x && EnemyPos.y != Destination.y)
+			{
 				move = false;
 			}
+
+		}
+		else
+		{
+			animation = &fly;
 		}
 
-
-		if (EnemyPos.x != Destination.x && EnemyPos.y != Destination.y)
+		if (abs(App->entitymanager->player_entity->pos.x - EnemyPos.x) >= alert_radius)
 		{
 			move = false;
 		}
-
-	}
-	else
-	{
-		animation = &fly;
+		collider->SetPos(pos.x, pos.y + 50);
+		death_collider->SetPos(pos.x + 5, pos.y + 40);
 	}
 
-	if (abs(App->entitymanager->player_entity->pos.x - EnemyPos.x) >= alert_radius)
-	{
-		move = false;
-	}
 }
 
 void Beetle::Draw(float dt)
 {
-	collider->SetPos(pos.x, pos.y+50);
-	App->render->Blit(App->entitymanager->GetEntityAtlas(), pos.x, pos.y, x_scale, y_scale, flip, &(animation->GetCurrentFrame()));
+	if (alive)
+	{
+
+		App->render->Blit(App->entitymanager->GetEntityAtlas(), pos.x, pos.y, x_scale, y_scale, flip, &(animation->GetCurrentFrame()));
+	}
+	
 }
 
 bool Beetle::Load(pugi::xml_node& data)
@@ -146,5 +158,5 @@ bool Beetle::Save(pugi::xml_node& data) const
 
 void Beetle::OnCollision()
 {
-
+	alive = false;
 }

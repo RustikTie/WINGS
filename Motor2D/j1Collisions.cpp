@@ -9,6 +9,8 @@
 #include "j1Pathfinding.h"
 #include "j1Audio.h"
 #include "Brofiler\Brofiler.h"
+#include "Mushroom.h"
+#include "Beetle.h"
 
 j1Collisions::j1Collisions() : j1Module()
 {
@@ -23,6 +25,7 @@ j1Collisions::j1Collisions() : j1Module()
 	matrix[COLLIDER_GROUND][COLLIDER_ENEMY] = true;
 	matrix[COLLIDER_GROUND][COLLIDER_BLOCKER] = false;
 	matrix[COLLIDER_GROUND][COLLIDER_PICK_UP] = false;
+	matrix[COLLIDER_GROUND][COLLIDER_DEATH] = false;
 
 	matrix[COLLIDER_WALL][COLLIDER_GROUND] = false;
 	matrix[COLLIDER_WALL][COLLIDER_WALL] = false;
@@ -30,6 +33,7 @@ j1Collisions::j1Collisions() : j1Module()
 	matrix[COLLIDER_WALL][COLLIDER_ENEMY] = true;
 	matrix[COLLIDER_WALL][COLLIDER_BLOCKER] = false;
 	matrix[COLLIDER_WALL][COLLIDER_PICK_UP] = false;
+	matrix[COLLIDER_WALL][COLLIDER_DEATH] = false;
 
 	matrix[COLLIDER_PLAYER][COLLIDER_GROUND] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_WALL] = true;
@@ -37,24 +41,35 @@ j1Collisions::j1Collisions() : j1Module()
 	matrix[COLLIDER_PLAYER][COLLIDER_ENEMY] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_BLOCKER] = false;
 	matrix[COLLIDER_PLAYER][COLLIDER_PICK_UP] = true;
+	matrix[COLLIDER_PLAYER][COLLIDER_DEATH] = false;
 
 	matrix[COLLIDER_ENEMY][COLLIDER_GROUND] = true;
 	matrix[COLLIDER_ENEMY][COLLIDER_PLAYER] = true;
 	matrix[COLLIDER_ENEMY][COLLIDER_ENEMY] = false;
 	matrix[COLLIDER_ENEMY][COLLIDER_BLOCKER] = true;
 	matrix[COLLIDER_ENEMY][COLLIDER_PICK_UP] = false;
+	matrix[COLLIDER_ENEMY][COLLIDER_DEATH] = false;
 
 	matrix[COLLIDER_BLOCKER][COLLIDER_GROUND] = false;
 	matrix[COLLIDER_BLOCKER][COLLIDER_PLAYER] = false;
 	matrix[COLLIDER_BLOCKER][COLLIDER_ENEMY] = true;
 	matrix[COLLIDER_BLOCKER][COLLIDER_BLOCKER] = false;
 	matrix[COLLIDER_BLOCKER][COLLIDER_PICK_UP] = false;
-	
+	matrix[COLLIDER_BLOCKER][COLLIDER_DEATH] = false;
+
 	matrix[COLLIDER_PICK_UP][COLLIDER_GROUND] = false;
 	matrix[COLLIDER_PICK_UP][COLLIDER_PLAYER] = true;
 	matrix[COLLIDER_PICK_UP][COLLIDER_ENEMY] = false;
 	matrix[COLLIDER_PICK_UP][COLLIDER_BLOCKER] = false;
 	matrix[COLLIDER_PICK_UP][COLLIDER_PICK_UP] = false;
+	matrix[COLLIDER_PICK_UP][COLLIDER_DEATH] = false;
+
+	matrix[COLLIDER_DEATH][COLLIDER_GROUND] = false;
+	matrix[COLLIDER_DEATH][COLLIDER_PLAYER] = true;
+	matrix[COLLIDER_DEATH][COLLIDER_ENEMY] = false;
+	matrix[COLLIDER_DEATH][COLLIDER_BLOCKER] = false;
+	matrix[COLLIDER_DEATH][COLLIDER_PICK_UP] = false;
+	matrix[COLLIDER_DEATH][COLLIDER_DEATH] = false;
 
 }
 
@@ -144,6 +159,28 @@ bool j1Collisions::Update(float dt)
 
 			}
 
+			if (colliders[i]->type == COLLIDER_DEATH)
+			{
+				if (colliders[i]->CheckCollision(App->entitymanager->player_entity->collider->rect) == true && !App->entitymanager->player_entity->godmode)
+				{
+					int j = 0;
+					while (App->entitymanager->entities[j] != NULL)
+					{
+						if (App->entitymanager->entities[j]->death_collider = colliders[i])
+						{
+							colliders[i]->SetCollisionOffset(App->entitymanager->player_entity->collider->rect, App->entitymanager->player_entity->gravity);
+							//App->entitymanager->entities[j]->OnCollision();
+							App->entitymanager->player_entity->pos.y -= colliders[i]->col_offset*dt;
+							App->entitymanager->entities[j]->collider->to_delete = true;
+							colliders[i]->to_delete = true;
+
+							//App->entitymanager->player_entity->jumping = true;
+						}
+						++j;
+					}
+				}
+			}
+
 			if (colliders[i]->type == COLLIDER_ENEMY)
 			{
 				if (colliders[i]->CheckCollision(App->entitymanager->player_entity->collider->rect) == true && !App->entitymanager->player_entity->godmode)
@@ -154,6 +191,8 @@ bool j1Collisions::Update(float dt)
 
 				}
 			}
+
+			
 
 			if (colliders[i]->type == COLLIDER_PICK_UP)
 			{
@@ -258,6 +297,8 @@ void j1Collisions::DebugDraw()
 			case COLLIDER_PICK_UP: // red
 				App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha, false);
 				break;
+			case COLLIDER_DEATH: // black
+				App->render->DrawQuad(colliders[i]->rect, 0,0,0, alpha, false);
 			}
 		}
 
