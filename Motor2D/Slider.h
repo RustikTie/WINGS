@@ -21,7 +21,7 @@ private:
 	SDL_Rect bar_rect;
 	SDL_Rect* slider_rect = nullptr;
 	int real_width;
-	int last_mouse_pos = 0;
+	int last_mouse_pos = 1;
 	bool show;
 };
 
