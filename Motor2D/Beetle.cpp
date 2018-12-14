@@ -17,7 +17,7 @@ Beetle::Beetle(int x, int y) : Entity(x, y)
 	fly.loop = true;
 	fly.speed = 8.f;
 
-	collider = App->collisions->AddCollider({ (int)pos.x, (int)pos.y, 128, 116 }, COLLIDER_ENEMY, (j1Module*)App->entitymanager);
+	collider = App->collisions->AddCollider({ (int)pos.x, (int)pos.y, 128, 60 }, COLLIDER_ENEMY, (j1Module*)App->entitymanager);
 }
 
 Beetle::~Beetle()
@@ -125,7 +125,7 @@ void Beetle::MoveEntity(float dt)
 
 void Beetle::Draw(float dt)
 {
-	collider->SetPos(pos.x, pos.y);
+	collider->SetPos(pos.x, pos.y+50);
 	App->render->Blit(App->entitymanager->GetEntityAtlas(), pos.x, pos.y, x_scale, y_scale, flip, &(animation->GetCurrentFrame()));
 }
 
