@@ -41,22 +41,35 @@ bool j1Scene::Start()
 	idle = { 4, 0, 175, 79 };
 	hover = { 191, 0, 175, 79 };
 	click = { 378, 0, 175, 79 };
-
+	locked = { 566, 0, 175, 79 };
 	App->pause_game = false;
 	//App->map->Load("iso.tmx");
 	
 
 	App->map->CleanUp();
 	App->entitymanager->CleanUp();
-		
+
+	
 
 	MenuButtons.add(Background = App->gui->AddBackground(0, 0, BACKGROUND, true, { 0,0,1024,768 }));
 	MenuButtons.add(StartButton = App->gui->AddButton(100, 100, BUTTON, MAIN, 1, true, &idle, "Play"));
-	MenuButtons.add(Continue = App->gui->AddButton(100, 200, BUTTON, MAIN, 1, true, &idle, "Continue"));
 	MenuButtons.add(Options = App->gui->AddButton(100, 300, BUTTON, MAIN, 1, true, &idle, "Settings"));
 	MenuButtons.add(Credits = App->gui->AddButton(100, 400, BUTTON, MAIN, 1, true, &idle, "Credits"));
 	MenuButtons.add(QuitButton = App->gui->AddButton(100, 500, BUTTON, MAIN, 1, true, &idle, "Exit"));
 	
+	pugi::xml_document data;
+	pugi::xml_parse_result result = data.load_file(load_game.GetString());
+
+	if (result != NULL)
+	{
+		MenuButtons.add(Continue = App->gui->AddButton(100, 200, BUTTON, MAIN, 1, true, &idle, "Continue"));
+		saved_game = true;
+	}
+	else
+	{
+		MenuButtons.add(Continue = App->gui->AddButton(100, 200, BUTTON, MAIN, 1, true, &locked, "Continue"));
+	}
+
 	OptionsWidgets.add(Background = App->gui->AddBackground(0, 0, BACKGROUND, false, { 0,0,1024,768 }));
 	OptionsWidgets.add(OptionWindow = App->gui->AddWindow(66, 80, WINDOW, 2, 1, false, rect_window));
 	OptionsWidgets.add(Menu_Options = App->gui->AddButton(0, 0, BUTTON, BACK, 1, false, &idle, "BACK"));
@@ -236,6 +249,10 @@ bool j1Scene::MouseEvents(Widgets* widget)
 	case MOUSE_ENTER:
 		if (widget->type == BUTTON)
 		{
+			if (widget == Continue && !saved_game)
+			{			
+			}
+			else
 			widget->texture_rect = &hover;
 		}
 		break;
@@ -243,21 +260,33 @@ bool j1Scene::MouseEvents(Widgets* widget)
 	case MOUSE_EXIT:
 		if (widget->type == BUTTON)
 		{
-			widget->texture_rect = &idle;
+			if (widget == Continue && !saved_game)
+			{
+			}
+			else
+				widget->texture_rect = &idle;
 		}
 		break;
 
 	case MOUSE_DOWN:
 		if (widget->type == BUTTON)
 		{
-			widget->texture_rect = &click;
+			if (widget == Continue && !saved_game)
+			{
+			}
+			else
+				widget->texture_rect = &click;
 		}
 		break;
 
 	case MOUSE_UP:
 		if (widget->type == BUTTON)
 		{
-			widget->texture_rect = &idle;
+			if (widget == Continue && !saved_game)
+			{
+			}
+			else
+				widget->texture_rect = &idle;
 		}
 		//MainMenu
 		if (widget == StartButton && widget->show)
