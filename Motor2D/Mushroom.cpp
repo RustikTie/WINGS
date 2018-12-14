@@ -20,7 +20,7 @@ Mushroom::Mushroom(int x, int y) : Entity(x, y)
 	walk.speed = 8.f;
 
 	collider = App->collisions->AddCollider({ (int)pos.x, (int)pos.y, 82, 90 }, COLLIDER_ENEMY, (j1Module*)App->entitymanager);
-	collider->rect = { (int)pos.x, (int)pos.y, 82, 90 };
+	collider->rect = { (int)pos.x, (int)pos.y, 82, 90 }
 }
 				
 Mushroom::~Mushroom()

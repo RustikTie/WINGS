@@ -131,8 +131,8 @@ void Beetle::Draw(float dt)
 
 bool Beetle::Load(pugi::xml_node& data)
 {
-	original_pos.x = data.child("position").attribute("x").as_float();
-	original_pos.y = data.child("position").attribute("y").as_float();
+	original_pos.x = data.attribute("x").as_float();
+	original_pos.y = data.attribute("y").as_float();
 	return true;
 }
 
