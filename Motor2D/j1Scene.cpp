@@ -88,7 +88,10 @@ bool j1Scene::Start()
 	{
 		App->map->Load("map_test.tmx");
 		App->entitymanager->Start();
+	
+		
 		App->entitymanager->AddEnemy(MUSHROOM, 3000, 100);
+		
 		App->entitymanager->AddEnemy(COIN, 2500, 900);
 
 		App->entitymanager->AddEnemy(BEETLE, 2500, 700);

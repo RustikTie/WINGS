@@ -50,6 +50,7 @@ bool j1EntityManager::Start()
 			player_entity->Start();
 		}
 	}
+
 	return true;
 }
 
@@ -92,7 +93,7 @@ bool j1EntityManager::Update(float dt)
 
 			if (i == 0)
 			{
-				LOG("%d", entities[0]->collider->rect.y);
+				LOG("%d %d", entities[0]->collider->rect.x, entities[0]->collider->rect.y);
 			}
 		}
 
@@ -205,8 +206,8 @@ bool j1EntityManager::Load(pugi::xml_node& data)
 		player_entity->Load(data);
 	}
 
-	pugi::xml_node mushroomnode = data.append_child("mushroom").first_child();
-	pugi::xml_node beetlenode = data.append_child("beetle").first_child();
+	pugi::xml_node mushroomnode = data.child("mushroom").first_child();
+	pugi::xml_node beetlenode = data.child("beetle").first_child();
 
 
 	for (uint i = 0; i < MAX_ENEMIES; ++i)

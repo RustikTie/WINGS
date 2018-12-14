@@ -173,14 +173,11 @@ bool j1Collisions::Update(float dt)
 					}
 				}
 			}
-		}
 
-		//ENEMY COLLISIONS
-		for (uint i = 0; i < MAX_COLLIDERS; ++i)
-		{
-			for (uint j = 0; j < MAX_ENEMIES; ++j)
+			//ENEMY COLLISIONS
+			for (uint j = 0; j < MAX_ENEMIES; j++)
 			{
-				if (App->entitymanager->entities[j] != nullptr && App->entitymanager->entities[i] != nullptr)
+				if (App->entitymanager->entities[j] != nullptr && colliders[i] != nullptr)
 				{
 					if (colliders[i]->type == COLLIDER_WALL || colliders[i]->type == COLLIDER_BLOCKER)
 					{
@@ -205,6 +202,7 @@ bool j1Collisions::Update(float dt)
 							{
 								colliders[i]->SetCollisionOffset(App->entitymanager->entities[j]->collider->rect, App->entitymanager->entities[j]->gravity);
 								App->entitymanager->entities[j]->original_pos.y -= colliders[i]->col_offset*dt;
+
 							}
 						}
 
@@ -348,15 +346,17 @@ void j1Collisions::Erase_Non_Player_Colliders()
 
 bool Collider::CheckCollision(const SDL_Rect& r)const
 {
-	if (r.y + r.h > rect.y - 2 && r.y < rect.y + rect.h && r.x + r.w >= rect.x  && r.x <= rect.x + rect.w)
-	{
-		return true;
-	}
+	
+		if (r.y + r.h > rect.y - 2 && r.y < rect.y + rect.h && r.x + r.w >= rect.x  && r.x <= rect.x + rect.w)
+		{
+			return true;
+		}
 
-	else
-	{
-		return false;
-	}
+		else
+		{
+			return false;
+		}
+	
 }
 
 void Collider::SetCollisionOffset(const SDL_Rect& r, int speed)
