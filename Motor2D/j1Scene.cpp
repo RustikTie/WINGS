@@ -332,6 +332,7 @@ bool j1Scene::MouseEvents(Widgets* widget)
 
 			App->map->CleanUp();
 			App->entitymanager->CleanUp();
+			Start();
 
 			for (int i = 0; i < MenuButtons.count(); ++i)
 			{

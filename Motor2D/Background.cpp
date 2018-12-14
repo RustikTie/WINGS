@@ -19,6 +19,9 @@ void Background::Draw()
 {
 	if (show)
 	{
-		App->render->Blit(App->gui->GetBackground(), pos.x, pos.y, 1, 1, false, &rec);
+		rect_x = pos.x - App->render->camera.x;
+		rect_y = pos.y - App->render->camera.y;
+
+		App->render->Blit(App->gui->GetBackground(), rect_x, rect_y, 1, 1, false, &rec);
 	}
 }
