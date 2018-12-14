@@ -159,27 +159,27 @@ bool j1Collisions::Update(float dt)
 
 			}
 
-			if (colliders[i]->type == COLLIDER_DEATH)
-			{
-				if (colliders[i]->CheckCollision(App->entitymanager->player_entity->collider->rect) == true && !App->entitymanager->player_entity->godmode)
-				{
-					int j = 0;
-					while (App->entitymanager->entities[j] != NULL)
-					{
-						if (App->entitymanager->entities[j]->death_collider = colliders[i])
-						{
-							colliders[i]->SetCollisionOffset(App->entitymanager->player_entity->collider->rect, App->entitymanager->player_entity->gravity);
-							//App->entitymanager->entities[j]->OnCollision();
-							App->entitymanager->player_entity->pos.y -= colliders[i]->col_offset*dt;
-							App->entitymanager->entities[j]->collider->to_delete = true;
-							colliders[i]->to_delete = true;
+			//if (colliders[i]->type == COLLIDER_DEATH)
+			//{
+			//	if (colliders[i]->CheckCollision(App->entitymanager->player_entity->collider->rect) == true && !App->entitymanager->player_entity->godmode)
+			//	{
+			//		int j = 0;
+			//		while (App->entitymanager->entities[j] != NULL)
+			//		{
+			//			if (App->entitymanager->entities[j]->death_collider = colliders[i])
+			//			{
+			//				colliders[i]->SetCollisionOffset(App->entitymanager->player_entity->collider->rect, App->entitymanager->player_entity->gravity);
+			//				//App->entitymanager->entities[j]->OnCollision();
+			//				App->entitymanager->player_entity->pos.y -= colliders[i]->col_offset*dt;
+			//				App->entitymanager->entities[j]->collider->to_delete = true;
+			//				colliders[i]->to_delete = true;
 
-							//App->entitymanager->player_entity->jumping = true;
-						}
-						++j;
-					}
-				}
-			}
+			//				//App->entitymanager->player_entity->jumping = true;
+			//			}
+			//			++j;
+			//		}
+			//	}
+			//}
 
 			if (colliders[i]->type == COLLIDER_ENEMY)
 			{
