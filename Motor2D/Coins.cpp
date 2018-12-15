@@ -4,6 +4,8 @@
 
 Coins::Coins(int x, int y) : Entity(x,y)
 {
+	type = COIN;
+
 	idle.PushBack({ 369, 51, 45, 44 });
 	idle.PushBack({ 419, 51, 45, 44 });
 	idle.PushBack({ 469, 51, 45, 44 });
@@ -51,6 +53,22 @@ void Coins::Draw(float dt)
 	}
 
 }
+
+bool Coins::Load(pugi::xml_node& data)
+{
+	pos.x = data.attribute("x").as_float();
+	pos.y = data.attribute("y").as_float();
+	return true;
+}
+
+bool Coins::Save(pugi::xml_node& data) const
+{
+	pugi::xml_node playernode = data.append_child("position");
+	playernode.append_attribute("x") = pos.x;
+	playernode.append_attribute("y") = pos.y;
+	return true;
+}
+
 void Coins::OnCollision()
 {
 	grabbed = true;

@@ -208,7 +208,7 @@ bool j1EntityManager::Load(pugi::xml_node& data)
 
 	pugi::xml_node mushroomnode = data.child("mushroom").first_child();
 	pugi::xml_node beetlenode = data.child("beetle").first_child();
-
+	pugi::xml_node coinnode = data.child("coin").first_child();
 
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{
@@ -223,6 +223,11 @@ bool j1EntityManager::Load(pugi::xml_node& data)
 			{
 				entities[i]->Load(beetlenode);
 				beetlenode = beetlenode.next_sibling();
+			}
+			if (entities[i]->type == COIN)
+			{
+				entities[i]->Load(coinnode);
+				coinnode = coinnode.next_sibling();
 			}
 		}
 	}
@@ -240,6 +245,7 @@ bool j1EntityManager::Save(pugi::xml_node& data) const
 
 	pugi::xml_node mushroomnode = data.append_child("mushroom");
 	pugi::xml_node beetlenode = data.append_child("beetle");
+	pugi::xml_node coinnode = data.append_child("coin");
 
 
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
@@ -253,6 +259,10 @@ bool j1EntityManager::Save(pugi::xml_node& data) const
 			if (entities[i]->type == BEETLE)
 			{
 				entities[i]->Save(beetlenode);
+			}
+			if (entities[i]->type == COIN)
+			{
+				entities[i]->Save(coinnode);
 			}
 		}
 	}
