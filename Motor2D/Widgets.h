@@ -15,7 +15,7 @@ public:
 
 	virtual void Draw() {}
 
-	virtual void updateValue(float value) { }
+	virtual void updateValue(float mouse_pos) { }
 	virtual int getValue() { return 0; }
 	virtual void EditText(char* text) {}
 
