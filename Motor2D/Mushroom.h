@@ -32,7 +32,6 @@ private:
 	bool			attack = false;
 	bool			alive = true;
 	fPoint			position;
-	//float			speed;
 	float			alert_radius;
 };
 

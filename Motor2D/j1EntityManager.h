@@ -2,11 +2,9 @@
 #define __ENTITY_MANAGER_H__
 
 #include "j1Module.h"
-#include "Entity.h"
 #include "j1Map.h"
 #include "p2List.h"
 #include "p2Point.h"
-#include "Player.h"
 
 #define MAX_ENEMIES 1000
 #define SCREEN_SIZE 1
@@ -55,8 +53,6 @@ public:
 	bool Save(pugi::xml_node&) const;
 
 	fPoint				initial_pos = { 0.0f, 0.0f };
-
-	//void EraseEnemies();
 
 	void SpawnEntity(const EntityInfo& info);
 

@@ -20,25 +20,25 @@ public:
 	virtual void EditText(char* text) {}
 
 public:
-	iPoint pos;
-	WidgetType type;
-	UIEvents event_type;
+	iPoint		pos;
+	WidgetType	type;
+	UIEvents	event_type;
 
-	SDL_Rect* texture_rect;
-	SDL_Rect debug_rect;
-	fPoint scale;
+	SDL_Rect*	texture_rect;
+	SDL_Rect	debug_rect;
+	fPoint		scale;
 
-	uint tex_width;
-	uint tex_height;
+	uint		tex_width;
+	uint		tex_height;
 
-	int rect_x;
-	int rect_y;
+	int			rect_x;
+	int			rect_y;
 
-	bool mouse_in = false;
-	bool mouse_out = false;
+	bool		mouse_in = false;
+	bool		mouse_out = false;
 
-	bool debug = false;
-	bool show = false;
+	bool		debug = false;
+	bool		show = false;
 };
 
 #endif __WIDGETS__H

@@ -270,58 +270,6 @@ bool j1EntityManager::Save(pugi::xml_node& data) const
 	return true;
 }
 
-//void j1EntityManager::OnCollision(Collider* c1, Collider* c2, float counterforce)
-//{
-//
-//	for (uint i = 0; i < MAX_ENEMIES; ++i)
-//	{
-//		if (entities[i] != nullptr && entities[i]->GetCollider() == c1)
-//		{
-//			if (c2->type == COLLIDER_GROUND)
-//			{
-//				entities[i]->original_pos.y -= counterforce;
-//			}
-//
-//			if (c2->type == COLLIDER_BLOCKER)
-//			{
-//				if (!entities[i]->flip)
-//				{
-//					entities[i]->original_pos.x -= counterforce;
-//				}
-//				else
-//				{
-//					entities[i]->original_pos.x += counterforce;
-//				}
-//			}
-//
-//			if (c2->type == COLLIDER_WALL)
-//			{
-//				if (!entities[i]->flip)
-//				{
-//					entities[i]->original_pos.x -= counterforce;
-//				}
-//				else
-//				{
-//					entities[i]->original_pos.x += counterforce;
-//				}
-//			}
-//		}
-//
-//		if (player_entity != nullptr && player_entity->GetCollider() == c1)
-//		{
-//			if (c2->type == COLLIDER_GROUND)
-//			{
-//				player_entity->pos.y -= counterforce;
-//			}
-//
-//			if (c2->type == COLLIDER_WALL)
-//			{
-//				player_entity->original_pos.x -= counterforce;
-//			}
-//		}
-//	}
-//
-//}
 
 SDL_Texture* j1EntityManager::GetEntityAtlas() const
 {
