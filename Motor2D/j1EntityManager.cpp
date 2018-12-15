@@ -224,11 +224,11 @@ bool j1EntityManager::Load(pugi::xml_node& data)
 				entities[i]->Load(beetlenode);
 				beetlenode = beetlenode.next_sibling();
 			}
-			if (entities[i]->type == COIN)
+			/*if (entities[i]->type == COIN)
 			{
 				entities[i]->Load(coinnode);
 				coinnode = coinnode.next_sibling();
-			}
+			}*/
 		}
 	}
 	
@@ -260,10 +260,10 @@ bool j1EntityManager::Save(pugi::xml_node& data) const
 			{
 				entities[i]->Save(beetlenode);
 			}
-			if (entities[i]->type == COIN)
+			/*if (entities[i]->type == COIN)
 			{
 				entities[i]->Save(coinnode);
-			}
+			}*/
 		}
 	}
 

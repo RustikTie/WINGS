@@ -276,6 +276,8 @@ bool Player::Load(pugi::xml_node& data)
 {
 	pos.x = data.child("player").attribute("x").as_float();
 	pos.y = data.child("player").attribute("y").as_float();
+	lives = data.child("player").attribute("lives").as_int();
+	score = data.child("player").attribute("score").as_int();
 	if (App->scene->level1 != data.child("player").attribute("map1").as_bool())
 	{
 		App->scene->ChangeMap(pos.x, pos.y);
@@ -292,6 +294,8 @@ bool Player::Save(pugi::xml_node& data) const
 	pugi::xml_node playernode = data.append_child("player");
 	playernode.append_attribute("x") = pos.x;
 	playernode.append_attribute("y") = pos.y;
+	playernode.append_attribute("lives") = lives;
+	playernode.append_attribute("score") = score;
 	playernode.append_attribute("map1") = App->scene->level1;
 	playernode.append_attribute("map2") = App->scene->level2;
 
