@@ -66,43 +66,43 @@ void Beetle::MoveEntity(float dt)
 			iPoint Destination = { path[counter].x, path[counter].y };
 
 			animation = &fly;
-
+			//x
 			if (EnemyPos.x < Destination.x)
 			{
 				original_pos.x += speed * dt;
 				flip = true;
-				if (EnemyPos.x >= Destination.x)
+				if (EnemyPos.x > Destination.x + 50)
 				{
 					counter++;
 					move = false;
 				}
 			}
 
-			else
+			if (EnemyPos.x > Destination.x)
 			{
 				original_pos.x -= speed * dt;
 				flip = false;
-				if (EnemyPos.x <= Destination.x)
+				if (EnemyPos.x < Destination.x - 50)
 				{
 					counter++;
 					move = false;
 				}
 			}
-
+			//y
 			if (EnemyPos.y < Destination.y)
 			{
 				original_pos.y += speed * dt;
-				if (EnemyPos.y >= Destination.y)
+				if (EnemyPos.y > Destination.y + 50)
 				{
 					counter++;
 					move = false;
 				}
 			}
 
-			else
+			else 
 			{
 				original_pos.y -= speed * dt;
-				if (EnemyPos.y < Destination.y)
+				if (EnemyPos.y < Destination.y - 50)
 				{
 					counter++;
 					move = false;
