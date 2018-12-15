@@ -58,6 +58,7 @@ bool Coins::Load(pugi::xml_node& data)
 {
 	pos.x = data.attribute("x").as_float();
 	pos.y = data.attribute("y").as_float();
+	grabbed = data.attribute("grab").as_bool();
 	return true;
 }
 
@@ -66,6 +67,7 @@ bool Coins::Save(pugi::xml_node& data) const
 	pugi::xml_node playernode = data.append_child("position");
 	playernode.append_attribute("x") = pos.x;
 	playernode.append_attribute("y") = pos.y;
+	playernode.append_attribute("grab") = grabbed;
 	return true;
 }
 

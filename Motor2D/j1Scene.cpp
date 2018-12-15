@@ -369,6 +369,7 @@ bool j1Scene::MouseEvents(Widgets* widget)
 
 			App->map->CleanUp();
 			App->entitymanager->CleanUp();
+			App->collisions->Erase_Non_Player_Colliders();
 			Start();
 
 			for (int i = 0; i < MenuButtons.count(); ++i)
