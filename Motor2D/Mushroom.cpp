@@ -75,22 +75,22 @@ void Mushroom::MoveEntity(float dt)
 			iPoint Destination = { path[counter].x, path[counter].y };
 			animation = &walk;
 
-			if (EnemyPos.x < Destination.x)
+			if (EnemyPos.x < Destination.x + 50)
 			{
 				original_pos.x += speed * dt;
 				flip = true;
-				if (EnemyPos.x > Destination.x + 100 && EnemyPos.x > Destination.x - 50)
+				if (EnemyPos.x >= Destination.x + 50)
 				{
 					counter++;
 					move = false;
 				}
 			}
 
-			if (EnemyPos.x > Destination.x)
+			if (EnemyPos.x > Destination.x - 50)
 			{
 				original_pos.x -= speed * dt;
 				flip = false;
-				if (EnemyPos.x < Destination.x - 100 && EnemyPos.x > Destination.x +50)
+				if (EnemyPos.x <= Destination.x - 50)
 				{
 					counter++;
 					move = false;

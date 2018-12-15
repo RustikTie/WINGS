@@ -67,42 +67,42 @@ void Beetle::MoveEntity(float dt)
 
 			animation = &fly;
 			//x
-			if (EnemyPos.x < Destination.x)
+			if (EnemyPos.x < Destination.x + 50)
 			{
 				original_pos.x += speed * dt;
 				flip = true;
-				if (EnemyPos.x > Destination.x + 50)
+				if (EnemyPos.x >= Destination.x + 50)
 				{
 					counter++;
 					move = false;
 				}
 			}
 
-			if (EnemyPos.x > Destination.x)
+			if (EnemyPos.x > Destination.x - 50)
 			{
 				original_pos.x -= speed * dt;
 				flip = false;
-				if (EnemyPos.x < Destination.x - 50)
+				if (EnemyPos.x <= Destination.x - 50)
 				{
 					counter++;
 					move = false;
 				}
 			}
 			//y
-			if (EnemyPos.y < Destination.y)
+			if (EnemyPos.y < Destination.y + 50)
 			{
 				original_pos.y += speed * dt;
-				if (EnemyPos.y > Destination.y + 50)
+				if (EnemyPos.y >= Destination.y + 50)
 				{
 					counter++;
 					move = false;
 				}
 			}
 
-			else 
+			if (EnemyPos.y > Destination.y - 50)
 			{
 				original_pos.y -= speed * dt;
-				if (EnemyPos.y < Destination.y - 50)
+				if (EnemyPos.y <= Destination.y - 50)
 				{
 					counter++;
 					move = false;
