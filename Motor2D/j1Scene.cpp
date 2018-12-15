@@ -255,12 +255,7 @@ bool j1Scene::MouseEvents(Widgets* widget)
 			else
 			widget->texture_rect = &hover;
 		}
-		if (widget->type == SLIDER)
-		{
-			int x, y;
-			App->input->GetMousePosition(x, y);
-			widget->updateValue(x);
-		}
+
 		break;
 
 	case MOUSE_EXIT:
@@ -283,7 +278,12 @@ bool j1Scene::MouseEvents(Widgets* widget)
 			else
 				widget->texture_rect = &click;
 		}
-	
+		if (widget->type == SLIDER)
+		{
+			int x, y;
+			App->input->GetMousePosition(x, y);
+			widget->updateValue(x);
+		}
 		
 		break;
 

@@ -11,7 +11,7 @@ public:
 
 	void Draw();
 
-	void updateValue(int value);
+	void updateValue(float mouse_pos);
 	int getValue();
 
 private:
@@ -21,7 +21,7 @@ private:
 	SDL_Rect bar_rect;
 	SDL_Rect* slider_rect = nullptr;
 	int real_width;
-	int last_mouse_pos = 1;
+	float last_mouse_pos = 1;
 	bool show;
 };
 
