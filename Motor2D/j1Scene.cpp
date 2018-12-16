@@ -125,10 +125,12 @@ bool j1Scene::Start()
 	}
 	if (level2)
 	{
+		player_score = App->entitymanager->player_entity->score;
 		App->map->CleanUp();
 		App->entitymanager->CleanUp();
 		App->audio->CleanUp();
 		App->entitymanager->Start();
+		App->entitymanager->player_entity->score = player_score;
 		App->audio->Start();
 		App->map->Load("level2_v2.tmx");
 
@@ -238,11 +240,13 @@ bool j1Scene::Update(float dt)
 	{
 		level2 = true;
 		App->map->CleanUp();
+		player_score = App->entitymanager->player_entity->score;
 		App->entitymanager->CleanUp();
 		App->entitymanager->Start();
 		App->collisions->Erase_Non_Player_Colliders();
 		App->map->Load("Map_2.tmx");
 		App->entitymanager->player_entity->SetPos(500, 1000);
+		App->entitymanager->player_entity->score = player_score;
 		level1 = false;
 	}
 

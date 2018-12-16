@@ -77,10 +77,14 @@ bool Player::Awake(pugi::xml_node& config)
 	death_fx = App->audio->LoadFx("audio/fx/Death.wav");
 
 	//	GUI
-	App->gui->AddImage(850, 10, IMAGE, true, rect_score, 0.5f);
+	if (score == 0)
+	{
+		App->gui->AddImage(850, 10, IMAGE, true, rect_score, 0.5f);
 
-	sprintf_s(score_text, 10, "%i", score);
-	score_counter = App->gui->AddText(900, 24, TEXT, true, score_text, 0);
+		sprintf_s(score_text, 10, "%i", score);
+		score_counter = App->gui->AddText(900, 24, TEXT, true, score_text, 0);
+	}
+
 	return true;
 }
 
