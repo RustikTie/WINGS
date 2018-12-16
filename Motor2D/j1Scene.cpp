@@ -125,6 +125,8 @@ bool j1Scene::Start()
 		App->entitymanager->AddEnemy(BEETLE, 6700, 1800);
 		App->entitymanager->AddEnemy(MUSHROOM, 10000, 200);
 		App->gui->AddTimer(App->win->GetWidth()/2, 24, TIMER, true, 0, idle);
+		App->audio->PlayMusic("audio/music/BGM.ogg");
+
 
 
 	}
@@ -140,13 +142,15 @@ bool j1Scene::Start()
 		App->audio->Start();
 		App->map->Load("level2_v2.tmx");
 
-		
+		App->audio->PlayMusic("audio/music/BGM.ogg");
+
 
 		App->entitymanager->AddEnemy(COIN, 200 + App->entitymanager->player_entity->pos.x , App->entitymanager->player_entity->pos.y);
 	}
 	
 	
-	App->audio->PlayMusic("audio/music/BGM.ogg");
+	if(menu)
+		App->audio->PlayMusic("audio/music/MBGM.ogg");
 
 	return true;
 }
