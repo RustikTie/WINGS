@@ -13,6 +13,9 @@ Timer::Timer(int x, int y, WidgetType type, bool show,  int font, SDL_Rect rect)
 	this->font = font;
 	this->rect = rect;
 	this->show = show;
+
+	App->gui->AddImage(x-40, 10, IMAGE, true, timer_rect, 1.f);
+
 	sprintf_s(timer, "%i:%i", min, sec);
 	timerText = App->gui->AddText(x,y,TEXT,true,timer, font);
 }

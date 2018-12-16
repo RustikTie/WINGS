@@ -30,6 +30,7 @@ private:
 	Widgets* timerText;
 	char timer[100];
 	SDL_Texture* time_texture = nullptr;
+	SDL_Rect timer_rect = {529, 707, 122, 56};
 };
 
 #endif
