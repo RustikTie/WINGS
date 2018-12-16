@@ -32,11 +32,12 @@ j1Scene::~j1Scene()
 {}
 
 // Called before render is available
-bool j1Scene::Awake()
+bool j1Scene::Awake(pugi::xml_node& config)
 {
 	LOG("Loading Scene");
 	bool ret = true;
 
+	button_click = App->audio->LoadFx("audio/fx/ButtonClick.wav");
 
 	Mix_VolumeMusic(volume);
 	Mix_Volume(-1, volume);
@@ -59,7 +60,6 @@ bool j1Scene::Start()
 	sprites = App->tex->Load("textures/p1_spritesheet.png");
 	SlimeGuy.Reset();
 	current_anim = &SlimeGuy;
-	button_click = App->audio->LoadFx("audio/fx/ButtonClick.wav");
 
 	App->map->CleanUp();
 	App->entitymanager->CleanUp();
