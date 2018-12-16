@@ -122,6 +122,7 @@ private:
 	SDL_Texture*	sprites = nullptr;
 
 private:
+	int				button_click;
 	bool			Quit = true;
 	p2SString		load_game;
 	bool			saved_game = false;

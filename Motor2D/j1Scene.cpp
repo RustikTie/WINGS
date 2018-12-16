@@ -36,6 +36,8 @@ bool j1Scene::Awake()
 	LOG("Loading Scene");
 	bool ret = true;
 
+	button_click = App->audio->LoadFx("audio/fx/ButtonClick.wav");
+
 	Mix_VolumeMusic(volume);
 	Mix_Volume(-1, volume);
 
@@ -269,6 +271,8 @@ bool j1Scene::MouseEvents(Widgets* widget)
 	case MOUSE_ENTER:
 		if (widget->type == BUTTON)
 		{
+			App->audio->PlayFx(button_click);
+
 			if (widget == Continue && !saved_game)
 			{			
 			}
