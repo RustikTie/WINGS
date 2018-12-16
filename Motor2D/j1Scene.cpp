@@ -60,10 +60,11 @@ bool j1Scene::Start()
 	MenuButtons.add(Credits = App->gui->AddButton(100, 400, BUTTON, MAIN, 1, true, &idle, "Credits"));
 	MenuButtons.add(QuitButton = App->gui->AddButton(100, 500, BUTTON, MAIN, 1, true, &idle, "Exit"));
 	
+	
 	pugi::xml_document data;
 	pugi::xml_parse_result result = data.load_file(load_game.GetString());
 
-	if (result != NULL)
+	if (CheckSaveFile())
 	{
 		MenuButtons.add(Continue = App->gui->AddButton(100, 200, BUTTON, MAIN, 1, true, &idle, "Continue"));
 		saved_game = true;
@@ -81,6 +82,7 @@ bool j1Scene::Start()
 	CreditsWidgets.add(Background = App->gui->AddBackground(0, 0, BACKGROUND, false, { 0,0,1024,768 }));
 	CreditsWidgets.add(CreditsWindow = App->gui->AddWindow(66, 80, WINDOW, 2, 1, false, rect_window));
 	CreditsWidgets.add(Menu_Credits = App->gui->AddButton(0, 0, BUTTON, BACK, 1, false, &idle, "BACK"));
+	CreditsWidgets.add(WebButton = App->gui->AddButton(430, 550, BUTTON, BACK, 1, false, &idle, "Website"));
 
 	//App->gui->AddTimer(200, 100, TIMER, true, 0, idle);
 
@@ -311,6 +313,21 @@ bool j1Scene::MouseEvents(Widgets* widget)
 			}
 		}
 
+		if (widget == Continue && widget->show)
+		{
+			if (CheckSaveFile())
+			{
+				menu = false;
+				level1 = true;
+				Start();
+				for (int i = 0; i < MenuButtons.count(); ++i)
+				{
+					MenuButtons[i]->show = false;
+				}
+				App->LoadGame();
+			}
+		}
+
 		if (widget == Options && widget->show)
 		{
 			for (int i = 0; i < MenuButtons.count(); ++i)
@@ -350,6 +367,11 @@ bool j1Scene::MouseEvents(Widgets* widget)
 			{
 				OptionsWidgets[i]->show = false;
 			}
+		}
+
+		if (widget == WebButton && widget->show)
+		{
+			ShellExecuteA(NULL, "open", "https://rustiktie.github.io/WINGS/", NULL, NULL, SW_SHOWNORMAL);
 		}
 		//Credits Menu
 		if (widget == Menu_Credits && widget->show)
@@ -425,4 +447,26 @@ void j1Scene::ChangeMap(float x, float y)
 		App->map->Load("map_test.tmx");
 	}
 }
+
+bool j1Scene::CheckSaveFile()
+{
+	bool ret = false;
+
+	pugi::xml_document data;
+
+	pugi::xml_parse_result result = data.load_file(App->load_game.GetString());
+
+	if (result != NULL)
+	{
+		ret = true;
+	}
+	else
+	{
+		ret = false;
+	}
+
+	return ret;
+}
+
+
 

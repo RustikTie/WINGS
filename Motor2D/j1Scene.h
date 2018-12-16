@@ -45,6 +45,8 @@ public:
 
 	void ChangeMap(float x, float y);
 
+	bool CheckSaveFile();
+
 	bool			start =	true;
 	bool			level1 = false;
 	bool			level2 = false;
@@ -66,6 +68,7 @@ private:
 	Widgets*		CreditsWindow = nullptr;
 	Widgets*		Menu_Credits = nullptr;
 	Widgets*		Menu_Options = nullptr;
+	Widgets*		WebButton = nullptr;
 	Widgets*		OptionsTitle = nullptr;
 	Widgets*		CreditTitle = nullptr;
 	Widgets*		CreditText = nullptr;

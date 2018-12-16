@@ -10,23 +10,21 @@
 	<scene />
 	<colliders />
 	<entities>
-		<player x="2035.5" y="983.822388" lives="6" score="0" map1="true" map2="false" />
+		<player x="1418" y="1118.79114" lives="6" score="0" map1="true" map2="false" />
 		<mushroom>
-			<position x="3000" y="1483.31323" />
-			<position x="6000" y="715.292908" />
-			<position x="10000" y="1135.28101" />
+			<position x="3000" y="1483.12256" />
+			<position x="6000" y="717.827209" />
+			<position x="10000" y="1137.80896" />
 		</mushroom>
 		<beetle>
 			<position x="2500" y="700" />
 			<position x="6700" y="1800" />
 		</beetle>
-		<coin>
-			<position x="2500" y="900" alive="true" />
-		</coin>
+		<coin />
 	</entities>
 	<fonts />
 	<fadetoblack />
 	<renderer>
-		<camera x="-1635" y="-583" />
+		<camera x="-1018" y="-698" />
 	</renderer>
 </game_state>
