@@ -28,9 +28,9 @@ void Slider::Draw()
 {
 	if (show)
 	{
-		App->render->Blit(App->gui->GetGuiAtlas(), pos.x, pos.y, 1, 1, false, &bg_rect);
-		App->render->Blit(App->gui->GetGuiAtlas(), pos.x, pos.y, 1, 1, false, &bar_rect);
-		App->render->Blit(App->gui->GetGuiAtlas(), rect_x,rect_y, 1, 1, false, slider_rect);
+		App->render->Blit(App->gui->GetGuiAtlas(), pos.x - App->render->camera.x, pos.y - App->render->camera.y, 1, 1, false, &bg_rect);
+		App->render->Blit(App->gui->GetGuiAtlas(), pos.x - App->render->camera.x, pos.y - App->render->camera.y, 1, 1, false, &bar_rect);
+		App->render->Blit(App->gui->GetGuiAtlas(), rect_x - App->render->camera.x,rect_y - App->render->camera.y, 1, 1, false, slider_rect);
 		debug_rect = { rect_x,rect_y, (int)(tex_width), (int)(tex_height) };
 		if (debug == true)
 		{
@@ -43,15 +43,10 @@ void Slider::updateValue(float mouse_pos)
 {
 	this->mouse_pos = mouse_pos;
 
-	if (mouse_pos != last_mouse_pos)
+	if (mouse_pos != last_mouse_pos && mouse_pos <= bar_rect.w+pos.x && mouse_pos >= pos.x - App->render->camera.x)
 	{
-		//this updates the bar length
 		bar_rect.w = real_width -(pos.x + real_width - mouse_pos);
-		//updates the value of the volume 100% regla de tres pim pam
 		value = (bar_rect.w * 100) / real_width;
-		//it works up to here, the following need to update  the x position of the slider
-		// the slider pos x is different from the bars, so it is the variable rect_x
-		// vars i have are mouse_pos, last_mouse_pos and real_width of the bar(not the slider)
 		rect_x = pos.x + bar_rect.w - (rect_x + slider_rect->w - mouse_pos);
 	}
 

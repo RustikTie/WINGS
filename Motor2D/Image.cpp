@@ -24,6 +24,6 @@ void Image::Draw()
 {
 	if (show)
 	{
-		App->render->Blit(App->gui->logo, pos.x - App->render->camera.x, pos.y - App->render->camera.y, scale, scale, false, &rec);
+		App->render->Blit(App->gui->GetGuiAtlas(), pos.x - App->render->camera.x, pos.y - App->render->camera.y, scale, scale, false, &rec);
 	}
 }

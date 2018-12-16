@@ -42,5 +42,10 @@ void Timer::Draw()
 
 void Timer::setTimer(int value)
 {
-	
+	sec = value;
+	while (sec >= 60)
+	{
+		min += 1;
+		sec -= 60;
+	}
 }

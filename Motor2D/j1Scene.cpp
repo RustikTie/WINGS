@@ -16,6 +16,7 @@
 #include "Widgets.h"
 #include "Animation.h"
 
+
 j1Scene::j1Scene() : j1Module()
 {
 	name.create("scene");
@@ -40,7 +41,8 @@ bool j1Scene::Awake()
 
 	Mix_VolumeMusic(volume);
 	Mix_Volume(-1, volume);
-
+	sprintf_s(credits_title, "CREDITS");
+	
 	return ret;
 }
 
@@ -63,16 +65,14 @@ bool j1Scene::Start()
 
 	App->map->CleanUp();
 	App->entitymanager->CleanUp();
-
 		
 	MenuButtons.add(Background = App->gui->AddBackground(0, 0, BACKGROUND, true, { 0,0,1024,768 }));
 	MenuButtons.add(StartButton = App->gui->AddButton(100, 100, BUTTON, MAIN, 1, true, &idle, "Play"));
 	MenuButtons.add(Options = App->gui->AddButton(100, 300, BUTTON, MAIN, 1, true, &idle, "Settings"));
 	MenuButtons.add(Credits = App->gui->AddButton(100, 400, BUTTON, MAIN, 1, true, &idle, "Credits"));
 	MenuButtons.add(QuitButton = App->gui->AddButton(100, 500, BUTTON, MAIN, 1, true, &idle, "Exit"));
-	MenuButtons.add(Logo = App->gui->AddImage(310, 220, IMAGE, true, { 0,0,359,240 }, 1.f));
-	
-	
+	MenuButtons.add(Logo = App->gui->AddImage(310, 220, IMAGE, true, {127,1135,357,248 }, 1.f));
+;
 	pugi::xml_document data;
 	pugi::xml_parse_result result = data.load_file(load_game.GetString());
 
@@ -85,24 +85,25 @@ bool j1Scene::Start()
 	{
 		MenuButtons.add(Continue = App->gui->AddButton(100, 200, BUTTON, MAIN, 1, true, &locked, "Continue"));
 	}
-	MenuButtons.add(FXVol = App->gui->AddSlider(200, 200, SLIDER, bg_rect, bar_rect, &slider_rect, true));
 
 	OptionsWidgets.add(Background = App->gui->AddBackground(0, 0, BACKGROUND, false, { 0,0,1024,768 }));
 	OptionsWidgets.add(OptionWindow = App->gui->AddWindow(66, 80, WINDOW, 2, 1, false, rect_window));
 	OptionsWidgets.add(Menu_Options = App->gui->AddButton(0, 0, BUTTON, BACK, 1, false, &idle, "BACK"));
-
+	OptionsWidgets.add(Credits = App->gui->AddText(66, 80, TEXT, false, credits_title, 0));
+	OptionsWidgets.add(OptionsSFX = App->gui->AddSlider(66,80, SLIDER, bg_rect,bar_rect,&slider_rect, false));
+	OptionsWidgets.add(OptionsVol = App->gui->AddSlider(66, 200, SLIDER, bg_rect, bar_rect, &slider_rect, false));
 
 	CreditsWidgets.add(Background = App->gui->AddBackground(0, 0, BACKGROUND, false, { 0,0,1024,768 }));
 	CreditsWidgets.add(CreditsWindow = App->gui->AddWindow(66, 80, WINDOW, 2, 1, false, rect_window));
 	CreditsWidgets.add(Menu_Credits = App->gui->AddButton(0, 0, BUTTON, BACK, 1, false, &idle, "BACK"));
 	CreditsWidgets.add(WebButton = App->gui->AddButton(430, 550, BUTTON, BACK, 1, false, &idle, "Website"));
 
-	//App->gui->AddTimer(200, 100, TIMER, true, 0, idle);
-
 	PauseMenu.add(PauseWindow = App->gui->AddWindow(500, 80, WINDOW, 1, 1, false, rect_window));
 	PauseMenu.add(Resume = App->gui->AddButton(630, 220, BUTTON, BACK, 1, false, &idle, "Resume"));
 	PauseMenu.add(PauseToMenu = App->gui->AddButton(630, 320, BUTTON, BACK, 1, false, &idle, "Menu"));
-		
+	PauseMenu.add(PauseSFX = App->gui->AddSlider(66, 80, SLIDER, bg_rect, bar_rect, &slider_rect, false));
+	PauseMenu.add(PauseVol = App->gui->AddSlider(66, 200, SLIDER, bg_rect, bar_rect, &slider_rect, false));
+
 	if (level1)
 	{
 		App->map->Load("map_test.tmx");
@@ -117,7 +118,8 @@ bool j1Scene::Start()
 		App->entitymanager->AddEnemy(MUSHROOM, 6000, 100);
 		App->entitymanager->AddEnemy(BEETLE, 6700, 1800);
 		App->entitymanager->AddEnemy(MUSHROOM, 10000, 200);
-		//App->gui->AddText();
+		App->gui->AddTimer(App->win->GetWidth()/2, 24, TIMER, true, 0, idle);
+
 
 	}
 	if (level2)
@@ -312,11 +314,11 @@ bool j1Scene::MouseEvents(Widgets* widget)
 			int x, y;
 			App->input->GetMousePosition(x, y);
 			widget->updateValue(x);
-			if(widget = FXVol)
+			if(widget == OptionsSFX || widget == PauseSFX)
 			{
 				Mix_Volume(-1, widget->getValue());
 			}
-			if (widget = MusicVol)
+			if (widget == OptionsVol || widget == PauseVol)
 			{
 				Mix_VolumeMusic(widget->getValue());
 			}
