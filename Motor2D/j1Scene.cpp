@@ -230,7 +230,7 @@ bool j1Scene::Update(float dt)
 
 
 	if (App->entitymanager->player_entity != nullptr 
-		&& App->entitymanager->player_entity->pos.x >= 13500.f )
+		&& App->entitymanager->player_entity->pos.x >= 13500.f && level1)
 
 	{
 		level2 = true;
@@ -243,6 +243,20 @@ bool j1Scene::Update(float dt)
 		level1 = false;
 	}
 
+	if (App->entitymanager->player_entity != nullptr
+		&& App->entitymanager->player_entity->pos.x >= 13500.f && level2)
+
+	{
+		menu = true;
+		level1 = false;
+		level2 = false;
+
+		App->map->CleanUp();
+		App->entitymanager->CleanUp();
+		App->collisions->Erase_Non_Player_Colliders();
+		Start();
+	}
+
 	
 	return true;
 }
@@ -252,8 +266,9 @@ bool j1Scene::PostUpdate()
 {
 	if (menu)
 	{
-		App->render->Blit(sprites, 700, 300, 3, 3, true, &(current_anim->GetCurrentFrame()));
+		App->render->Blit(sprites, 700 - App->render->camera.x, 300 - App->render->camera.y, 3, 3, true, &(current_anim->GetCurrentFrame()));
 	}
+
 
 	return Quit;
 }
@@ -429,10 +444,10 @@ bool j1Scene::MouseEvents(Widgets* widget)
 			App->collisions->Erase_Non_Player_Colliders();
 			Start();
 
-			for (int i = 0; i < MenuButtons.count(); ++i)
+			/*for (int i = 0; i < MenuButtons.count(); ++i)
 			{
 				MenuButtons[i]->show = true;
-			}
+			}*/
 			for (int i = 0; i < PauseMenu.count(); ++i)
 			{
 				PauseMenu[i]->show = false;
