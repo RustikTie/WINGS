@@ -42,6 +42,7 @@ bool j1Scene::Awake(pugi::xml_node& config)
 
 	Mix_VolumeMusic(volume);
 	Mix_Volume(-1, volume);
+
 	sprintf_s(credits_title, "CREDITS");
 	sprintf_s(credits_1, "Developed: Clara Ratera & Ivan Drofiak");
 	sprintf_s(credits_2, "Art");
@@ -56,6 +57,14 @@ bool j1Scene::Awake(pugi::xml_node& config)
 	sprintf_s(credits_11, "Glide SFX: SubspaceAudio");
 	sprintf_s(credits_12, "Game Music: syncopika");
 	sprintf_s(credits_13, "Menu Music: syncopika");
+
+	sprintf_s(options_title, "Options");
+	sprintf_s(options_1, "Music Volume");
+	sprintf_s(options_2, "SFX Volume");
+
+	sprintf_s(pause_title, "Pause");
+	sprintf_s(pause_1, "Music Volume");
+	sprintf_s(pause_2, "SFX Volume");
 
 	return ret;
 }
@@ -101,9 +110,12 @@ bool j1Scene::Start()
 
 	OptionsWidgets.add(Background = App->gui->AddBackground(0, 0, BACKGROUND, false, { 0,0,1024,768 }));
 	OptionsWidgets.add(OptionWindow = App->gui->AddWindow(66, 80, WINDOW, 2, 1, false, rect_window));
+	OptionsWidgets.add(OptionsTitle = App->gui->AddText(470, 100, TEXT, false, options_title, 0));
 	OptionsWidgets.add(Menu_Options = App->gui->AddButton(0, 0, BUTTON, BACK, 1, false, &idle, "BACK"));
-	OptionsWidgets.add(OptionsSFX = App->gui->AddSlider(300, 300, SLIDER, bg_rect,bar_rect,&slider_rect, false));
-	OptionsWidgets.add(OptionsVol = App->gui->AddSlider(300, 500, SLIDER, bg_rect, bar_rect, &slider_rect, false));
+	OptionsWidgets.add(OptionsSFX = App->gui->AddSlider(300, 500, SLIDER, bg_rect,bar_rect,&slider_rect, false));
+	OptionsWidgets.add(OptionsVol = App->gui->AddSlider(300, 300, SLIDER, bg_rect, bar_rect, &slider_rect, false));
+	OptionsWidgets.add(OptionsMusic_Text = App->gui->AddText(400, 270, TEXT, false, options_1, 0));
+	OptionsWidgets.add(OptionsSFX_Text = App->gui->AddText(400, 470, TEXT, false, options_2, 0));
 
 	CreditsWidgets.add(Background = App->gui->AddBackground(0, 0, BACKGROUND, false, { 0,0,1024,768 }));
 	CreditsWidgets.add(CreditsWindow = App->gui->AddWindow(66, 80, WINDOW, 2, 1, false, rect_window));
@@ -125,10 +137,13 @@ bool j1Scene::Start()
 	CreditsWidgets.add(WebButton = App->gui->AddButton(430, 650, BUTTON, BACK, 1, false, &idle, "Website"));
 
 	PauseMenu.add(PauseWindow = App->gui->AddWindow(400, 80, WINDOW, 1.4f, 1, false, rect_window));
+	PauseMenu.add(PauseTitle = App->gui->AddText(670, 100, TEXT, false, pause_title, 0));
+	PauseMenu.add(PauseMusic_Text = App->gui->AddText(610, 420, TEXT, false, pause_1, 0));
+	PauseMenu.add(PauseSFX_Text = App->gui->AddText(610, 520, TEXT, false, pause_2, 0));
 	PauseMenu.add(Resume = App->gui->AddButton(630, 220, BUTTON, BACK, 1, false, &idle, "Resume"));
 	PauseMenu.add(PauseToMenu = App->gui->AddButton(630, 320, BUTTON, BACK, 1, false, &idle, "Menu"));
-	PauseMenu.add(PauseSFX = App->gui->AddSlider(510, 450, SLIDER, bg_rect, bar_rect, &slider_rect, false));
-	PauseMenu.add(PauseVol = App->gui->AddSlider(510, 550, SLIDER, bg_rect, bar_rect, &slider_rect, false));
+	PauseMenu.add(PauseSFX = App->gui->AddSlider(510, 550, SLIDER, bg_rect, bar_rect, &slider_rect, false));
+	PauseMenu.add(PauseVol = App->gui->AddSlider(510, 450, SLIDER, bg_rect, bar_rect, &slider_rect, false));
 
 	if (level1)
 	{
@@ -149,7 +164,7 @@ bool j1Scene::Start()
 		App->entitymanager->AddEnemy(MUSHROOM, 6000, 100);
 		App->entitymanager->AddEnemy(BEETLE, 6700, 1800);
 		App->entitymanager->AddEnemy(MUSHROOM, 10000, 200);
-		App->gui->AddTimer(App->win->GetWidth()/2, 24, TIMER, true, 0, idle);
+		
 		App->audio->PlayMusic("audio/music/BGM.ogg");
 
 
@@ -187,6 +202,10 @@ bool j1Scene::PreUpdate()
 // Called each loop iteration
 bool j1Scene::Update(float dt)
 {
+	if (!App->pause_game)
+	{
+		App->gui->AddTimer(App->win->GetWidth() / 2, 24, TIMER, true, 0, idle);
+	}
 
 	if (App->input->GetKey(SDL_SCANCODE_KP_MINUS) == KEY_REPEAT)
 	{

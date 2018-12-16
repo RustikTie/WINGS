@@ -87,15 +87,17 @@ private:
 	Widgets*		CreditText11 = nullptr;
 	Widgets*		CreditText12 = nullptr;
 	Widgets*		CreditText13 = nullptr;
-	Widgets*		CreditText14 = nullptr;
-	Widgets*		Plus = nullptr;
-	Widgets*		Minus = nullptr;
+
+	Widgets*		OptionsMusic_Text = nullptr;
+	Widgets*		OptionsSFX_Text = nullptr;
+
 	Widgets*		FXPlus = nullptr;
 	Widgets*		FXMinus = nullptr;
 	Widgets*		MusicVol = nullptr;
 	Widgets*		FXVol = nullptr;
 
 	Widgets*		PauseWindow = nullptr;
+	Widgets*		PauseTitle = nullptr;
 	Widgets*		PauseToMenu = nullptr;
 	Widgets*		Resume = nullptr;
 	Widgets*		PausePlus = nullptr;
@@ -105,6 +107,9 @@ private:
 	Widgets*		OptionsSFX = nullptr;
 	Widgets*		PauseVol = nullptr;
 	Widgets*		PauseSFX = nullptr;
+	Widgets*		PauseMusic_Text = nullptr;
+	Widgets*		PauseSFX_Text = nullptr;
+
 
 	char			credits_title[100];
 	char			credits_1[100];
@@ -120,6 +125,14 @@ private:
 	char			credits_11[100];
 	char			credits_12[100];
 	char			credits_13[100];
+
+	char			options_title[100];
+	char			options_1[100];
+	char			options_2[100];
+
+	char			pause_title[100];
+	char			pause_1[100];
+	char			pause_2[100];
 
 	SDL_Rect		rect_window;
 	SDL_Rect		rect_score;
