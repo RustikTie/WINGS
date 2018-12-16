@@ -1,4 +1,4 @@
-## Video Game Development | Assignment 1 | WINGS
+## Video Game Development | Assignment 3 | WINGS
 
 Simple platformer game for the first assignment of Game Development class at UPC. Using the SDL and XML libraries. Loading game config, player position and all map data(tiles, background, parallax, colliders) from XML documents. Map created with Tiled, enemies position and type load from Tiled.  
 
@@ -16,10 +16,10 @@ The game is capped at 30FPS by default, you can edit the frame cap by accessing 
 - Press F2 begin from the starting position of the current level
 - Press F5 to save last saved status
 - Press F6 to load current status
+- Press F8 to show UI colliders
 - Press F9 to show colliders
 - Press F10 to enable/disable god mode
 - Press F11 to enable/disable frame cap
-- Quit hitting Escape
 
 ## Contributing
 - Fork it!
@@ -34,6 +34,8 @@ Jump SFX = https://freesound.org/people/RoseTheFl0wer/sounds/442715/
 Walk SFX = https://opengameart.org/content/512-sound-effects-8-bit-style
 Death SFX = https://opengameart.org/content/512-sound-effects-8-bit-style
 Glide SFX = https://opengameart.org/content/512-sound-effects-8-bit-style
+Coin SFX = https://opengameart.org/content/512-sound-effects-8-bit-style
+Menu Music = https://opengameart.org/content/chill-bgm
 BGM = https://opengameart.org/content/games-a-bgm-track
 Tileset & Player SPRITE: https://opengameart.org/content/platformer-art-complete-pack-often-updated
 GUI = https://opengameart.org/content/free-game-gui
@@ -55,10 +57,11 @@ Mushroom SPRITE = https://www.vectorstock.com/royalty-free-vector/mushroom-enemy
 - Frame Cap
 - Bugfixing
 
-###
+### Ivan
 
 - Entity system
 - Pathfinding
+- UI System
 - Enemies
 - Collisions
 - Save and load w/ enemies
