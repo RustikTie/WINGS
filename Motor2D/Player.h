@@ -76,11 +76,13 @@ public:
 	SDL_Rect		rect_score = { 132, 961, 311, 111 };
 
 	char			score_text[100];
+	char			coin_text[100];
 
 private:
 	
 	float			old_grav = 0;
 	Widgets*		score_counter = nullptr;
+	Widgets*		coin_counter = nullptr;
 };
 
 #endif

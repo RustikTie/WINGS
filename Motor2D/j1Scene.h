@@ -135,6 +135,7 @@ private:
 	p2SString		load_game;
 	bool			saved_game = false;
 	int				player_score = 0;
+	int				player_coins = 0;
 };
 
 #endif // __j1SCENE_H__

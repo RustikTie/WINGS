@@ -77,13 +77,14 @@ bool Player::Awake(pugi::xml_node& config)
 	death_fx = App->audio->LoadFx("audio/fx/Death.wav");
 
 	//	GUI
-	if (score == 0)
-	{
-		App->gui->AddImage(850, 10, IMAGE, true, rect_score, 0.5f);
 
-		sprintf_s(score_text, 10, "%i", score);
-		score_counter = App->gui->AddText(900, 24, TEXT, true, score_text, 0);
-	}
+	App->gui->AddImage(850, 10, IMAGE, true, rect_score, 0.5f);
+
+	sprintf_s(score_text, 10, "%i", score);
+	score_counter = App->gui->AddText(900, 24, TEXT, true, score_text, 0);
+	sprintf_s(coin_text, 10, "%i", coins_grabbed);
+	coin_counter = App->gui->AddText(800, 24, TEXT, true, coin_text, 0);
+	
 
 	return true;
 }
@@ -316,4 +317,6 @@ void Player::UpdateScore()
 {
 	sprintf_s(score_text, 10, "%i", score);
 	score_counter->EditText(score_text);
+	sprintf_s(coin_text, 10, "%i", coins_grabbed);
+	coin_counter->EditText(coin_text);
 }

@@ -254,11 +254,13 @@ bool j1Scene::Update(float dt)
 		level2 = true;
 		App->map->CleanUp();
 		player_score = App->entitymanager->player_entity->score;
+		player_coins = App->entitymanager->player_entity->coins_grabbed;
 		App->entitymanager->CleanUp();
 		App->entitymanager->Start();
 		App->collisions->Erase_Non_Player_Colliders();
 		App->entitymanager->player_entity->SetPos(500, 1000);
 		App->entitymanager->player_entity->score = player_score;
+		App->entitymanager->player_entity->coins_grabbed = player_coins;
 		level1 = false;
 		Start();
 
