@@ -4,7 +4,7 @@
 
 <h1>SLIME GUY</h1>
   <h2> The Team</h2>  
-  <img src="/website%20Images/both.png" alt="https://github.com/RustikTie/WINGS/master" width="735" height="726">
+  <img src=""https://github.com/RustikTie/WINGS/master/website%20Images/both.png" alt="https://github.com/RustikTie/WINGS/master" width="735" height="726">
   <h2>Ivan Drofiak</h2>    
   <a href="https://github.com/FurryGhoul">Github</a>
   <ul>
@@ -30,11 +30,41 @@
   
   <h2 The Game </h2>
   <iframe width="560" height="315" src="https://www.youtube.com/embed/iqryxfKou0A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-  <h2> Sub-systems </h2>
-  
-  
-  <h2>License </2>
-    <p> MIT License   </p>
+ 
+<p>Slime Guy is a 2D platformer where the player controls an slime man which has to escape the mountain recolecting coins and avoiding enemies. The mountains consist of high cliffs where a bad step may be hte end of the life of slime man.</p>
+
+<p>Slime guy is a game created for the subject of Videogame Development as part of Videogame Creation and Design in the TTC - UPC.</p>
+
+
+<h2> Instructions </h2>
+<ul>
+<li> Move the player using the WAD keys and SPACEBAR (W to jump press, SPACEBAR to glide, A/D as Left/Right movement)</li>
+<li> Press F1 to begin from the first level starting position</li>
+<li> Press F2 begin from the starting position of the current level</li>
+<li> Press F5 to save current status</li>
+<li> Press F6 to load last saved status </li>
+<li> Press F8 to show UI debug </li>
+<li> Press F9 to show colliders and pathfinding</li>
+<li> Press F10 to enable/disable god mode</li>
+<li> Press F11 to enable/disable frame cap</li>
+</ul>
+
+ <h2> Sub-systems </h2>
+  <ul>
+  <li> Game music and sound FX can be lowered or increased through the Options menu</li>
+ <li> GUI is managed through an GUIManager system which creates and updates all UI during runtime</li>
+    <li> Enemies and interactive items are managed through an EntityManager system which creates and updates them</li>
+      <li> Two types of enemies, ground and air, pathfind their way to the player</li>
+        <li> Maps created on tiled, contain collider information, loaded through their XML file  </li>
+        <li> Main Menu with Start, Continue, Options, Credit and Quit working elements </li>
+         <li> Player data, important game data and map information is loaded from an XML file </li>
+          <li> FPS capped by default at 30FPS, can be uncapped in-game and FPS cap can be edited from the config.xml file</li>
+  </ul>
+  <a href="https://github.com/RustikTie/WINGS/releases/tag/v3.0">Latest Release</a>
+  <a href="https://github.com/RustikTie/WINGS">Repository</a>               
+                                              
+  <h2>License </h2>
+  <p> MIT License   </p>
  
  <p>Copyright (c) 2018 Clara Ratera, Ivan Drofiak   </p>
 
