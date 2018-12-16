@@ -2,6 +2,7 @@
 #define __j1SCENE_H__
 
 #include "j1Module.h"
+#include "Animation.h"
 #include "p2List.h"
 
 struct SDL_Texture;
@@ -64,6 +65,7 @@ private:
 	Widgets*		QuitButton = nullptr;
 	Widgets*		Options = nullptr;
 	Widgets*		Credits = nullptr;
+	Widgets*		Logo = nullptr;
 	Widgets*		OptionWindow = nullptr;
 	Widgets*		CreditsWindow = nullptr;
 	Widgets*		Menu_Credits = nullptr;
@@ -114,6 +116,10 @@ private:
 	p2List<Widgets*> OptionsWidgets;
 	p2List<Widgets*> CreditsWidgets;
 	p2List<Widgets*> PauseMenu;
+
+	Animation		SlimeGuy;
+	Animation*		current_anim = nullptr;
+	SDL_Texture*	sprites = nullptr;
 
 private:
 	bool			Quit = true;

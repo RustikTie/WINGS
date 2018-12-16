@@ -10,6 +10,9 @@ Image::Image(int x, int y, WidgetType type, bool show, SDL_Rect rec, float scale
 	this->rec = rec;
 	this->show = show;
 	this->scale = scale;
+
+	pos.x = x;
+	pos.y = y;
 }
 
 
@@ -19,5 +22,8 @@ Image::~Image()
 
 void Image::Draw()
 {
-	App->render->Blit(App->gui->GetGuiAtlas(), pos.x - App->render->camera.x, pos.y - App->render->camera.y, scale, scale, false, &rec);
+	if (show)
+	{
+		App->render->Blit(App->gui->logo, pos.x - App->render->camera.x, pos.y - App->render->camera.y, scale, scale, false, &rec);
+	}
 }

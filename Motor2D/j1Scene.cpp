@@ -14,10 +14,16 @@
 #include "Player.h"
 #include "j1GUIManager.h"
 #include "Widgets.h"
+#include "Animation.h"
 
 j1Scene::j1Scene() : j1Module()
 {
 	name.create("scene");
+
+	SlimeGuy.PushBack({ 67, 196, 66, 92 });
+	SlimeGuy.PushBack({ 0, 196, 66, 92 });
+	SlimeGuy.loop = true;
+	SlimeGuy.speed = 2.f;
 }
 
 // Destructor
@@ -48,6 +54,9 @@ bool j1Scene::Start()
 	App->pause_game = false;
 	//App->map->Load("iso.tmx");
 	
+	sprites = App->tex->Load("textures/p1_spritesheet.png");
+	SlimeGuy.Reset();
+	current_anim = &SlimeGuy;
 
 	App->map->CleanUp();
 	App->entitymanager->CleanUp();
@@ -59,6 +68,7 @@ bool j1Scene::Start()
 	MenuButtons.add(Options = App->gui->AddButton(100, 300, BUTTON, MAIN, 1, true, &idle, "Settings"));
 	MenuButtons.add(Credits = App->gui->AddButton(100, 400, BUTTON, MAIN, 1, true, &idle, "Credits"));
 	MenuButtons.add(QuitButton = App->gui->AddButton(100, 500, BUTTON, MAIN, 1, true, &idle, "Exit"));
+	MenuButtons.add(Logo = App->gui->AddImage(310, 220, IMAGE, true, { 0,0,359,240 }, 1.f));
 	
 	
 	pugi::xml_document data;
@@ -78,6 +88,7 @@ bool j1Scene::Start()
 	OptionsWidgets.add(Background = App->gui->AddBackground(0, 0, BACKGROUND, false, { 0,0,1024,768 }));
 	OptionsWidgets.add(OptionWindow = App->gui->AddWindow(66, 80, WINDOW, 2, 1, false, rect_window));
 	OptionsWidgets.add(Menu_Options = App->gui->AddButton(0, 0, BUTTON, BACK, 1, false, &idle, "BACK"));
+
 
 	CreditsWidgets.add(Background = App->gui->AddBackground(0, 0, BACKGROUND, false, { 0,0,1024,768 }));
 	CreditsWidgets.add(CreditsWindow = App->gui->AddWindow(66, 80, WINDOW, 2, 1, false, rect_window));
@@ -235,6 +246,7 @@ bool j1Scene::Update(float dt)
 // Called each loop iteration
 bool j1Scene::PostUpdate()
 {
+	App->render->Blit(sprites, 700, 300, 3, 3, true, &(current_anim->GetCurrentFrame()));
 
 	return Quit;
 }

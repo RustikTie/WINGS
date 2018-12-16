@@ -83,9 +83,11 @@ public:
 	_TTF_Font*			font = nullptr;
 	_TTF_Font*			credits_font = nullptr;
 
+	SDL_Texture*		logo = nullptr;
+
 private:
 
-	SDL_Texture *		background = nullptr;
+	SDL_Texture*		background = nullptr;
 	SDL_Texture*		guiAtlas = nullptr;
 	SDL_Texture*		atlas;
 	p2SString			atlas_file_name;
