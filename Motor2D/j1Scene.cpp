@@ -24,6 +24,7 @@ j1Scene::j1Scene() : j1Module()
 	SlimeGuy.PushBack({ 0, 196, 66, 92 });
 	SlimeGuy.loop = true;
 	SlimeGuy.speed = 2.f;
+
 }
 
 // Destructor
@@ -36,7 +37,6 @@ bool j1Scene::Awake()
 	LOG("Loading Scene");
 	bool ret = true;
 
-	button_click = App->audio->LoadFx("audio/fx/ButtonClick.wav");
 
 	Mix_VolumeMusic(volume);
 	Mix_Volume(-1, volume);
@@ -59,12 +59,12 @@ bool j1Scene::Start()
 	sprites = App->tex->Load("textures/p1_spritesheet.png");
 	SlimeGuy.Reset();
 	current_anim = &SlimeGuy;
+	button_click = App->audio->LoadFx("audio/fx/ButtonClick.wav");
 
 	App->map->CleanUp();
 	App->entitymanager->CleanUp();
 
-	
-
+		
 	MenuButtons.add(Background = App->gui->AddBackground(0, 0, BACKGROUND, true, { 0,0,1024,768 }));
 	MenuButtons.add(StartButton = App->gui->AddButton(100, 100, BUTTON, MAIN, 1, true, &idle, "Play"));
 	MenuButtons.add(Options = App->gui->AddButton(100, 300, BUTTON, MAIN, 1, true, &idle, "Settings"));
@@ -124,7 +124,9 @@ bool j1Scene::Start()
 	{
 		App->map->CleanUp();
 		App->entitymanager->CleanUp();
+		App->audio->CleanUp();
 		App->entitymanager->Start();
+		App->audio->Start();
 		App->map->Load("level2_v2.tmx");
 
 		
@@ -271,7 +273,6 @@ bool j1Scene::MouseEvents(Widgets* widget)
 	case MOUSE_ENTER:
 		if (widget->type == BUTTON)
 		{
-			App->audio->PlayFx(button_click);
 
 			if (widget == Continue && !saved_game)
 			{			
@@ -300,13 +301,25 @@ bool j1Scene::MouseEvents(Widgets* widget)
 			{
 			}			
 			else
+			{
+				App->audio->PlayFx(button_click);
 				widget->texture_rect = &click;
+
+			}
 		}
 		if (widget->type == SLIDER)
 		{
 			int x, y;
 			App->input->GetMousePosition(x, y);
 			widget->updateValue(x);
+			if(widget = FXVol)
+			{
+				Mix_Volume(-1, widget->getValue());
+			}
+			if (widget = MusicVol)
+			{
+				Mix_VolumeMusic(widget->getValue());
+			}
 		}
 		
 		break;
