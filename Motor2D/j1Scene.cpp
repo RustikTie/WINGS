@@ -40,7 +40,7 @@ bool j1Scene::Awake(pugi::xml_node& config)
 	button_click = App->audio->LoadFx("audio/fx/ButtonClick.wav");
 
 	Mix_VolumeMusic(volume);
-	Mix_Volume(-1, volume);
+	Mix_Volume(-1, volume - 30);
 
 	return ret;
 }
@@ -293,7 +293,14 @@ bool j1Scene::MouseEvents(Widgets* widget)
 			{			
 			}
 			else
-			widget->texture_rect = &hover;
+			{
+				widget->texture_rect = &hover;
+				if (widget->show)
+				{
+					App->audio->PlayFx(button_click);
+				}
+			}
+			
 		}
 
 		break;
@@ -317,8 +324,11 @@ bool j1Scene::MouseEvents(Widgets* widget)
 			}			
 			else
 			{
-				App->audio->PlayFx(button_click);
-				widget->texture_rect = &click;
+				widget->texture_rect = &hover;
+				if (widget->show)
+				{
+					App->audio->PlayFx(button_click);
+				}
 
 			}
 		}
