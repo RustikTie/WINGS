@@ -198,6 +198,8 @@ void Player::MoveEntity(float dt)
 
 	if (lives <= 0)
 	{
+		App->map->CleanUp();
+		App->entitymanager->CleanUp();
 		App->collisions->Erase_Non_Player_Colliders();
 		App->scene->menu = true;
 		App->scene->level1 = false;
