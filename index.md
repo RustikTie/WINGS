@@ -1,6 +1,12 @@
-# Team
+# Slime Guy Team
 
 ![Pic](website%20Images/both.png)
+
+# Introduction
+
+Slime Guy is a 2D platformer where the player controls an slime man which has to escape the mountain recolecting coins and avoiding enemies. The mountains consist of high cliffs where a bad step may be hte end of the life of slime man.
+
+Slime guy is a game created for the subject of Videogame Development as part of Videogame Creation and Design in the TTC - UPC.
 
 ### Ivan Drofiak
 
