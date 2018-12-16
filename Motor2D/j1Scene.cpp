@@ -52,10 +52,10 @@ bool j1Scene::Awake(pugi::xml_node& config)
 	sprintf_s(credits_7, "Music");
 	sprintf_s(credits_8, "Jump SFX: RoseTheFl0wer");
 	sprintf_s(credits_9, "Death SFX: SubspaceAudio");
-	sprintf_s(credits_10, "Coin SFX: ");
+	sprintf_s(credits_10, "Coin SFX: SubspaceAudio");
 	sprintf_s(credits_11, "Glide SFX: SubspaceAudio");
 	sprintf_s(credits_12, "Game Music: syncopika");
-	sprintf_s(credits_13, "Menu Music: SubspaceAudio");
+	sprintf_s(credits_13, "Menu Music: syncopika");
 
 	return ret;
 }
