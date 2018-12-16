@@ -246,7 +246,10 @@ bool j1Scene::Update(float dt)
 // Called each loop iteration
 bool j1Scene::PostUpdate()
 {
-	App->render->Blit(sprites, 700, 300, 3, 3, true, &(current_anim->GetCurrentFrame()));
+	if (menu)
+	{
+		App->render->Blit(sprites, 700, 300, 3, 3, true, &(current_anim->GetCurrentFrame()));
+	}
 
 	return Quit;
 }
