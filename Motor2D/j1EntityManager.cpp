@@ -90,11 +90,6 @@ bool j1EntityManager::Update(float dt)
 		{
 			entities[i]->MoveEntity(dt);
 			entities[i]->Draw(dt);
-
-			if (i == 0)
-			{
-				LOG("%d %d", entities[0]->collider->rect.x, entities[0]->collider->rect.y);
-			}
 		}
 
 		

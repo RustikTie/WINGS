@@ -110,11 +110,16 @@ bool j1Scene::Start()
 		App->map->Load("map_test.tmx");
 		App->entitymanager->Start();
 	
+		App->entitymanager->AddEnemy(COIN, 2500, 900);
+		App->entitymanager->AddEnemy(COIN, 3000, 1300);
+		App->entitymanager->AddEnemy(COIN, 5800, 820);
+		App->entitymanager->AddEnemy(COIN, 7600, 1000);
+		App->entitymanager->AddEnemy(COIN, 7800, 1100);
+		App->entitymanager->AddEnemy(COIN, 8000, 1200);
+		App->entitymanager->AddEnemy(COIN, 8200, 1400);
+		App->entitymanager->AddEnemy(COIN, 11000, 400);
 		
 		App->entitymanager->AddEnemy(MUSHROOM, 3000, 100);
-		
-		App->entitymanager->AddEnemy(COIN, 2500, 900);
-
 		App->entitymanager->AddEnemy(BEETLE, 2500, 700);
 		App->entitymanager->AddEnemy(MUSHROOM, 6000, 100);
 		App->entitymanager->AddEnemy(BEETLE, 6700, 1800);
@@ -128,13 +133,16 @@ bool j1Scene::Start()
 		player_score = App->entitymanager->player_entity->score;
 		App->map->CleanUp();
 		App->entitymanager->CleanUp();
-		App->audio->CleanUp();
+		App->collisions->Erase_Non_Player_Colliders();
+		App->map->Load("Map_2.tmx");
 		App->entitymanager->Start();
 		App->entitymanager->player_entity->score = player_score;
 		App->audio->Start();
 		App->map->Load("level2_v2.tmx");
 
 		
+
+		App->entitymanager->AddEnemy(COIN, 200 + App->entitymanager->player_entity->pos.x , App->entitymanager->player_entity->pos.y);
 	}
 	
 	
@@ -238,16 +246,22 @@ bool j1Scene::Update(float dt)
 		&& App->entitymanager->player_entity->pos.x >= 13500.f && level1)
 
 	{
+		menu = false;
 		level2 = true;
 		App->map->CleanUp();
 		player_score = App->entitymanager->player_entity->score;
 		App->entitymanager->CleanUp();
 		App->entitymanager->Start();
 		App->collisions->Erase_Non_Player_Colliders();
-		App->map->Load("Map_2.tmx");
 		App->entitymanager->player_entity->SetPos(500, 1000);
 		App->entitymanager->player_entity->score = player_score;
 		level1 = false;
+		Start();
+
+		for (int i = 0; i < MenuButtons.count(); ++i)
+		{
+			MenuButtons[i]->show = false;
+		}
 	}
 
 	if (App->entitymanager->player_entity != nullptr
