@@ -52,7 +52,7 @@ void Slider::updateValue(float mouse_pos)
 		//it works up to here, the following need to update  the x position of the slider
 		// the slider pos x is different from the bars, so it is the variable rect_x
 		// vars i have are mouse_pos, last_mouse_pos and real_width of the bar(not the slider)
-		rect_x = bar_rect.w;
+		rect_x = pos.x + bar_rect.w - (rect_x + slider_rect->w - mouse_pos);
 	}
 
 	last_mouse_pos = mouse_pos;
