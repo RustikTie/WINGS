@@ -165,6 +165,8 @@ bool j1Scene::Start()
 		App->entitymanager->AddEnemy(BEETLE, 6700, 1800);
 		App->entitymanager->AddEnemy(MUSHROOM, 10000, 200);
 		
+		App->gui->AddTimer(App->win->GetWidth() / 2, 24, TIMER, true, 0, idle);
+		
 		App->audio->PlayMusic("audio/music/BGM.ogg");
 
 
@@ -202,10 +204,6 @@ bool j1Scene::PreUpdate()
 // Called each loop iteration
 bool j1Scene::Update(float dt)
 {
-	if (!App->pause_game)
-	{
-		App->gui->AddTimer(App->win->GetWidth() / 2, 24, TIMER, true, 0, idle);
-	}
 
 	if (App->input->GetKey(SDL_SCANCODE_KP_MINUS) == KEY_REPEAT)
 	{

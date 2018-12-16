@@ -21,6 +21,8 @@ private:
 	bool show;
 	int last_time = 0;
 
+	int curr_time;
+	int offset_time;
 	int font = 0;
 	j1Timer currTime;
 	int sec = 0;

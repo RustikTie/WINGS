@@ -28,19 +28,28 @@ Timer::~Timer()
 
 void Timer::Draw()
 {
-	int curr_time = currTime.ReadSec() - startTime;
-	sec += curr_time - last_time;
+	/*int curr_time;
+	int offset_time;*/
 
-	if(sec >= 60)
+	if (!App->pause_game)
 	{
-		min += 1;
-		sec -= 60;
+		curr_time = currTime.ReadSec() - startTime - offset_time;
+		sec += curr_time - last_time;
+
+		if (sec >= 60)
+		{
+			min += 1;
+			sec -= 60;
+		}
+		last_time = curr_time;
+
+		sprintf_s(timer, "%i:%i", min, sec);
+		timerText->EditText(timer);
 	}
-	last_time = curr_time;
-
-	sprintf_s(timer, "%i:%i", min, sec);
-	timerText->EditText(timer);
-
+	else
+	{
+		offset_time = currTime.ReadSec() - startTime - curr_time;
+	}
 }
 
 void Timer::setTimer(int value)
