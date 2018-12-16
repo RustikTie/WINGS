@@ -74,6 +74,7 @@ public:
 	SDL_Rect		half = { 0, 825, 53, 45 };
 	SDL_Rect		character = { 0, 969, 53, 47 };
 	SDL_Rect		rect_score = { 132, 961, 311, 111 };
+	SDL_Rect		rect_coins = { 357, 707, 129, 56 };
 
 	char			score_text[100];
 	char			coin_text[100];
