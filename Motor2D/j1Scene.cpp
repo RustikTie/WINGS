@@ -90,20 +90,20 @@ bool j1Scene::Start()
 	OptionsWidgets.add(Background = App->gui->AddBackground(0, 0, BACKGROUND, false, { 0,0,1024,768 }));
 	OptionsWidgets.add(OptionWindow = App->gui->AddWindow(66, 80, WINDOW, 2, 1, false, rect_window));
 	OptionsWidgets.add(Menu_Options = App->gui->AddButton(0, 0, BUTTON, BACK, 1, false, &idle, "BACK"));
-	OptionsWidgets.add(Credits = App->gui->AddText(66, 80, TEXT, false, credits_title, 0));
-	OptionsWidgets.add(OptionsSFX = App->gui->AddSlider(66,80, SLIDER, bg_rect,bar_rect,&slider_rect, false));
-	OptionsWidgets.add(OptionsVol = App->gui->AddSlider(66, 200, SLIDER, bg_rect, bar_rect, &slider_rect, false));
+	OptionsWidgets.add(OptionsSFX = App->gui->AddSlider(300, 300, SLIDER, bg_rect,bar_rect,&slider_rect, false));
+	OptionsWidgets.add(OptionsVol = App->gui->AddSlider(300, 500, SLIDER, bg_rect, bar_rect, &slider_rect, false));
 
 	CreditsWidgets.add(Background = App->gui->AddBackground(0, 0, BACKGROUND, false, { 0,0,1024,768 }));
 	CreditsWidgets.add(CreditsWindow = App->gui->AddWindow(66, 80, WINDOW, 2, 1, false, rect_window));
+	CreditsWidgets.add(CreditText = App->gui->AddText(470, 100, TEXT, false, credits_title, 0));
 	CreditsWidgets.add(Menu_Credits = App->gui->AddButton(0, 0, BUTTON, BACK, 1, false, &idle, "BACK"));
 	CreditsWidgets.add(WebButton = App->gui->AddButton(430, 550, BUTTON, BACK, 1, false, &idle, "Website"));
 
-	PauseMenu.add(PauseWindow = App->gui->AddWindow(500, 80, WINDOW, 1, 1, false, rect_window));
+	PauseMenu.add(PauseWindow = App->gui->AddWindow(400, 80, WINDOW, 1.4f, 1, false, rect_window));
 	PauseMenu.add(Resume = App->gui->AddButton(630, 220, BUTTON, BACK, 1, false, &idle, "Resume"));
 	PauseMenu.add(PauseToMenu = App->gui->AddButton(630, 320, BUTTON, BACK, 1, false, &idle, "Menu"));
-	PauseMenu.add(PauseSFX = App->gui->AddSlider(66, 80, SLIDER, bg_rect, bar_rect, &slider_rect, false));
-	PauseMenu.add(PauseVol = App->gui->AddSlider(66, 200, SLIDER, bg_rect, bar_rect, &slider_rect, false));
+	PauseMenu.add(PauseSFX = App->gui->AddSlider(510, 450, SLIDER, bg_rect, bar_rect, &slider_rect, false));
+	PauseMenu.add(PauseVol = App->gui->AddSlider(510, 550, SLIDER, bg_rect, bar_rect, &slider_rect, false));
 
 	if (level1)
 	{
