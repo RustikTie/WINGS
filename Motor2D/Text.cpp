@@ -28,8 +28,8 @@ Text::~Text()
 
 void Text::Draw()
 {
-	
-	App->render->Blit(tex, pos.x - App->render->camera.x, pos.y - App->render->camera.y , 1.0f, 1.0f, false);
+	if(show)
+		App->render->Blit(tex, pos.x - App->render->camera.x, pos.y - App->render->camera.y , 1.0f, 1.0f, false);
 	
 }
 

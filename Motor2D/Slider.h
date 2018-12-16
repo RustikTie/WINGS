@@ -22,7 +22,6 @@ private:
 	SDL_Rect* slider_rect = nullptr;
 	int real_width;
 	float last_mouse_pos = 1;
-	bool show;
 };
 
 #endif __SLIDER_H__

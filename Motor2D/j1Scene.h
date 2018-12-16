@@ -101,6 +101,14 @@ private:
 	Widgets*		PausePlus = nullptr;
 	Widgets*		PauseMinus = nullptr;
 
+	Widgets*		OptionsVol = nullptr;
+	Widgets*		OptionsSFX = nullptr;
+	Widgets*		PauseVol = nullptr;
+	Widgets*		PauseSFX = nullptr;
+
+	char			credits_title[100];
+	char			credits_1[100];
+
 	SDL_Rect		rect_window;
 	SDL_Rect		rect_score;
 	SDL_Rect		bg_rect = { 351, 551, 358, 56 };
