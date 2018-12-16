@@ -43,7 +43,19 @@ bool j1Scene::Awake(pugi::xml_node& config)
 	Mix_VolumeMusic(volume);
 	Mix_Volume(-1, volume);
 	sprintf_s(credits_title, "CREDITS");
-	
+	sprintf_s(credits_1, "Developed: Clara Ratera & Ivan Drofiak");
+	sprintf_s(credits_2, "Art");
+	sprintf_s(credits_3, "Beetle: mikailain");
+	sprintf_s(credits_4, "Mushroom: mikailain");
+	sprintf_s(credits_5, "Background + Tileset: Gameart2d");
+	sprintf_s(credits_6, "GUI: pzUH");
+	sprintf_s(credits_7, "Music");
+	sprintf_s(credits_8, "Jump SFX: RoseTheFl0wer");
+	sprintf_s(credits_9, "Death SFX: SubspaceAudio");
+	sprintf_s(credits_10, "Coin SFX: ");
+	sprintf_s(credits_11, "Glide SFX: SubspaceAudio");
+	sprintf_s(credits_12, "Game Music: syncopika");
+	sprintf_s(credits_13, "Menu Music: SubspaceAudio");
 
 	return ret;
 }
@@ -96,8 +108,21 @@ bool j1Scene::Start()
 	CreditsWidgets.add(Background = App->gui->AddBackground(0, 0, BACKGROUND, false, { 0,0,1024,768 }));
 	CreditsWidgets.add(CreditsWindow = App->gui->AddWindow(66, 80, WINDOW, 2, 1, false, rect_window));
 	CreditsWidgets.add(CreditText = App->gui->AddText(470, 100, TEXT, false, credits_title, 0));
+	CreditsWidgets.add(CreditText1 = App->gui->AddText(250, 230, TEXT, false, credits_1, 0));
+	CreditsWidgets.add(CreditText2 = App->gui->AddText(250, 260, TEXT, false, credits_2, 0));
+	CreditsWidgets.add(CreditText3 = App->gui->AddText(250, 290, TEXT, false, credits_3, 0));
+	CreditsWidgets.add(CreditText4 = App->gui->AddText(250, 320, TEXT, false, credits_4, 0));
+	CreditsWidgets.add(CreditText5 = App->gui->AddText(250, 350, TEXT, false, credits_5, 0));
+	CreditsWidgets.add(CreditText6 = App->gui->AddText(250, 380, TEXT, false, credits_6, 0));
+	CreditsWidgets.add(CreditText7 = App->gui->AddText(250, 410, TEXT, false, credits_7, 0));
+	CreditsWidgets.add(CreditText8 = App->gui->AddText(250, 440, TEXT, false, credits_8, 0));
+	CreditsWidgets.add(CreditText9 = App->gui->AddText(250, 470, TEXT, false, credits_9, 0));
+	CreditsWidgets.add(CreditText10 = App->gui->AddText(250, 500, TEXT, false, credits_10, 0));
+	CreditsWidgets.add(CreditText11 = App->gui->AddText(250, 530, TEXT, false, credits_11, 0));
+	CreditsWidgets.add(CreditText12 = App->gui->AddText(250, 560, TEXT, false, credits_12, 0));
+	CreditsWidgets.add(CreditText13 = App->gui->AddText(250, 590, TEXT, false, credits_13, 0));
 	CreditsWidgets.add(Menu_Credits = App->gui->AddButton(0, 0, BUTTON, BACK, 1, false, &idle, "BACK"));
-	CreditsWidgets.add(WebButton = App->gui->AddButton(430, 550, BUTTON, BACK, 1, false, &idle, "Website"));
+	CreditsWidgets.add(WebButton = App->gui->AddButton(430, 650, BUTTON, BACK, 1, false, &idle, "Website"));
 
 	PauseMenu.add(PauseWindow = App->gui->AddWindow(400, 80, WINDOW, 1.4f, 1, false, rect_window));
 	PauseMenu.add(Resume = App->gui->AddButton(630, 220, BUTTON, BACK, 1, false, &idle, "Resume"));

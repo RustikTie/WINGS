@@ -108,6 +108,18 @@ private:
 
 	char			credits_title[100];
 	char			credits_1[100];
+	char			credits_2[100];
+	char			credits_3[100];
+	char			credits_4[100];
+	char			credits_5[100];
+	char			credits_6[100];
+	char			credits_7[100];
+	char			credits_8[100];
+	char			credits_9[100];
+	char			credits_10[100];
+	char			credits_11[100];
+	char			credits_12[100];
+	char			credits_13[100];
 
 	SDL_Rect		rect_window;
 	SDL_Rect		rect_score;
